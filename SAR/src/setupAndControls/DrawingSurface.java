@@ -7,10 +7,10 @@ import java.awt.Point;
 import java.awt.event.KeyEvent;
 import java.awt.geom.Point2D;
 
-import challenges.GridTemplate;
-import challenges.labyrinth.Labyrinth;
-import challenges.maze.Maze;
-import challenges.paintcan.Image;
+import ComputerPlayer.Maze;
+//import challenges.labyrinth.Labyrinth;
+//import challenges.maze.Maze;
+//import challenges.paintcan.Image;
 import processing.core.PApplet;
 
 
