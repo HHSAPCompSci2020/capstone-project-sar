@@ -1,5 +1,5 @@
 package setupAndControls;
 
-public class Game {
+public class Levels {
 
 }
