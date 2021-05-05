@@ -22,7 +22,7 @@ public class DrawingSurface extends PApplet {
 	
 	
 	public DrawingSurface() {
-		board = new Labyrinth("testfiles/labyrinth/test2.txt");
+		board = new Maze("mazeLayouts/test2.txt");
 	}
 	
 
