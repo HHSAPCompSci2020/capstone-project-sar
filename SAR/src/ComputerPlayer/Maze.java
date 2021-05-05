@@ -6,6 +6,7 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.Scanner;
 import setupAndControls.DrawingSurface;
+import setupAndControls.GridTemplate;
 
 import java.util.ArrayList;
 

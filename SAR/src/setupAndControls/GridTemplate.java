@@ -1,6 +1,5 @@
 package setupAndControls;
 
-
 import java.awt.Point;
 import java.io.File;
 import java.io.FileReader;
