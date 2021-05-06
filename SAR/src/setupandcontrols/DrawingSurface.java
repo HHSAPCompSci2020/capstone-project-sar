@@ -11,6 +11,7 @@ import processing.core.PApplet;
 /**
  * Creates a Drawing Surface, and draws all components (maze, obstacles, avatar, projectiles, etc.)
  * @author Shachaf
+ *@version 5/5
  */
 
 public class DrawingSurface extends PApplet {

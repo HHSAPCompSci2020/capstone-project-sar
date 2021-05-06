@@ -9,7 +9,8 @@ import processing.core.PApplet;
 
 /**
  * Runs game: creates window and draws the game
- *
+ *@version 5/5
+ *@author Shachaf
  */
 public class Main {
 	public static void main(String args[]) {

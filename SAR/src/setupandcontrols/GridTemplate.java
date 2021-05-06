@@ -11,7 +11,7 @@ import processing.core.PApplet;
 /**
  * Sets up the Maze
  * @author Mr. Shelby, and one method by Radhika
- *
+ *@version 5/5
  */
 public abstract class GridTemplate {
 
