@@ -1,10 +1,11 @@
 package projectiles;
 
-/**
- * Represents a poison arrow - deals damage over time
- *@version 5/5
- *@author Ayush
- */
-public class PoisonArrow {
+
+public class PoisonArrow extends StandardProjectile{
+
+	public PoisonArrow(int x, int y, int moveSpeed, int dir) {
+		super(x, y, moveSpeed, dir);
+		
+	}
 
 }
