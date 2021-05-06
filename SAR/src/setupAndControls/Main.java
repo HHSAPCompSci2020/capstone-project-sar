@@ -7,6 +7,11 @@ import javax.swing.JFrame;
 import processing.awt.PSurfaceAWT;
 import processing.core.PApplet;
 
+/**
+ * 
+ * Runs Game
+ *
+ */
 public class Main {
 	public static void main(String args[]) {
 
