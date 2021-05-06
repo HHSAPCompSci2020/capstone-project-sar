@@ -7,6 +7,7 @@ import processing.core.PApplet;
 /**
  * Manages ability to use keyboard and mouse for certain actions
  *@version 5/5
+ *@author Shachaf
  */
 public class Controls extends PApplet {
 
