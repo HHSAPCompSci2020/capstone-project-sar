@@ -10,12 +10,14 @@ import setupAndControls.GridTemplate;
 
 import java.util.ArrayList;
 
-/*
-	Coded by: Radhika Agarwal
-	Modified on: 4/25/21
 
-*/
-
+/**
+ * Manages the maze solving component of the computer player
+ * 
+ * @author Radhika Agarwal
+ * @version 4/25/21
+ *
+ */
 public class Maze extends GridTemplate {
 
 	
