@@ -1,8 +1,8 @@
-package ComputerPlayer;
+package computerplayer;
 
 /**
  * Represents the computer avatar and its visual and game components. Also
- * manages the avatar’s life.
+ * manages the avatar's life.
  *
  */
 public class Avatar {

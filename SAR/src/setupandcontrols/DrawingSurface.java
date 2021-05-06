@@ -1,16 +1,17 @@
-package setupAndControls;
-
-
+package setupandcontrols;
 
 
 import java.awt.Point;
 import java.awt.event.KeyEvent;
 import java.awt.geom.Point2D;
 
-import ComputerPlayer.Maze;
+import computerplayer.Maze;
 import processing.core.PApplet;
 
-
+/**
+ * Creates a Drawing Surface, and draws all components (maze, obstacles, avatar, projectiles, etc.)
+ * @author Shachaf
+ */
 
 public class DrawingSurface extends PApplet {
 

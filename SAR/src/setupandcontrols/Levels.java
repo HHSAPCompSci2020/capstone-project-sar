@@ -1,4 +1,4 @@
-package setupAndControls;
+package setupandcontrols;
 
 /**
  * 

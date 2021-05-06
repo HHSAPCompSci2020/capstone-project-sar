@@ -1,4 +1,4 @@
-package setupAndControls;
+package setupandcontrols;
 
 import java.awt.Point;
 import java.io.File;
@@ -8,6 +8,11 @@ import java.util.Scanner;
 
 import processing.core.PApplet;
 
+/**
+ * Sets up the Maze
+ * @author Mr. Shelby, and one method by Radhika
+ *
+ */
 public abstract class GridTemplate {
 
 	/** Add a field to represent the grid. This time, make it a 2D array of characters. **/

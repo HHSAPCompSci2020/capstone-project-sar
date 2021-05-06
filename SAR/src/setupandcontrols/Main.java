@@ -1,4 +1,4 @@
-package setupAndControls;
+package setupandcontrols;
 
 import java.awt.Dimension;
 
@@ -8,8 +8,7 @@ import processing.awt.PSurfaceAWT;
 import processing.core.PApplet;
 
 /**
- * 
- * Runs Game
+ * Runs game: creates window and draws the game
  *
  */
 public class Main {

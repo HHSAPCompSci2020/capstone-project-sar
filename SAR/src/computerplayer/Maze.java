@@ -1,12 +1,13 @@
-package ComputerPlayer;
+package computerplayer;
 
 import java.awt.Point;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.Scanner;
-import setupAndControls.DrawingSurface;
-import setupAndControls.GridTemplate;
+
+import setupandcontrols.DrawingSurface;
+import setupandcontrols.GridTemplate;
 
 import java.util.ArrayList;
 
