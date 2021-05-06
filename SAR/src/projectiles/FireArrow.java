@@ -6,4 +6,8 @@ package projectiles;
  */
 public class FireArrow extends StandardProjectile{
 
+	public FireArrow(int x, int y, int moveSpeed, int dir) {
+		super(x, y, moveSpeed, dir);
+	}
+
 }
