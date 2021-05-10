@@ -12,8 +12,8 @@ public class Avatar {
 
 	//FIELDS
 	private int gridx, gridy;
-	public int health;
-	public boolean isAlive;
+	private int health;
+	private boolean isAlive;
 	
 	//CONSTRUCTOR
 	public Avatar() {
