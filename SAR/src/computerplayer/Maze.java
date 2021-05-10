@@ -1,6 +1,7 @@
 package computerplayer;
 
 import java.awt.Point;
+import java.util.HashMap;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
@@ -44,6 +45,55 @@ public class Maze extends GridTemplate {
 		return findPath(x,y,false);
 	}
 
+	/**
+	 * Credit goes to redblobgames.com
+	 * @param x
+	 * @param y
+	 * @return
+	 */
+	private ArrayList<Point> find(int x, int y){
+/*
+ * frontier = Queue()
+frontier.put(start )
+came_from = dict()
+came_from[start] = None
+
+while not frontier.empty():
+   current = frontier.get()
+
+   if current == goal: 
+      break           
+
+   for next in graph.neighbors(current):
+      if next not in came_from:
+         frontier.put(next)
+         came_from[next] = current
+ */
+
+		
+		ArrayList<Point> frontier = new ArrayList<Point>();
+		frontier.add(new Point(x, y));
+		
+		HashMap<Point, Point> cameFrom = new HashMap<Point, Point>();
+		cameFrom.put(new Point(x, y), null);
+		
+		while (frontier.size() != 0) {
+			Point current = frontier.remove(0);
+			
+			if (grid[current.y][current.x] == 'X') {
+				break;
+			}
+			
+			ArrayList<Point> neighbors = new ArrayList<Point>();
+			neighbors.add(new Point(current.x+1, current.y));
+			neighbors.add(new Point(current.x-1, current.y));
+			neighbors.add(new Point(current.x, current.y+1));
+			neighbors.add(new Point(current.x, current.y-1));
+			
+			//foreach next in 
+		}
+	}
+	
 	
 	private ArrayList<Point> findPath(int x, int y, boolean hasCloak){
 		if(y<0 || x<0 || y >= grid.length || x >= grid[0].length){	// Are you out of the grid bounds?
@@ -53,8 +103,6 @@ public class Maze extends GridTemplate {
 		}else if(grid[y][x] == '!' && !hasCloak) { // Are you somewhere you have been before, while holding the cloak? 
 			return null;
 		}else if(grid[y][x] == '*' && hasCloak){ // Are you somewhere you have been before, while not holding the cloak, and you don't current have the cloak?
-			return null;
-		}else if(grid[y][x] == 'A' && !hasCloak) { 				// Are you at a monster, and you don't current have the cloak?
 			return null;
 		}else if(grid[y][x] == 'X') { 								// Are you at the exit?
 			ArrayList<Point> path = new ArrayList<Point>();

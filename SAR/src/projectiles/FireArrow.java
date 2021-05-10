@@ -10,4 +10,5 @@ public class FireArrow extends StandardProjectile{
 		super(x, y, moveSpeed, dir);
 	}
 
+	
 }

@@ -32,7 +32,7 @@ public class DrawingSurface extends PApplet {
 		textSize(12);
 		
 		if (board != null) {
-			board.draw(this, 0, 0, height, height);
+			board.draw(this, 75, 0, height, height);
 		}
 		
 	}
