@@ -9,7 +9,7 @@ import java.util.Scanner;
 public class TesterMaze {
 
 	public static void main(String[] args) {
-		Maze test = new Maze("mazeLevels/test1.txt");
+		Maze test = new Maze("mazeLevels/test4.txt");
 		System.out.println("___________ORIGINAL____________");
 		System.out.println(test.toString());
 		

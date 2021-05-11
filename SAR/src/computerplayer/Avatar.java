@@ -1,4 +1,8 @@
 package computerplayer;
+import java.awt.Image;
+import java.awt.Point;
+import java.util.ArrayList;
+
 import processing.core.PApplet;
 
 
@@ -14,6 +18,7 @@ public class Avatar {
 	private int gridx, gridy;
 	private int health;
 	private boolean isAlive;
+	private Image picture;
 	
 	//CONSTRUCTOR
 	public Avatar() {
@@ -21,10 +26,11 @@ public class Avatar {
 		gridy = -1;
 		health = 10;
 		isAlive = true;
+		//picture = new ImageIcon("virus.png")).getImage();
 	}
 	
 	//METHODS
-	public void move() {
+	public void move(ArrayList<Point> path) {
 		
 	}
 	
@@ -32,5 +38,7 @@ public class Avatar {
 		
 	}
 	
-	
+	public void draw(PApplet surface) {
+		g.drawImage(picture, x, y, io);
+	}
 }
