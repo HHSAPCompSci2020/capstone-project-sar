@@ -33,17 +33,17 @@ public class Maze extends GridTemplate {
 		super(20,20,filename);
 	}
 
-	/**
-	* Solves the labyrinth in the smallest number of moves.
-	* 
-	* @param x The x coordinate of the starting point.
-	* @param y The y coordinate of the starting point.
-	* @return An ArrayList containing the coordinates of all locations on the shortest path to the exit, where the first 
-	* element is the location of the starting point and the last element is the location of the exit, or null if no path can be found.
-	*/
-	public ArrayList<Point> findPath(int x, int y) {
-		return findPath(x,y,false);
-	}
+//	/**
+//	* Solves the labyrinth in the smallest number of moves.
+//	* 
+//	* @param x The x coordinate of the starting point.
+//	* @param y The y coordinate of the starting point.
+//	* @return An ArrayList containing the coordinates of all locations on the shortest path to the exit, where the first 
+//	* element is the location of the starting point and the last element is the location of the exit, or null if no path can be found.
+//	*/
+//	public ArrayList<Point> findPath(int x, int y) {
+//		return findPath(x,y,false);
+//	}
 
 	/**
 	 * Credit goes to redblobgames.com
@@ -51,7 +51,7 @@ public class Maze extends GridTemplate {
 	 * @param y
 	 * @return
 	 */
-	private ArrayList<Point> find(int x, int y){
+	public ArrayList<Point> find(int x, int y){
 /*
  * frontier = Queue()
 frontier.put(start )
@@ -70,17 +70,21 @@ while not frontier.empty():
          came_from[next] = current
  */
 
-		
 		ArrayList<Point> frontier = new ArrayList<Point>();
-		frontier.add(new Point(x, y));
+		Point start = new Point(x, y);
+		frontier.add(start);
+		
+		Point goal = new Point();
 		
 		HashMap<Point, Point> cameFrom = new HashMap<Point, Point>();
-		cameFrom.put(new Point(x, y), null);
+		cameFrom.put(start, null);
 		
 		while (frontier.size() != 0) {
 			Point current = frontier.remove(0);
 			
 			if (grid[current.y][current.x] == 'X') {
+				goal.x = current.x;
+				goal.y = current.y;
 				break;
 			}
 			
@@ -89,9 +93,49 @@ while not frontier.empty():
 			neighbors.add(new Point(current.x-1, current.y));
 			neighbors.add(new Point(current.x, current.y+1));
 			neighbors.add(new Point(current.x, current.y-1));
-			
-			//foreach next in 
+
+			for (Point next: neighbors) {
+				if (!isPointWalkable(next)) {
+					
+				}else if (!cameFrom.containsKey(next)) {
+					frontier.add(next);
+					cameFrom.put(next, current);
+				}
+			}
 		}
+		
+		System.out.println(frontier.size() + "should usually not equal zero.");
+		System.out.println(cameFrom.size() + "should not equal zero.");
+
+/*
+current = goal 
+path = []
+while current != start: 
+   path.append(current)
+   current = came_from[current]
+path.append(start) # optional
+path.reverse() # optional
+ */
+		Point current = goal;
+		ArrayList<Point> path = new ArrayList<Point>();
+		
+		
+		while (!current.equals(start)) {
+			path.add(0, current);
+			current = cameFrom.get(current);
+		}
+		path.add(0, start);
+		
+		return path;
+	}
+	
+	private boolean isPointWalkable(Point p) {
+		if (p.x<0 || p.y<0 || p.y>= grid.length || p.x >= grid[0].length) {
+			return false;
+		}else if (grid[p.y][p.x] == '#') {
+			return false;
+		}
+		return true;
 	}
 	
 	
