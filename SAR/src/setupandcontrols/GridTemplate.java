@@ -122,6 +122,9 @@ public abstract class GridTemplate {
 	}
 	
 
+	public void set(int x, int y, char c) {
+		grid[y][x] = c;
+	}
 
 	public void readData (String filename, char[][] gameData) {
 		File dataFile = new File(filename);

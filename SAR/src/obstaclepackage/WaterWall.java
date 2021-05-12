@@ -46,7 +46,7 @@ public class WaterWall extends PApplet {
 	public void mouseReleased() {
 		p = new Point(x,y);
 		Point n = grid.clickToIndex(p, 75f, 0f, height, height);
-		
+		grid.set((int) n.getX(), (int) n.getY(), 'w');
 	}
 	
 	//add code to put it on a specific grid location and to add the sign to the grid
