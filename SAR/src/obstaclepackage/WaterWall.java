@@ -1,5 +1,8 @@
 package obstaclepackage;
 import processing.core.PApplet;
+import setupandcontrols.GridTemplate;
+import java.awt.Point;
+
 
 /**
  * Represents a water wall - the avatar slows down when passing through
@@ -11,15 +14,18 @@ public class WaterWall extends PApplet {
 	char waterWall;
 	int x;
 	int y;
-	int size;
+	float size;
+	GridTemplate grid;
+	Point p;
 	
 	
-	public WaterWall(int x, int y, int size) {
+	public WaterWall(int x, int y, GridTemplate grid) {
 		waterWall = 'w';
 		this.x = x;
 		this.y = y;
-		this.size = size;
-		
+		size = (float) (height/20.0);
+		this.grid = grid;
+		p = new Point(x,y);
 	}
 	
 	public void draw() {
@@ -35,6 +41,12 @@ public class WaterWall extends PApplet {
 			x = mouseX;
 			y = mouseY;
 		}
+	}
+	
+	public void mouseReleased() {
+		p = new Point(x,y);
+		Point n = grid.clickToIndex(p, 75f, 0f, height, height);
+		
 	}
 	
 	//add code to put it on a specific grid location and to add the sign to the grid
