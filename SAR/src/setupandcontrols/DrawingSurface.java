@@ -65,6 +65,7 @@ public class DrawingSurface extends PApplet {
 
 	public void mousePressed() {
 		if (mouseButton == LEFT) {
+			projectile.isFired = true;
 			Point click = new Point(mouseX, mouseY);
 			float dimension = height;
 			cellCoord = board.clickToIndex(click, 0, 0, dimension, dimension);
@@ -73,6 +74,7 @@ public class DrawingSurface extends PApplet {
 				board.findPath(cellCoord.x, cellCoord.y); // When you progress to a new prompt, modify this method call.
 			}
 		}
+		
 	}
 
 	
