@@ -17,17 +17,22 @@ import java.util.ArrayList;
  * Manages the maze solving component of the computer player
  * 
  * @author Radhika Agarwal
- * @version 4/25/21
+ * @version 5/12/21
  *
  */
 public class Maze extends GridTemplate {
 
-	// Constructs an empty grid
+	/**
+	 * Constructs an empty grid
+	 */
 	public Maze() {
 		super();
 	}
 
-	// Constructs the grid defined in the file specified
+	/**
+	 *  Constructs the grid defined in the file specified
+	 * @param filename Text file with characters describing what the maze layout is like
+	 */
 	public Maze(String filename) {
 		super(20,20,filename);		
 	}
@@ -35,9 +40,11 @@ public class Maze extends GridTemplate {
 
 	/**
 	 * Credit goes to redblobgames.com
-	 * @param x
-	 * @param y
-	 * @return
+	 * It finds the path to the exit using Breadth Search Algorithm
+	 * @param x x-coordinate of the starting point
+	 * @param y y-coordinate of the starting point
+	 * @return complete path from the starting point to the exit
+	 * @post has a few print statements for findings bugs
 	 */
 	public ArrayList<Point> findPath(int x, int y){
 /*
@@ -116,6 +123,8 @@ path.reverse() # optional
 		
 		return path;
 	}
+	
+	
 	
 	private boolean isPointWalkable(Point p) {
 		if (p.x<0 || p.y<0 || p.y>= grid.length || p.x >= grid[0].length) {

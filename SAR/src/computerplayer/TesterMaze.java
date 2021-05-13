@@ -7,7 +7,11 @@ import java.util.Scanner;
 import setupandcontrols.GridTemplate;
 
 
-
+/**
+ * A class for the purpose of finding bugs in Maze. Will be deleted for the final project
+ * @author radhi
+ *
+ */
 public class TesterMaze {
 	
 	public static void main(String[] args) {
