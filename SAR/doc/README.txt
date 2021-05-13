@@ -72,7 +72,6 @@ Stretch Features:
 Class List
 * Setup and User Controls Package
    * Drawing Surface: Creates Drawing Surface for game
-   * User Controls: Manages ability to use keyboard and mouse for certain actions
    * Levels: Manages current level
    * Grid Template: Sets Up Maze
    * Main: Runs Game
