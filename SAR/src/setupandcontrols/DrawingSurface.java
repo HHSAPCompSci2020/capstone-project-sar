@@ -4,9 +4,11 @@ import java.awt.Point;
 import java.awt.event.KeyEvent;
 import java.awt.geom.Point2D;
 
+import computerplayer.Avatar;
 import computerplayer.Maze;
 import obstaclepackage.WaterWall;
 import processing.core.PApplet;
+import projectiles.StandardProjectile;
 
 /**
  * Creates a Drawing Surface, and draws all components (maze, obstacles, avatar,
@@ -21,12 +23,20 @@ public class DrawingSurface extends PApplet {
 	// When you progress to a new prompt, modify this field.
 	private Maze board;
 	private WaterWall obstacle;
+	private StandardProjectile projectile;
+	private Avatar aang;
+	private int time;
 	private boolean mousePressed;
 	private Point cellCoord;
 
 	public DrawingSurface() {		
 		board = new Maze("mazeLevels/test2.txt");
 		obstacle = new WaterWall(10, height / 2, board, this);
+		projectile = new StandardProjectile(loadImage("arrow.png"),1,1, 1,1);
+		aang = new Avatar();
+		Point start = board.findPath(1, 5).get(0);
+		aang.setup(start);
+		time = 0;
 	}
 
 	
@@ -39,6 +49,14 @@ public class DrawingSurface extends PApplet {
 		if (board != null) {
 			board.draw(this, 75, 0, height, height);
 			obstacle.draw();
+			projectile.draw(this);
+//			if (time%300000 == 0) {
+//				aang.move(board.findPath(1, 5));
+//				time = 0;
+//			}
+//			time++;
+			aang.draw(this, height/board.grid.length, 75, 0);
+
 		}
 
 	}
@@ -62,5 +80,11 @@ public class DrawingSurface extends PApplet {
 	
 	public void mouseReleased() {
 		obstacle.mouseReleased();
+	}
+	
+	public void keyPressed() {
+		if (keyCode == KeyEvent.VK_SPACE) {
+			aang.move(board.findPath(1, 5));
+		}
 	}
 }

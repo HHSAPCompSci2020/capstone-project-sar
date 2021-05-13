@@ -1,6 +1,12 @@
 package projectiles;
-import java.awt.event.KeyEvent;
+import java.awt.*;
+import java.awt.geom.Rectangle2D;
+import java.awt.geom.Rectangle2D;
 import processing.core.PApplet;
+import processing.core.PImage;
+import computerplayer.Avatar;
+import processing.core.PApplet;
+import processing.core.PImage;
 
 /**
  * Displays the 
@@ -13,16 +19,26 @@ public class StandardProjectile {
 	public boolean fired, hit;
 	public int moveSpeed;
 	public int direction;
+	public PImage img;
 	
-	public StandardProjectile(int x, int y, int moveSpeed, int dir) {	
+	public StandardProjectile(PImage image,int x, int y, int moveSpeed, int dir) {	
 		this.x =x;
 		this.y =y;
 		this.moveSpeed = moveSpeed;
 		direction = dir;
+		img = image;
 	}
 	
-	public boolean hitTarget() { //requires avatar code
-		return false;
+	public boolean hitTarget(Avatar av) { 
+		if (av.getGridx() == x && av.getGridy() == y) {
+			remove();
+			return true;
+		
+		}
+		else {
+			return false;
+		}
+		
 	}
 	
 	public void fire() {
@@ -37,11 +53,12 @@ public class StandardProjectile {
 	}
 	
 	public void remove() {
-		
+		this.y = -1;
 	}
 	
-	public void draw() {
-		
+	
+	public void draw(PApplet mk) {
+		mk.image(img,x,y,5,10);
 	}
 	
 }
