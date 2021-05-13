@@ -90,10 +90,12 @@ public abstract class GridTemplate {
 		for (int i = 0; i < grid.length; i++) {
 			for (int j = 0; j < grid.length; j++) {
 				if(grid[i][j] == '#') {
-					marker.fill(25, 150, 25);
+					marker.fill(100, 100, 100);
 				} else if(grid[i][j] == 'w') {
 					marker.fill(50, 150, 225);
-				} else {
+				} else if (grid[i][j] == 'X') {
+					marker.fill(25,150,25);
+				}else {
 					marker.fill(255);
 				}
 				marker.square(x + (r * i), y + (j * r), r);
