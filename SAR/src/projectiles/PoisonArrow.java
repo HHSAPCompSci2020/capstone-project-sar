@@ -15,8 +15,8 @@ public class PoisonArrow extends StandardProjectile{
 	public void poison(Avatar av) {
 		int dmg = POISION_SPEED;
 		for (int i=0; i<dmg; i++) {
-			if (av.isAlive) {
-				av.health -= 1*POISION_DAMAGE;
+			if (av.isAlive()) {
+				av.setHealth(av.getHealth() - 1*POISION_DAMAGE);
 			}
 		}
 	}

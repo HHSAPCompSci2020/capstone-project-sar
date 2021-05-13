@@ -22,10 +22,10 @@ public class Avatar {
 	
 	//CONSTRUCTOR
 	public Avatar() {
-		gridx = -1;
-		gridy = -1;
-		health = 10;
-		isAlive = true;
+		setGridx(-1);
+		setGridy(-1);
+		setHealth(10);
+		setAlive(true);
 		
 		//picture = new ImageIcon("virus.png")).getImage();
 	}
@@ -47,5 +47,37 @@ public class Avatar {
 	
 	public void draw(PApplet surface) {
 		//g.drawImage(picture, x, y, io);
+	}
+
+	public int getGridx() {
+		return gridx;
+	}
+
+	public void setGridx(int gridx) {
+		this.gridx = gridx;
+	}
+
+	public int getGridy() {
+		return gridy;
+	}
+
+	public void setGridy(int gridy) {
+		this.gridy = gridy;
+	}
+
+	public int getHealth() {
+		return health;
+	}
+
+	public void setHealth(int health) {
+		this.health = health;
+	}
+
+	public boolean isAlive() {
+		return isAlive;
+	}
+
+	public void setAlive(boolean isAlive) {
+		this.isAlive = isAlive;
 	}
 }
