@@ -3,6 +3,7 @@ package obstaclepackage;
 import java.awt.Point;
 
 import processing.core.PApplet;
+import setupandcontrols.DrawingSurface;
 import setupandcontrols.GridTemplate;
 
 /**
@@ -10,7 +11,7 @@ import setupandcontrols.GridTemplate;
  * @version 5/5
  * @author Shachaf
  */
-public class MovingWall extends PApplet {
+public class MovingWall {
 
 	char movingWall;
 	int x;
@@ -18,6 +19,7 @@ public class MovingWall extends PApplet {
 	int totalTime;
 	int timeElapsed;
 	float size;
+	DrawingSurface app;
 	GridTemplate grid;
 	Point p;
 	
@@ -27,29 +29,30 @@ public class MovingWall extends PApplet {
 		this.x = x;
 		this.y = y;
 		this.totalTime = totalTime;
-		size = (float) (height/20.0);
+		app = new DrawingSurface();
+		size = (float) (app.height/20.0);
 		this.grid = grid;
 		p = new Point(x,y);
 	}
 	
 	public void draw() {
-		noStroke();
-		fill(50, 200, 225);
-		square(x, y, size);
-		noFill();
-		stroke(0, 0, 0);
+		app.noStroke();
+		app.fill(50, 200, 225);
+		app.square(x, y, size);
+		app.noFill();
+		app.stroke(0, 0, 0);
 	}
 	
 	public void mouseDragged() {
-		if(mouseX < x + size && mouseX > x && mouseY < y + size && mouseY > y) {
-			x = mouseX;
-			y = mouseY;
+		if(app.mouseX < x + size && app.mouseX > x && app.mouseY < y + size && app.mouseY > y) {
+			x = app.mouseX;
+			y = app.mouseY;
 		}
 	}
 	
 	public void mouseReleased() {
 		p = new Point(x,y);
-		Point n = grid.clickToIndex(p, 75f, 0f, height, height);
+		Point n = grid.clickToIndex(p, 75f, 0f, app.height, app.height);
 		grid.set((int) n.getX(), (int) n.getY(), movingWall);
 	}
 	

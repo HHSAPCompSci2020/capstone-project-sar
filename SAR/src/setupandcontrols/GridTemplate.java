@@ -128,7 +128,9 @@ public abstract class GridTemplate {
 	}
 
 	public void set(int x, int y, char c) {
-		grid[y][x] = c;
+		if(x > -1 && x < 20 && y > -1 && y < 20) {
+			grid[y][x] = c;
+		}
 	}
 
 	public void readData(String filename, char[][] gameData) {

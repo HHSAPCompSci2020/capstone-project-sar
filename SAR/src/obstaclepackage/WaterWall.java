@@ -1,53 +1,55 @@
 package obstaclepackage;
+
 import processing.core.PApplet;
+import setupandcontrols.DrawingSurface;
 import setupandcontrols.GridTemplate;
 import java.awt.Point;
 
-
 /**
  * Represents a water wall - the avatar slows down when passing through
- *@version 5/5
- *@author Shachaf
+ * 
+ * @version 5/5
+ * @author Shachaf
  */
-public class WaterWall extends PApplet {
+public class WaterWall {
 
 	char waterWall;
 	int x;
 	int y;
 	float size;
+	DrawingSurface app;
 	GridTemplate grid;
 	Point p;
-	
-	
-	public WaterWall(int x, int y, GridTemplate grid) {
+
+	public WaterWall(int x, int y, GridTemplate grid, DrawingSurface app) {
 		waterWall = 'w';
 		this.x = x;
 		this.y = y;
-		size = (float) (height/20.0);
+		this.app = app;
+		size = (float) (app.height / 20.0);
 		this.grid = grid;
-		p = new Point(x,y);
+		p = new Point(x, y);
 	}
-	
+
 	public void draw() {
-		noStroke();
-		fill(50, 200, 225);
-		square(x, y, size);
-		noFill();
-		stroke(0, 0, 0);
+		app.fill(50, 200, 225);
+		app.square(x, y, size);
+		app.noFill();
 	}
-	
+
 	public void mouseDragged() {
-		if(mouseX < x + size && mouseX > x && mouseY < y + size && mouseY > y) {
-			x = mouseX;
-			y = mouseY;
+		if (app.mouseX < x + size && app.mouseX > x && app.mouseY < y + size && app.mouseY > y) {
+			x = app.mouseX;
+			y = app.mouseY;
 		}
 	}
-	
+
 	public void mouseReleased() {
-		p = new Point(x,y);
-		Point n = grid.clickToIndex(p, 75f, 0f, height, height);
+		p = new Point(x, y);
+		Point n = grid.clickToIndex(p, 75f, 0f, app.height, app.height);
 		grid.set((int) n.getX(), (int) n.getY(), waterWall);
 	}
-	
-	//add code to put it on a specific grid location and to add the sign to the grid
+
+	// add code to put it on a specific grid location and to add the sign to the
+	// grid
 }
