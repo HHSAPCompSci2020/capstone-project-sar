@@ -33,7 +33,7 @@ public class WaterWall {
 		this.x = x;
 		this.y = y;
 		this.app = app;
-		size = (float) (app.height / 10.0);
+		size = (float) (app.height / 20.0);
 		this.grid = grid;
 		p = new Point(x, y);
 	}

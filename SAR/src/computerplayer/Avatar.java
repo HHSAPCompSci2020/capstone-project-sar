@@ -91,11 +91,13 @@ public class Avatar {
 	 * Draws the Avatar as a small, red rectangle
 	 * @param surface Drawing Surface
 	 * @param gridLength Length of each small grid on the window
+	 * @param windowX the x-coordinate of the top-left corner of the grid on the window
+	 * @param windowY the y-coordinate of the top-left corner of the grid on the window
 	 */
-	public void draw(PApplet surface, int gridLength) {
+	public void draw(PApplet surface, int gridLength, int windowX, int windowY) {
 		surface.pushStyle();
 		surface.fill(255, 0, 0);
-		surface.rect(gridx*gridLength, gridy*gridLength, gridLength/2, gridLength/2);
+		surface.rect(gridx*gridLength + windowX, gridy*gridLength + windowY, gridLength/2, gridLength/2);
 		surface.popStyle();
 	}
 

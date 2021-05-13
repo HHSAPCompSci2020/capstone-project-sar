@@ -98,7 +98,7 @@ public abstract class GridTemplate {
 				}else {
 					marker.fill(255);
 				}
-				marker.square(x + (r * i), y + (j * r), r);
+				marker.square(x + (r * j), y + (i * r), r);
 			}
 		}
 	}
