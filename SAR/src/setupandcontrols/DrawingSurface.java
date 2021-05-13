@@ -34,10 +34,10 @@ public class DrawingSurface extends PApplet {
 		obstacle = new WaterWall(10, height / 2, board, this);
 		projectile = new StandardProjectile(1,1, 1,1);
 		aang = new Avatar();
-		Point start = board.findPath(1, 5).get(0);
 	}
 
-	public void setup(Point start) {
+	public void setup() {
+		Point start = board.findPath(1, 5).get(0);
 		aang.setup(start);
 		time = 0;
 	}
