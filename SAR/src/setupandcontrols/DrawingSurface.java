@@ -24,6 +24,8 @@ public class DrawingSurface extends PApplet {
 	private WaterWall obstacle;
 	private Avatar aang;
 	private int time;
+	private boolean mousePressed;
+	private Point cellCoord;
 
 	public DrawingSurface() {		
 		board = new Maze("mazeLevels/test2.txt");
@@ -58,8 +60,9 @@ public class DrawingSurface extends PApplet {
 		if (mouseButton == LEFT) {
 			Point click = new Point(mouseX, mouseY);
 			float dimension = height;
-			Point cellCoord = board.clickToIndex(click, 0, 0, dimension, dimension);
-			if (cellCoord != null) {
+			cellCoord = board.clickToIndex(click, 0, 0, dimension, dimension);
+			if (cellCoord != null && cellCoord.x > 74) {
+				mousePressed = true;
 				board.findPath(cellCoord.x, cellCoord.y); // When you progress to a new prompt, modify this method call.
 			}
 		}
