@@ -26,19 +26,26 @@ public class Avatar {
 		gridy = -1;
 		health = 10;
 		isAlive = true;
+		
 		//picture = new ImageIcon("virus.png")).getImage();
 	}
 	
 	//METHODS
+	/**
+	 * drawing surface calls this method after finding path from Maze class
+	 * it passes in the path returned and the avatar moves based on this info
+	 * @param path
+	 */
 	public void move(ArrayList<Point> path) {
 		
 	}
+	
 	
 	public void die() {
 		
 	}
 	
 	public void draw(PApplet surface) {
-		g.drawImage(picture, x, y, io);
+		//g.drawImage(picture, x, y, io);
 	}
 }
