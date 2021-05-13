@@ -23,10 +23,11 @@ public class WaterWall {
 
 	/**
 	 * Constructor for making a new WaterWall
-	 * @param x - x coordinate of the WaterWall
-	 * @param y - y coordinate of the WaterWall
+	 * 
+	 * @param x    - x coordinate of the WaterWall
+	 * @param y    - y coordinate of the WaterWall
 	 * @param grid - The grid of Maze
-	 * @param app - A DrawingSurface applet
+	 * @param app  - A DrawingSurface applet
 	 */
 	public WaterWall(int x, int y, GridTemplate grid, DrawingSurface app) {
 		waterWall = 'w';
@@ -37,6 +38,9 @@ public class WaterWall {
 		this.grid = grid;
 		p = new Point(x, y);
 	}
+
+	// don't make GridTemplate and DrawingSurface as fields. Instead, pass them into
+	// the methods that need them as parameters.
 
 	/**
 	 * Draws the Waterwall
