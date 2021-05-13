@@ -26,7 +26,7 @@ public class WaterWall {
 		this.x = x;
 		this.y = y;
 		this.app = app;
-		size = (float) (app.height / 20.0);
+		size = (float) (app.height / 10.0);
 		this.grid = grid;
 		p = new Point(x, y);
 	}
@@ -38,7 +38,7 @@ public class WaterWall {
 	}
 
 	public void mouseDragged() {
-		if (app.mouseX < x + size && app.mouseX > x && app.mouseY < y + size && app.mouseY > y) {
+		if (app.mouseX <= x + size && app.mouseX >= x && app.mouseY <= y + size && app.mouseY >= y) {
 			x = app.mouseX;
 			y = app.mouseY;
 		}
