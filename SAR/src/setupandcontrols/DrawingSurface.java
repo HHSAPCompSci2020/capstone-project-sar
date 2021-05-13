@@ -76,4 +76,10 @@ public class DrawingSurface extends PApplet {
 	public void mouseReleased() {
 		obstacle.mouseReleased();
 	}
+	
+	public void keyPressed() {
+		if (keyCode == KeyEvent.VK_SPACE) {
+			aang.move(board.findPath(1, 5));
+		}
+	}
 }
