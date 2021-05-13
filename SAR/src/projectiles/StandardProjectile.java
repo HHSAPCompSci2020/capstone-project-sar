@@ -23,18 +23,16 @@ public class StandardProjectile {
 	
 	/**
 	 * Initializes a StandardProjectile
-	 * @param image StandardProjectile Image
 	 * @param x Horizontal coordinate of the arrow in the grid
 	 * @param y Vertical coordinate of the arrow in the grid
 	 * @param moveSpeed The speed of the projectile
 	 * @param dir Direction of the projectile (a negative int represents a left-facing arrow, otherwise faces right)
 	 */
-	public StandardProjectile(PImage image,int x, int y, int moveSpeed, int dir) {	
+	public StandardProjectile(int x, int y, int moveSpeed, int dir) {	
 		this.x =x;
 		this.y =y;
 		this.moveSpeed = moveSpeed;
 		direction = dir;
-		img = image;
 	}
 	
 	/**
@@ -82,7 +80,7 @@ public class StandardProjectile {
 	 * @param mk DrawingSurface
 	 **/
 	public void draw(PApplet mk) {
-		mk.image(img,x,y,5,10);
+		mk.line(x, y, x+5, y);
 	}
 	
 }

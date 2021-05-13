@@ -8,8 +8,8 @@ public class PoisonArrow extends StandardProjectile{
 	private final int POISION_SPEED = 1;
 	private final int POISION_DAMAGE = 1;
 
-	public PoisonArrow(PImage image, int x, int y, int moveSpeed, int dir) {
-		super(image, x, y, moveSpeed, dir);
+	public PoisonArrow(int x, int y, int moveSpeed, int dir) {
+		super(x, y, moveSpeed, dir);
 			
 	}
 	

@@ -8,8 +8,8 @@ import processing.core.PImage;
  */
 public class FireArrow extends StandardProjectile{
 
-	public FireArrow(PImage image, int x, int y, int moveSpeed, int dir) {
-		super(image, x, y, moveSpeed, dir);
+	public FireArrow(int x, int y, int moveSpeed, int dir) {
+		super(x, y, moveSpeed, dir);
 	}
 
 	
