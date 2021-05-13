@@ -1,5 +1,5 @@
 ﻿Beat the Computer
-Revision: 4/25/21
+Revision: 5/13/21
 Authors: Shachaf Smith, Ayush Saran, Radhika Agarwal
 Description: 
 Our game is similar to a classic maze game where the avatar navigates through a maze and obstacles, except the computer controls the avatar and the user controls the obstacles and aims to kill the avatar before it reaches the end of the maze. This game, like any captivating and enjoyable videogame, cures the problem of boredom. We decided to create a computer game anyone can play with ease that requires the skills of AI, GUIs, and also Arrays to create. The goal of the user playing the game is to control the obstacles in the game to hinder, injure, and even hurt/kill the avatar so it doesn’t get to the end of the maze as soon as possible. The game will have one avatar that is computer controlled, and multiple obstacles that the user can use at any point in the game, and the game only ends if the avatar reaches the end, or the user successfully kills the avatar. Afterwards, the user can decide to play the same game or choose a different level. Any person familiar with the basics of videogames and wants to have fun is our perfect audience. The primary features are a maze, that has walls, and empty spaces, an avatar that navigates the maze, a health score, that tracks the health of the avatar, and obstacles. The obstacles are a variety of projectiles that can be used to shoot things at the avatar. They include moving walls, water walls, and a collection of projectiles that deal damage to the avatar. In order to pass a level, you just have to Beat the Computer. 
@@ -48,7 +48,7 @@ Want-to-have Features:
 *  A computer avatar that can solve these maze levels[d]
    * More sophisticated mazes means that the pathfinding algorithm would need to be updated. It would also need to be able to find ways around or through the additional obstacles added as part of the “Want-to-have” features.
 *  An additional obstacle that can hinder the avatar from moving through the maze
-   * This obstacle would be a moving wall. [e]Unlike the water wall, computer avatar would not be able to pass through this wall when it is blocking the path. Instead, it would need to wait until the wall moved out of the way. [f]
+   * This obstacle would be a moving wall. [e]Unlike the water wall, the computer avatar would not be able to pass through this wall when it is blocking the path from the side of the maze. Instead, it would need to wait until the wall moved out of the way. [f]
 *  An additional projectile with different mechanisms
    * The projectile would be a fire arrow. The fire arrow has a different graphic element, and it deals more damage to the avatar.
 *  A currency system to buy projectiles and obstacles
@@ -72,6 +72,7 @@ Stretch Features:
 Class List
 * Setup and User Controls Package
    * Drawing Surface: Creates Drawing Surface for game
+   * User Controls: Manages ability to use keyboard and mouse for certain actions
    * Levels: Manages current level
    * Grid Template: Sets Up Maze
    * Main: Runs Game
@@ -95,20 +96,11 @@ Credit List
 * Shachaf Smith
    * Coded Setup and User Controls Package
    * Coded Obstacle Package
-   * Compiled art assets
 * Ayush Saran
    * Coded Projectile Package 
    * Created initial Maze Layouts
+   * Compiled art assets
 * Flaticon.com
    * Icons featured in art assets
 * Thenounproject.com
    * Additional icons featured in art assets
-
-
-[a]What is going to be the default keybinds? How many will there be?
-[b]How fast is the computer going to traverse the maze? How fast is the player able to shoot projectiles?
-[c]Just to clarify, where are the projectiles fired from? Are they shot from specified locations or does the user just click on the avatar to shoot?
-[d]This doesn't feel like a 'want to have' feature. This seems more like a requirement in order for this game to function. It's more like in order to create your game your computer avatar MUST be able to solve all of your maze levels.
-[e]How would this moving wall interact with the avatar if they are colliding?
-[f]If the only thing that the moving wall does is force the avatar to wait, doesn't it just effectively slow it down? Wouldn't that be very similar to the jello wall in practice?
-[g]If this system is not implemented, are there any other restrictions that stop the player from spamming obstacles and projectiles?
