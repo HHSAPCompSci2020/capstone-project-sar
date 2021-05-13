@@ -8,7 +8,7 @@ import java.awt.Point;
 /**
  * Represents a water wall - the avatar slows down when passing through
  * 
- * @version 5/5
+ * @version 5/13
  * @author Shachaf
  */
 public class WaterWall {
@@ -33,7 +33,7 @@ public class WaterWall {
 		this.x = x;
 		this.y = y;
 		this.app = app;
-		size = (float) (app.height / 20.0);
+		size = (float) (app.height / 10.0);
 		this.grid = grid;
 		p = new Point(x, y);
 	}
