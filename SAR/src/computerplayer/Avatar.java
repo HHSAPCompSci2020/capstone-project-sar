@@ -65,6 +65,8 @@ public class Avatar {
 			if (gridx == path.get(i).x && gridy == path.get(i).y) {
 				if(i == path.size()-1) {
 					System.out.println("Reached end, computer WINS!");
+					System.out.println(gridx + " " + gridy);
+					return;
 				}
 				if (!isSlowed) {
 					gridx = path.get(i+1).x;
@@ -73,6 +75,8 @@ public class Avatar {
 					gridx = path.get(i+1).x;
 					gridy = path.get(i+1).y;
 				}
+				System.out.println(gridx + " " + gridy);
+				return;
 				
 			}
 		}
@@ -80,6 +84,7 @@ public class Avatar {
 			System.out.println("Avatar is not on path right now");
 		}
 		
+		System.out.println(gridx + " " + gridy);
 	}
 	
 	private void die() {
