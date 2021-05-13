@@ -17,6 +17,7 @@ public class StandardProjectile {
 	
 	public int x, y;
 	public boolean fired, hit;
+	public boolean isFired;
 	public int moveSpeed;
 	public int direction;
 	public PImage img;
@@ -80,6 +81,9 @@ public class StandardProjectile {
 	 * @param mk DrawingSurface
 	 **/
 	public void draw(PApplet mk) {
+		if (isFired == true) {
+		fire();
+		}
 		mk.line(x, y, x+5, y);
 	}
 	

@@ -31,7 +31,7 @@ public class DrawingSurface extends PApplet {
 
 	public DrawingSurface() {		
 		board = new Maze("mazeLevels/test2.txt");
-		obstacle = new WaterWall(10, height / 2, board, this);
+		obstacle = new WaterWall(10, height / 2);
 		projectile = new StandardProjectile(1,1, 1,1);
 		aang = new Avatar();
 	}
@@ -50,7 +50,7 @@ public class DrawingSurface extends PApplet {
 
 		if (board != null) {
 			board.draw(this, 75, 0, height, height);
-			obstacle.draw();
+			obstacle.draw(this);
 			projectile.draw(this);
 //			if (time%300000 == 0) {
 //				aang.move(board.findPath(1, 5));
@@ -65,6 +65,7 @@ public class DrawingSurface extends PApplet {
 
 	public void mousePressed() {
 		if (mouseButton == LEFT) {
+			projectile.isFired = true;
 			Point click = new Point(mouseX, mouseY);
 			float dimension = height;
 			cellCoord = board.clickToIndex(click, 0, 0, dimension, dimension);
@@ -73,15 +74,16 @@ public class DrawingSurface extends PApplet {
 				board.findPath(cellCoord.x, cellCoord.y); // When you progress to a new prompt, modify this method call.
 			}
 		}
+		
 	}
 
 	
 	public void mouseDragged() {
-		obstacle.mouseDragged();
+		obstacle.mouseDragged(this);
 	}
 	
 	public void mouseReleased() {
-		obstacle.mouseReleased();
+		obstacle.mouseReleased(board, this);
 	}
 	
 	public void keyPressed() {
