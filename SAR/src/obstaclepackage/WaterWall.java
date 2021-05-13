@@ -14,11 +14,11 @@ import java.awt.Point;
 public class WaterWall {
 
 	char waterWall;
+	int xStart;
+	int yStart;
 	int x;
 	int y;
 	float size;
-	DrawingSurface app;
-	GridTemplate grid;
 	Point p;
 
 	/**
@@ -29,13 +29,10 @@ public class WaterWall {
 	 * @param grid - The grid of Maze
 	 * @param app  - A DrawingSurface applet
 	 */
-	public WaterWall(int x, int y, GridTemplate grid, DrawingSurface app) {
+	public WaterWall(int xStart, int yStart) {
 		waterWall = 'w';
-		this.x = x;
-		this.y = y;
-		this.app = app;
-		size = (float) (app.height / 20.0);
-		this.grid = grid;
+		this.xStart = xStart;
+		this.yStart = yStart;
 		p = new Point(x, y);
 	}
 
@@ -45,8 +42,10 @@ public class WaterWall {
 	/**
 	 * Draws the Waterwall
 	 */
-	public void draw() {
+	public void draw(DrawingSurface app) {
 		app.fill(50, 200, 225);
+		size = (float) (app.height / 20.0);
+		app.square(xStart, yStart, size);
 		app.square(x, y, size);
 		app.noFill();
 	}
@@ -54,8 +53,8 @@ public class WaterWall {
 	/**
 	 * Moves the x and y coordinates of the WaterWall when dragged
 	 */
-	public void mouseDragged() {
-		if (app.mouseX < x + size && app.mouseX > x && app.mouseY < y + size && app.mouseY > y) {
+	public void mouseDragged(DrawingSurface app) {
+		if (app.mouseX < xStart + size && app.mouseX > xStart && app.mouseY < yStart + size && app.mouseY > yStart) {
 			x = app.mouseX;
 			y = app.mouseY;
 		}
@@ -64,10 +63,11 @@ public class WaterWall {
 	/**
 	 * puts the WaterWall in the grid when the mouse is released
 	 */
-	public void mouseReleased() {
+	public void mouseReleased(GridTemplate grid, DrawingSurface app) {
 		p = new Point(x, y);
 		Point n = grid.clickToIndex(p, 75f, 0f, app.height, app.height);
 		grid.set((int) n.getX(), (int) n.getY(), waterWall);
 	}
 
 }
+
