@@ -9,9 +9,9 @@ import processing.core.PApplet;
 import processing.core.PImage;
 
 /**
- * Displays the 
+ * Represents the set of projectiles within the game
  * @author Ayush Saran
- *@version 5/6
+ * @version 5/12
  */
 public class StandardProjectile {
 	
@@ -21,6 +21,14 @@ public class StandardProjectile {
 	public int direction;
 	public PImage img;
 	
+	/**
+	 * Initializes a StandardProjectile
+	 * @param image StandardProjectile Image
+	 * @param x Horizontal coordinate of the arrow in the grid
+	 * @param y Vertical coordinate of the arrow in the grid
+	 * @param moveSpeed The speed of the projectile
+	 * @param dir Direction of the projectile (a negative int represents a left-facing arrow, otherwise faces right)
+	 */
 	public StandardProjectile(PImage image,int x, int y, int moveSpeed, int dir) {	
 		this.x =x;
 		this.y =y;
@@ -29,6 +37,12 @@ public class StandardProjectile {
 		img = image;
 	}
 	
+	/**
+	 * Determines if a Projectile is in the same grid space as the avatar
+	 * @param av Avatar 
+	 * @return Returns true if the arrow and avatar are in the same space, false if otherwise
+	 * 
+	**/
 	public boolean hitTarget(Avatar av) { 
 		if (av.getGridx() == x && av.getGridy() == y) {
 			remove();
@@ -41,6 +55,9 @@ public class StandardProjectile {
 		
 	}
 	
+	/**
+	 * Draws and shoots the arrow
+	 **/
 	public void fire() {
 		if (moveSpeed>=0) {
 			if (direction < 0) {
@@ -52,11 +69,18 @@ public class StandardProjectile {
 		}
 	}
 	
+	/**
+	 * Removes the arrow from the grid
+	 **/
 	public void remove() {
 		this.y = -1;
 	}
 	
 	
+	/**
+	 * Draws the arrow
+	 * @param mk DrawingSurface
+	 **/
 	public void draw(PApplet mk) {
 		mk.image(img,x,y,5,10);
 	}
