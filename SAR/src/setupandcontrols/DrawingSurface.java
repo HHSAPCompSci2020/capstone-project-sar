@@ -6,6 +6,7 @@ import java.awt.event.KeyEvent;
 import java.awt.geom.Point2D;
 
 import computerplayer.Maze;
+import obstaclepackage.WaterWall;
 import processing.core.PApplet;
 
 /**
@@ -18,10 +19,12 @@ public class DrawingSurface extends PApplet {
 
 	// When you progress to a new prompt, modify this field.
 	private Maze board;
+	private WaterWall obstacle;
 	
 	
 	public DrawingSurface() {
 		board = new Maze("mazeLevels/test2.txt");
+		obstacle = new WaterWall( 10, height/2, board);
 	}
 	
 
