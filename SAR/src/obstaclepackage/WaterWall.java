@@ -40,7 +40,7 @@ public class WaterWall {
 		waterReleased = false;
 	}
 
-	// try to make new waterwalls on every drag from template
+	// try to make new waterwalls on every drag from template (3)
 
 	/**
 	 * Draws the Waterwall
@@ -49,7 +49,7 @@ public class WaterWall {
 		app.fill(50, 200, 225);
 		size = (float) (app.height / 20.0);
 		app.square(xStart, yStart, size);
-		if(!waterReleased) {
+		if(!isWaterReleased()) {
 			app.square(x, y, size);
 		}
 		app.noFill();
@@ -76,6 +76,10 @@ public class WaterWall {
 			Point n = grid.clickToIndex(p, 75f, 0f, app.height, app.height);
 			grid.set((int) n.getX(), (int) n.getY(), waterWall);
 		}
+	}
+
+	public boolean isWaterReleased() {
+		return waterReleased;
 	}
 
 }

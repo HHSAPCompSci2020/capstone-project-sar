@@ -28,15 +28,19 @@ public class DrawingSurface extends PApplet {
 	// When you progress to a new prompt, modify this field.
 	private Maze board;
 	private WaterWall obstacle;
+	private WaterWall obstacle1;
+	private WaterWall obstacle2;
 	private StandardProjectile projectile;
 	private Avatar aang;
 	private boolean mousePressed; //delete variable?
 	private Point cellCoord;
 	private Timer time;
+	private int yPos;
 
 	public DrawingSurface() {
 		board = new Maze("mazeLevels/test2.txt");
-		obstacle = new WaterWall(10, height / 2);
+		yPos = height/2;
+		obstacle = new WaterWall(10, yPos);
 		projectile = new StandardProjectile(1, 1, 1, 1);
 		aang = new Avatar();
 	}
@@ -67,7 +71,12 @@ public class DrawingSurface extends PApplet {
 			obstacle.draw(this);
 			projectile.draw(this);
 			aang.draw(this, height / board.grid.length, 75, 0);
-
+		}
+		
+		if(obstacle1 != null) {
+			obstacle1.draw(this);
+		} if(obstacle2 != null) {
+			obstacle2.draw(this);
 		}
 
 	}
@@ -88,10 +97,20 @@ public class DrawingSurface extends PApplet {
 
 	public void mouseDragged() {
 		obstacle.mouseDragged(this);
+		if(obstacle1 != null) {
+			obstacle1.mouseDragged(this);
+		} if(obstacle2 != null) {
+			obstacle2.mouseDragged(this);
+		}
 	}
 
 	public void mouseReleased() {
 		obstacle.mouseReleased(board, this);
+		if(obstacle.isWaterReleased()) {
+			obstacle1 = new WaterWall(10, yPos);
+		} if(obstacle1.isWaterReleased()) {
+			obstacle2 = new WaterWall(10, yPos);
+		}
 	}
 
 	public void keyPressed() {
