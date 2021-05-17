@@ -135,6 +135,10 @@ public abstract class GridTemplate {
 		}
 	}
 
+	public char get(int x, int y) {
+		return grid[y][x];
+	}
+	
 	public void readData(String filename, char[][] gameData) {
 		File dataFile = new File(filename);
 

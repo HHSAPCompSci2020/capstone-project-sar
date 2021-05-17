@@ -21,7 +21,8 @@ import projectiles.StandardProjectile;
  */
 
 //todos: waterwall slows down the avatar, make movingWall a thing, create objects by...
-// ... dragging the template
+// ... dragging the template (use demo code) - make sure the player knows how many...
+// obstacles there are
 public class DrawingSurface extends PApplet {
 
 	// When you progress to a new prompt, modify this field.
