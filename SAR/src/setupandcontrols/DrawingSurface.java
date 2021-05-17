@@ -20,6 +20,8 @@ import projectiles.StandardProjectile;
  * @version 5/5
  */
 
+//todos: waterwall slows down the avatar, make movingWall a thing, create objects by...
+// ... dragging the template
 public class DrawingSurface extends PApplet {
 
 	// When you progress to a new prompt, modify this field.

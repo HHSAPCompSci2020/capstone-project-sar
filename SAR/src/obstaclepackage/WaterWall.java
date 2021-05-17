@@ -40,8 +40,7 @@ public class WaterWall {
 		waterReleased = false;
 	}
 
-	// don't make GridTemplate and DrawingSurface as fields. Instead, pass them into
-	// the methods that need them as parameters.
+	// try to make new waterwalls on every drag from template
 
 	/**
 	 * Draws the Waterwall
