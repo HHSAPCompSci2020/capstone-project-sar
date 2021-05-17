@@ -40,16 +40,6 @@ public class TesterMaze {
 
 		
 		
-		String a = "5";
-		int b = 5;
-		char c = '5';
-		System.out.println(a+b+c);
-		System.out.println(c+0);
-		System.out.println(a+(char)b+c);
-
-
-		
-		
 		
 	}
 
