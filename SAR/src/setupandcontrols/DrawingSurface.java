@@ -3,6 +3,8 @@ package setupandcontrols;
 import java.awt.Point;
 import java.awt.event.KeyEvent;
 import java.awt.geom.Point2D;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import computerplayer.Avatar;
 import computerplayer.Maze;
@@ -25,23 +27,22 @@ public class DrawingSurface extends PApplet {
 	private WaterWall obstacle;
 	private StandardProjectile projectile;
 	private Avatar aang;
-	private int time;
 	private boolean mousePressed;
 	private Point cellCoord;
+	private Timer time;
 
-	public DrawingSurface() {		
+	public DrawingSurface() {
 		board = new Maze("mazeLevels/test2.txt");
 		obstacle = new WaterWall(10, height / 2);
-		projectile = new StandardProjectile(1,1, 1,1);
+		projectile = new StandardProjectile(1, 1, 1, 1);
 		aang = new Avatar();
 	}
 
 	public void setup() {
 		Point start = board.findPath(1, 5).get(0);
 		aang.setup(start);
-		time = 0;
 	}
-	
+
 	public void draw() {
 		background(255);
 		fill(0);
@@ -52,12 +53,7 @@ public class DrawingSurface extends PApplet {
 			board.draw(this, 75, 0, height, height);
 			obstacle.draw(this);
 			projectile.draw(this);
-//			if (time%300000 == 0) {
-//				aang.move(board.findPath(1, 5));
-//				time = 0;
-//			}
-//			time++;
-			aang.draw(this, height/board.grid.length, 75, 0);
+			aang.draw(this, height / board.grid.length, 75, 0);
 
 		}
 
@@ -74,21 +70,28 @@ public class DrawingSurface extends PApplet {
 				board.findPath(cellCoord.x, cellCoord.y); // When you progress to a new prompt, modify this method call.
 			}
 		}
-		
+
 	}
 
-	
 	public void mouseDragged() {
 		obstacle.mouseDragged(this);
 	}
-	
+
 	public void mouseReleased() {
 		obstacle.mouseReleased(board, this);
 	}
-	
+
 	public void keyPressed() {
 		if (keyCode == KeyEvent.VK_SPACE) {
-			aang.move(board.findPath(1, 5));
+			if (time == null) {
+				time = new Timer("gameClock");
+				TimerTask task = new TimerTask() {
+					public void run() {
+						aang.move(board.findPath(1, 5));
+					}
+				};
+				time.scheduleAtFixedRate(task, 50, 500);
+			}
 		}
 	}
 }
