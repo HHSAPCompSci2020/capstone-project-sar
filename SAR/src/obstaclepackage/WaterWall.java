@@ -20,6 +20,7 @@ public class WaterWall {
 	int y;
 	float size;
 	Point p;
+	boolean waterReleased;
 
 	/**
 	 * Constructor for making a new WaterWall
@@ -36,6 +37,7 @@ public class WaterWall {
 		x = xStart;
 		y = yStart;
 		p = new Point(x, y);
+		waterReleased = false;
 	}
 
 	// don't make GridTemplate and DrawingSurface as fields. Instead, pass them into
@@ -48,7 +50,9 @@ public class WaterWall {
 		app.fill(50, 200, 225);
 		size = (float) (app.height / 20.0);
 		app.square(xStart, yStart, size);
-		app.square(x, y, size);
+		if(!waterReleased) {
+			app.square(x, y, size);
+		}
 		app.noFill();
 	}
 
@@ -68,8 +72,11 @@ public class WaterWall {
 	 */
 	public void mouseReleased(GridTemplate grid, DrawingSurface app) {
 		p = new Point(x, y);
-		Point n = grid.clickToIndex(p, 75f, 0f, app.height, app.height);
-		grid.set((int) n.getX(), (int) n.getY(), waterWall);
+		if( p.getX() > 75 && p.getX() < app.height) {
+			waterReleased = true;
+			Point n = grid.clickToIndex(p, 75f, 0f, app.height, app.height);
+			grid.set((int) n.getX(), (int) n.getY(), waterWall);
+		}
 	}
 
 }
