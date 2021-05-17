@@ -21,12 +21,14 @@ public abstract class GridTemplate {
 	 * characters.
 	 **/
 	protected char[][] grid;
+	protected Point start;
 
 	/**
 	 * Construct an empty 2D array with some default dimensions.
 	 */
 	public GridTemplate() {
 		grid = new char[20][20];
+		start = new Point(-1,-1);
 	}
 
 	/**
@@ -39,6 +41,7 @@ public abstract class GridTemplate {
 	 */
 	public GridTemplate(int width, int height, String filename) {
 		grid = new char[height][width];
+		start = new Point(-1,-1);
 		readData(filename, grid);
 	}
 
@@ -149,10 +152,15 @@ public abstract class GridTemplate {
 
 				while (in.hasNext()) {
 					String line = in.nextLine();
-					for (int i = 0; i < line.length(); i++)
-						if (count < gameData.length && i < gameData[count].length)
+					for (int i = 0; i < line.length(); i++) {
+						if (count < gameData.length && i < gameData[count].length) {
 							gameData[count][i] = line.charAt(i);
-
+							if(line.charAt(i)== 'A') {
+								start.x = i;
+								start.y = count;
+							}
+						}
+					}
 					count++;
 				}
 

@@ -3,6 +3,7 @@ package setupandcontrols;
 import java.awt.Point;
 import java.awt.event.KeyEvent;
 import java.awt.geom.Point2D;
+import java.util.ArrayList;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -29,7 +30,7 @@ public class DrawingSurface extends PApplet {
 	private WaterWall obstacle;
 	private StandardProjectile projectile;
 	private Avatar aang;
-	private boolean mousePressed;
+	private boolean mousePressed; //delete variable?
 	private Point cellCoord;
 	private Timer time;
 
@@ -40,9 +41,19 @@ public class DrawingSurface extends PApplet {
 		aang = new Avatar();
 	}
 
+	public void settings() {
+		fullScreen();
+	}
+	
 	public void setup() {
-		Point start = board.findPath(1, 5).get(0);
-		aang.setup(start);
+		ArrayList<Point> path = board.findFirstPath();
+		if(path != null) {
+			Point start = path.get(0);
+			aang.setup(start);
+		}else {
+			System.out.println("FIX MAZE TEXT FILE: NO PATH FOUND");
+		}
+		
 	}
 
 	public void draw() {
@@ -89,7 +100,12 @@ public class DrawingSurface extends PApplet {
 				time = new Timer("gameClock");
 				TimerTask task = new TimerTask() {
 					public void run() {
-						aang.move(board.findPath(1, 5));
+						ArrayList<Point> path = board.findPath(aang.getGridx(), aang.getGridy());
+						if (path != null) {
+							aang.move(path);
+						}else {
+							System.out.println("no path found, so the avatar is not moving");
+						}
 					}
 				};
 				time.scheduleAtFixedRate(task, 50, 500);

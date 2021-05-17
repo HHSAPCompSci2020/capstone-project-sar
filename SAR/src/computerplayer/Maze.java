@@ -22,6 +22,7 @@ import java.util.ArrayList;
  */
 public class Maze extends GridTemplate {
 
+	
 	/**
 	 * Constructs an empty grid
 	 */
@@ -37,7 +38,10 @@ public class Maze extends GridTemplate {
 		super(20,20,filename);		
 	}
 
-
+	public ArrayList<Point> findFirstPath(){
+		return findPath(start.x, start.y);
+	}
+	
 	/**
 	 * Credit goes to redblobgames.com
 	 * It finds the path to the exit using Breadth Search Algorithm
@@ -69,7 +73,7 @@ while not frontier.empty():
 		Point start = new Point(x, y);
 		frontier.add(start);
 		
-		Point goal = new Point();
+		Point goal = new Point(-1,-1);
 		
 		HashMap<Point, Point> cameFrom = new HashMap<Point, Point>();
 		cameFrom.put(start, null);
@@ -114,6 +118,12 @@ path.reverse() # optional
 		Point current = goal;
 		ArrayList<Point> path = new ArrayList<Point>();
 		
+		System.out.println(goal.x + " " + goal.y);
+		
+		if(goal.x == -1 && goal.y == -1) {
+			System.out.println("No path found");
+			return null;
+		}
 		
 		while (!current.equals(start)) {
 			path.add(0, current);

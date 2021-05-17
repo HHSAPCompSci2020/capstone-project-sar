@@ -32,6 +32,7 @@ public class Avatar {
 		isAlive = true;
 		isSlowed = false;
 		
+		
 		//picture = new ImageIcon("virus.png")).getImage();
 	}
 	
@@ -56,35 +57,27 @@ public class Avatar {
 	 * @post Has some print lines for the purpose of finding bugs
 	 */
 	public void move(ArrayList<Point> path) {
-		int origX = gridx;
-		int origY = gridy;
+
 		if (health<=0) {
 			die();
 		}
-		for (int i = 0; i< path.size(); i++) {
-			if (gridx == path.get(i).x && gridy == path.get(i).y) {
-				if(i == path.size()-1) {
-					System.out.println("Reached end, computer WINS!");
-					System.out.println(gridx + " " + gridy);
-					return;
-				}
-				if (!isSlowed) {
-					gridx = path.get(i+1).x;
-					gridy = path.get(i+1).y;
-				}else { //	WORK ON SLOWING AVATAR DOWN
-					gridx = path.get(i+1).x;
-					gridy = path.get(i+1).y;
-				}
-				System.out.println(gridx + " " + gridy);
-				return;
-				
-			}
+
+		if(path.size() == 1) {
+			System.out.println("Reached end, computer WINS!");
+			System.out.println(gridx + " " + gridy);
+			return;
 		}
-		if (gridx == origX && gridy == origY) {
-			System.out.println("Avatar is not on path right now");
+		if (!isSlowed) {
+			gridx = path.get(1).x;
+			gridy = path.get(1).y;
+		}else { //	WORK ON SLOWING AVATAR DOWN
+			gridx = path.get(1).x;
+			gridy = path.get(1).y;
 		}
-		
 		System.out.println(gridx + " " + gridy);
+		return;
+
+		
 	}
 	
 	private void die() {
