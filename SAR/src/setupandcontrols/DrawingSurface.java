@@ -27,6 +27,8 @@ public class DrawingSurface extends PApplet {
 	// When you progress to a new prompt, modify this field.
 	private Maze board;
 	private WaterWall obstacle;
+	private WaterWall obstacle1;
+	private WaterWall obstacle2;
 	private StandardProjectile projectile;
 	private Avatar aang;
 	private boolean mousePressed;
@@ -56,7 +58,12 @@ public class DrawingSurface extends PApplet {
 			obstacle.draw(this);
 			projectile.draw(this);
 			aang.draw(this, height / board.grid.length, 75, 0);
-
+		}
+		
+		if(obstacle1 != null) {
+			obstacle1.draw(this);
+		} if(obstacle2 != null) {
+			obstacle2.draw(this);
 		}
 
 	}
@@ -81,6 +88,11 @@ public class DrawingSurface extends PApplet {
 
 	public void mouseReleased() {
 		obstacle.mouseReleased(board, this);
+		if(obstacle.isWaterReleased()) {
+			obstacle1 = new WaterWall(10, height / 2);
+		} if(obstacle1.isWaterReleased()) {
+			obstacle2 = new WaterWall(10, height / 2);
+		}
 	}
 
 	public void keyPressed() {
