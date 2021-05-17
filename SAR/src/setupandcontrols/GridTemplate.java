@@ -132,7 +132,11 @@ public abstract class GridTemplate {
 		return coordinate;
 	}
 
-	
+	public void set(int x, int y, char c) {
+		if(x > -1 && x < 20 && y > -1 && y < 20) {
+			grid[y][x] = c;
+		}
+	}
 
 	public char get(int x, int y) {
 		return grid[y][x];
