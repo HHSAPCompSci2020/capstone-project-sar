@@ -33,6 +33,8 @@ public class WaterWall {
 		waterWall = 'w';
 		this.xStart = xStart;
 		this.yStart = yStart;
+		x = xStart;
+		y = yStart;
 		p = new Point(x, y);
 	}
 
@@ -54,9 +56,10 @@ public class WaterWall {
 	 * Moves the x and y coordinates of the WaterWall when dragged
 	 */
 	public void mouseDragged(DrawingSurface app) {
-		if (app.mouseX < xStart + size && app.mouseX > xStart && app.mouseY < yStart + size && app.mouseY > yStart) {
-			x = app.mouseX;
-			y = app.mouseY;
+		if (app.mouseX <= x + size && app.mouseX >= x && 
+				app.mouseY <= y + size && app.mouseY >= y) {
+			x = (int) (app.mouseX - size/2);
+			y = (int) (app.mouseY - size/2);
 		}
 	}
 
