@@ -40,8 +40,6 @@ public class WaterWall {
 		waterReleased = false;
 	}
 
-	// try to make new waterwalls on every drag from template (3)
-
 	/**
 	 * Draws the Waterwall
 	 */
@@ -49,21 +47,10 @@ public class WaterWall {
 		app.fill(50, 200, 225);
 		size = (float) (app.height / 20.0);
 		app.square(xStart, yStart, size);
-		if(!isWaterReleased()) {
+		if(!waterReleased) {
 			app.square(x, y, size);
 		}
 		app.noFill();
-	}
-
-	/**
-	 * Moves the x and y coordinates of the WaterWall when dragged
-	 */
-	public void mouseDragged(DrawingSurface app) {
-		if (app.mouseX <= x + size && app.mouseX >= x && 
-				app.mouseY <= y + size && app.mouseY >= y) {
-			x = (int) (app.mouseX - size/2);
-			y = (int) (app.mouseY - size/2);
-		}
 	}
 
 	/**
@@ -80,8 +67,25 @@ public class WaterWall {
 		}
 	}
 
-	public boolean isWaterReleased() {
-		return waterReleased;
+
+	public int getX() {
+		return x;
+	}
+
+	public void setX(int x) {
+		this.x = x;
+	}
+
+	public int getY() {
+		return y;
+	}
+
+	public void setY(int y) {
+		this.y = y;
+	}
+	
+	public float getSize() {
+		return size;
 	}
 
 }

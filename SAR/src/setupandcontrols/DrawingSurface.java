@@ -1,6 +1,7 @@
 package setupandcontrols;
 
 import java.awt.Point;
+import java.awt.Rectangle;
 import java.awt.event.KeyEvent;
 import java.awt.geom.Point2D;
 import java.util.ArrayList;
@@ -22,8 +23,7 @@ import projectiles.StandardProjectile;
  * @version 5/5
  */
 
-//todos: waterwall slows down the avatar, make movingWall a thing, create objects by...
-// ... dragging the template (use demo code) - make sure the player knows how many...
+//todos: waterwall slows down the avatar, make movingWall a thing, make sure the player knows how many...
 // obstacles there are
 public class DrawingSurface extends PApplet {
 
@@ -34,7 +34,7 @@ public class DrawingSurface extends PApplet {
 	private WaterWall obstacle2;
 	private StandardProjectile projectile;
 	private Avatar aang;
-	private boolean mousePressed; //delete variable?
+	private boolean mousePressed; // delete variable?
 	private Point cellCoord;
 	private Timer time;
 	private int yPos;
@@ -44,38 +44,40 @@ public class DrawingSurface extends PApplet {
 	PImage wall;
 	PImage grass;
 	PImage end;
-	
+	private int dragOffsetX, dragOffsetY;
+	private WaterWall currentDrag;
+
 	public DrawingSurface() {
 		board = new Maze("mazeLevels/test2.txt");
-		yPos = height/2;
+		yPos = height / 2;
 		obstacle = new WaterWall(10, getyPos());
+		obstacle1 = new WaterWall(10, getyPos());
+		obstacle2 = new WaterWall(10, getyPos());
 		projectile = new StandardProjectile(1, 1, 1, 1);
 		aang = new Avatar();
+		currentDrag = null;
 	}
 
 	public void settings() {
 		fullScreen();
-//		size(yPos / 10, yPos / 10);
 	}
-	
-	
+
 	public void setup() {
 		arrow = loadImage("arrow.png");
 		avatar = loadImage("avatar.png");
 		water = loadImage("sea.png");
 		wall = loadImage("wall.png");
-		grass = loadImage("grass.png");		
-		end = loadImage("trophy.png");		
+		grass = loadImage("grass.png");
+		end = loadImage("trophy.png");
 		ArrayList<Point> path = board.findFirstPath();
-		if(path != null) {
+		if (path != null) {
 			Point start = path.get(0);
 			aang.setup(start);
-		}else {
+		} else {
 			System.out.println("FIX MAZE TEXT FILE: NO PATH FOUND");
 		}
-		
+
 	}
-	
 
 	public void draw() {
 		background(255);
@@ -89,16 +91,20 @@ public class DrawingSurface extends PApplet {
 			projectile.draw(this);
 			aang.draw(this, height / board.grid.length, 75, 0);
 		}
-		
-		if(obstacle1 != null) {
+
+		if (obstacle1 != null) {
 			obstacle1.draw(this);
-		} if(obstacle2 != null) {
+		}
+		if (obstacle2 != null) {
 			obstacle2.draw(this);
 		}
 
 	}
 
 	public void mousePressed() {
+		dragThisOne(obstacle);
+		dragThisOne(obstacle1); // This should probably be done with an ArrayList
+		dragThisOne(obstacle2);
 		if (mouseButton == LEFT) {
 			projectile.isFired = true;
 			Point click = new Point(mouseX, mouseY);
@@ -112,21 +118,10 @@ public class DrawingSurface extends PApplet {
 
 	}
 
-	public void mouseDragged() {
-		obstacle.mouseDragged(this);
-		if(obstacle1 != null) {
-			obstacle1.mouseDragged(this);
-		} if(obstacle2 != null) {
-			obstacle2.mouseDragged(this);
-		}
-	}
-
 	public void mouseReleased() {
-		obstacle.mouseReleased(board, this);
-		if(obstacle.isWaterReleased()) {
-			obstacle1 = new WaterWall(10, getyPos());
-		} if(obstacle1.isWaterReleased()) {
-			obstacle2 = new WaterWall(10, getyPos());
+		if (currentDrag != null) {
+			currentDrag.mouseReleased(board, this);
+			currentDrag = null;
 		}
 	}
 
@@ -139,13 +134,30 @@ public class DrawingSurface extends PApplet {
 						ArrayList<Point> path = board.findPath(aang.getGridx(), aang.getGridy());
 						if (path != null) {
 							aang.move(path);
-						}else {
+						} else {
 							System.out.println("no path found, so the avatar is not moving");
 						}
 					}
 				};
 				time.scheduleAtFixedRate(task, 50, 500);
 			}
+		}
+	}
+
+	public void dragThisOne(WaterWall w) {
+		if (mouseX <= w.getX() + w.getSize() && mouseX >= w.getX() && mouseY <= w.getY() + w.getSize()
+				&& mouseY >= w.getY()) {
+			currentDrag = w;
+			dragOffsetX = mouseX;
+			dragOffsetY = mouseY;
+		}
+	}
+
+	public void mouseDragged() {
+		if (currentDrag != null) {
+			currentDrag.setX(mouseX - (int) currentDrag.getSize() / 2);
+			currentDrag.setY(mouseY - (int) currentDrag.getSize() / 2);
+
 		}
 	}
 
