@@ -11,6 +11,7 @@ import computerplayer.Avatar;
 import computerplayer.Maze;
 import obstaclepackage.WaterWall;
 import processing.core.PApplet;
+import processing.core.PImage;
 import projectiles.StandardProjectile;
 
 /**
@@ -22,7 +23,8 @@ import projectiles.StandardProjectile;
  */
 
 //todos: waterwall slows down the avatar, make movingWall a thing, create objects by...
-// ... dragging the template
+// ... dragging the template (use demo code) - make sure the player knows how many...
+// obstacles there are
 public class DrawingSurface extends PApplet {
 
 	// When you progress to a new prompt, modify this field.
@@ -36,20 +38,34 @@ public class DrawingSurface extends PApplet {
 	private Point cellCoord;
 	private Timer time;
 	private int yPos;
-
+	public PImage arrow;
+	PImage avatar;
+	PImage water;
+	PImage wall;
+	PImage grass;
+	PImage end;
+	
 	public DrawingSurface() {
 		board = new Maze("mazeLevels/test2.txt");
 		yPos = height/2;
-		obstacle = new WaterWall(10, yPos);
+		obstacle = new WaterWall(10, getyPos());
 		projectile = new StandardProjectile(1, 1, 1, 1);
 		aang = new Avatar();
 	}
 
 	public void settings() {
 		fullScreen();
+//		size(yPos / 10, yPos / 10);
 	}
 	
+	
 	public void setup() {
+		arrow = loadImage("arrow.png");
+		avatar = loadImage("avatar.png");
+		water = loadImage("sea.png");
+		wall = loadImage("wall.png");
+		grass = loadImage("grass.png");		
+		end = loadImage("trophy.png");		
 		ArrayList<Point> path = board.findFirstPath();
 		if(path != null) {
 			Point start = path.get(0);
@@ -59,6 +75,7 @@ public class DrawingSurface extends PApplet {
 		}
 		
 	}
+	
 
 	public void draw() {
 		background(255);
@@ -107,9 +124,9 @@ public class DrawingSurface extends PApplet {
 	public void mouseReleased() {
 		obstacle.mouseReleased(board, this);
 		if(obstacle.isWaterReleased()) {
-			obstacle1 = new WaterWall(10, yPos);
+			obstacle1 = new WaterWall(10, getyPos());
 		} if(obstacle1.isWaterReleased()) {
-			obstacle2 = new WaterWall(10, yPos);
+			obstacle2 = new WaterWall(10, getyPos());
 		}
 	}
 
@@ -130,5 +147,9 @@ public class DrawingSurface extends PApplet {
 				time.scheduleAtFixedRate(task, 50, 500);
 			}
 		}
+	}
+
+	public int getyPos() {
+		return yPos;
 	}
 }

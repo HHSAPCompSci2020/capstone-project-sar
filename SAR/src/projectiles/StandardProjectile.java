@@ -4,6 +4,7 @@ import java.awt.geom.Rectangle2D;
 import java.awt.geom.Rectangle2D;
 import processing.core.PApplet;
 import processing.core.PImage;
+import setupandcontrols.DrawingSurface;
 import computerplayer.Avatar;
 import processing.core.PApplet;
 import processing.core.PImage;
@@ -80,11 +81,13 @@ public class StandardProjectile {
 	 * Draws the arrow
 	 * @param mk DrawingSurface
 	 **/
-	public void draw(PApplet mk) {
+	public void draw(DrawingSurface mk) {
 		if (isFired == true) {
-		fire();
+			fire();
 		}
-		mk.line(x, y, x+5, y);
+//		mk.line(x, y, x+5, y);
+		mk.image(mk.arrow, x, y, mk.getyPos() / 15 * 32, mk.getyPos() / 15 * 9);
+
 	}
 	
 }

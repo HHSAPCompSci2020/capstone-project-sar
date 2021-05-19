@@ -74,7 +74,9 @@ public class WaterWall {
 		if( p.getX() > 75 && p.getX() < app.height) {
 			waterReleased = true;
 			Point n = grid.clickToIndex(p, 75f, 0f, app.height, app.height);
-			grid.set((int) n.getX(), (int) n.getY(), waterWall);
+			if(grid.get((int)n.getX(), (int) n.getY()) == '.') {
+				grid.set((int) n.getX(), (int) n.getY(), waterWall);
+			}
 		}
 	}
 

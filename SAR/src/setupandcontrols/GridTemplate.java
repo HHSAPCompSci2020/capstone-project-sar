@@ -87,21 +87,23 @@ public abstract class GridTemplate {
 	 * @param width  The pixel width of the grid drawing.
 	 * @param height The pixel height of the grid drawing.
 	 */
-	public void draw(PApplet marker, float x, float y, float width, float height) {
+	public void draw(DrawingSurface marker, float x, float y, float width, float height) {
 		float r = (float) Math.min((double) width, (double) height);
 		r = r / grid.length;
 		for (int i = 0; i < grid.length; i++) {
 			for (int j = 0; j < grid.length; j++) {
 				if(grid[i][j] == '#') {
-					marker.fill(100, 100, 100);
+					marker.image(marker.wall, x + (r * j), y + (i * r), marker.getyPos(), marker.getyPos());
 				} else if(grid[i][j] == 'w') {
-					marker.fill(50, 150, 225);
+					marker.image(marker.water, x + (r * j), y + (i * r), marker.getyPos(), marker.getyPos());
 				} else if (grid[i][j] == 'X') {
-					marker.fill(25,150,25);
+					marker.image(marker.end, x + (r * j), y + (i * r), marker.getyPos(), marker.getyPos());
 				}else {
-					marker.fill(255);
+					marker.image(marker.grass, x + (r * j), y + (i * r), marker.getyPos(), marker.getyPos());
+
 				}
-				marker.square(x + (r * j), y + (i * r), r);
+//				marker.image(marker.arrow, 0f, 0f, marker.yPos / 15 * 32, marker.yPos / 15 * 9);
+
 			}
 		}
 	}
@@ -138,6 +140,10 @@ public abstract class GridTemplate {
 		}
 	}
 
+	public char get(int x, int y) {
+		return grid[y][x];
+	}
+	
 	public void readData(String filename, char[][] gameData) {
 		File dataFile = new File(filename);
 
