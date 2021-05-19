@@ -11,6 +11,7 @@ import computerplayer.Avatar;
 import computerplayer.Maze;
 import obstaclepackage.WaterWall;
 import processing.core.PApplet;
+import processing.core.PImage;
 import projectiles.StandardProjectile;
 
 /**
@@ -36,8 +37,14 @@ public class DrawingSurface extends PApplet {
 	private boolean mousePressed; //delete variable?
 	private Point cellCoord;
 	private Timer time;
-	private int yPos;
-
+	int yPos;
+	PImage arrow;
+	PImage avatar;
+	PImage water;
+	PImage wall;
+	PImage grass;
+	PImage end;
+	
 	public DrawingSurface() {
 		board = new Maze("mazeLevels/test2.txt");
 		yPos = height/2;
@@ -48,9 +55,17 @@ public class DrawingSurface extends PApplet {
 
 	public void settings() {
 		fullScreen();
+//		size(yPos / 10, yPos / 10);
 	}
 	
+	
 	public void setup() {
+		arrow = loadImage("arrow.png");
+		avatar = loadImage("avatar.png");
+		water = loadImage("sea.png");
+		wall = loadImage("wall.png");
+		grass = loadImage("grass.png");		
+		end = loadImage("trophy.png");		
 		ArrayList<Point> path = board.findFirstPath();
 		if(path != null) {
 			Point start = path.get(0);
@@ -60,6 +75,7 @@ public class DrawingSurface extends PApplet {
 		}
 		
 	}
+	
 
 	public void draw() {
 		background(255);
