@@ -37,8 +37,8 @@ public class DrawingSurface extends PApplet {
 	private boolean mousePressed; //delete variable?
 	private Point cellCoord;
 	private Timer time;
-	int yPos;
-	PImage arrow;
+	private int yPos;
+	public PImage arrow;
 	PImage avatar;
 	PImage water;
 	PImage wall;
@@ -48,7 +48,7 @@ public class DrawingSurface extends PApplet {
 	public DrawingSurface() {
 		board = new Maze("mazeLevels/test2.txt");
 		yPos = height/2;
-		obstacle = new WaterWall(10, yPos);
+		obstacle = new WaterWall(10, getyPos());
 		projectile = new StandardProjectile(1, 1, 1, 1);
 		aang = new Avatar();
 	}
@@ -124,9 +124,9 @@ public class DrawingSurface extends PApplet {
 	public void mouseReleased() {
 		obstacle.mouseReleased(board, this);
 		if(obstacle.isWaterReleased()) {
-			obstacle1 = new WaterWall(10, yPos);
+			obstacle1 = new WaterWall(10, getyPos());
 		} if(obstacle1.isWaterReleased()) {
-			obstacle2 = new WaterWall(10, yPos);
+			obstacle2 = new WaterWall(10, getyPos());
 		}
 	}
 
@@ -147,5 +147,9 @@ public class DrawingSurface extends PApplet {
 				time.scheduleAtFixedRate(task, 50, 500);
 			}
 		}
+	}
+
+	public int getyPos() {
+		return yPos;
 	}
 }

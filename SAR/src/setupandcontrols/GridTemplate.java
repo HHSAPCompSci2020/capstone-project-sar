@@ -93,13 +93,13 @@ public abstract class GridTemplate {
 		for (int i = 0; i < grid.length; i++) {
 			for (int j = 0; j < grid.length; j++) {
 				if(grid[i][j] == '#') {
-					marker.image(marker.wall, x + (r * j), y + (i * r), marker.yPos, marker.yPos);
+					marker.image(marker.wall, x + (r * j), y + (i * r), marker.getyPos(), marker.getyPos());
 				} else if(grid[i][j] == 'w') {
-					marker.image(marker.water, x + (r * j), y + (i * r), marker.yPos, marker.yPos);
+					marker.image(marker.water, x + (r * j), y + (i * r), marker.getyPos(), marker.getyPos());
 				} else if (grid[i][j] == 'X') {
-					marker.image(marker.end, x + (r * j), y + (i * r), marker.yPos, marker.yPos);
+					marker.image(marker.end, x + (r * j), y + (i * r), marker.getyPos(), marker.getyPos());
 				}else {
-					marker.image(marker.grass, x + (r * j), y + (i * r), marker.yPos, marker.yPos);
+					marker.image(marker.grass, x + (r * j), y + (i * r), marker.getyPos(), marker.getyPos());
 
 				}
 //				marker.image(marker.arrow, 0f, 0f, marker.yPos / 15 * 32, marker.yPos / 15 * 9);
