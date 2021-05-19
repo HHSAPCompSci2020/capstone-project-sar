@@ -57,11 +57,11 @@ public class WaterWall {
 	 * puts the WaterWall in the grid when the mouse is released
 	 */
 	public void mouseReleased(GridTemplate grid, DrawingSurface app) {
-		p = new Point(x, y);
+		p = new Point((int) (x + size / 2), (int) (y + size / 2));
 		if( p.getX() > 75 && p.getX() < app.height) {
 			waterReleased = true;
 			Point n = grid.clickToIndex(p, 75f, 0f, app.height, app.height);
-			if(grid.get((int)n.getX(), (int) n.getY()) == '.') {
+			if (grid.get((int)n.getX(), (int) n.getY()) == '.') {
 				grid.set((int) n.getX(), (int) n.getY(), waterWall);
 			}
 		}
