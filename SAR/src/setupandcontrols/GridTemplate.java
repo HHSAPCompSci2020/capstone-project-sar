@@ -11,8 +11,8 @@ import processing.core.PApplet;
 /**
  * Sets up the Maze
  * 
- * @author Mr. Shelby, and one method by Radhika
- * @version 5/5
+ * @author Mr. Shelby, Radhika, Shachaf
+ * @version 5/20
  */
 public abstract class GridTemplate {
 
@@ -93,18 +93,17 @@ public abstract class GridTemplate {
 		for (int i = 0; i < grid.length; i++) {
 			for (int j = 0; j < grid.length; j++) {
 				if (grid[i][j] == '#') {
-					marker.image(marker.wall, x + (r * j), y + (i * r), marker.getyPos(), marker.getyPos());
+					marker.image(marker.wall, x + (r * j), y + (i * r), r,r);
 				} else if (grid[i][j] == 'w') {
-					marker.image(marker.water, x + (r * j), y + (i * r), marker.getyPos(), marker.getyPos());
+					marker.image(marker.water, x + (r * j), y + (i * r), r,r);
 				} else if (grid[i][j] == 'm') {
-					marker.image(marker.tempWall, x + (r * j), y + (i * r), marker.getyPos(), marker.getyPos());
+					marker.image(marker.tempWall, x + (r * j), y + (i * r), r,r);
 				} else if (grid[i][j] == 'X') {
-					marker.image(marker.end, x + (r * j), y + (i * r), marker.getyPos(), marker.getyPos());
+					marker.image(marker.end, x + (r * j), y + (i * r), r,r);
 				} else {
-					marker.image(marker.grass, x + (r * j), y + (i * r), marker.getyPos(), marker.getyPos());
+					marker.image(marker.grass, x + (r * j), y + (i * r), r,r);
 
 				}
-//				marker.image(marker.arrow, 0f, 0f, marker.yPos / 15 * 32, marker.yPos / 15 * 9);
 
 			}
 		}

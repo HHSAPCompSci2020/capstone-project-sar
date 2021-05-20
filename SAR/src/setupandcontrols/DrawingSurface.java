@@ -21,8 +21,8 @@ import projectiles.StandardProjectile;
  * Creates a Drawing Surface, and draws all components (maze, obstacles, avatar,
  * projectiles, etc.)
  * 
- * @author Shachaf
- * @version 5/5
+ * @author Shachaf, Radhika, Ayush
+ * @version 5/20
  */
 
 public class DrawingSurface extends PApplet {
@@ -108,10 +108,10 @@ public class DrawingSurface extends PApplet {
 
 		textSize(20);
 		fill(200, 130, 150);
-		rect((float) (height + height / 3), 20, 175, 100, 7);
+		rect(50, 500, 175, 100, 7);
 		fill(0);
-		text("Lives: " + aang.getHealth(), (float) (height + height / 3) + 20, 50);
-		text("Score: " + scoreboard, (float) (height + height / 3) + 20, 90);
+		text("Lives: " + aang.getHealth(), 70, 540);
+		text("Score: " + scoreboard, 70, 580);
 
 		textSize(12);
 		if (!barrier.isReleased()) {
@@ -123,7 +123,6 @@ public class DrawingSurface extends PApplet {
 		}
 
 		if (proj.getTrigger()) {
-//			System.out.println(proj.getTrigger());
 			proj.fire();
 		}
 
@@ -347,6 +346,5 @@ public class DrawingSurface extends PApplet {
 		
 			
 		}
-		//board = new Maze(test)
 	}
 }
