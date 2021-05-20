@@ -44,7 +44,7 @@ public class DrawingSurface extends PApplet {
 
 
 	public DrawingSurface() {
-		board = new Maze("mazeLevels/test2.txt");
+		board = new Maze("mazeLevels/test3.txt");
 		yPos = height / 2;
 		obstacle = new WaterWall(10, getyPos());
 		obstacle1 = new WaterWall(10, getyPos());
