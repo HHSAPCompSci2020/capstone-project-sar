@@ -88,6 +88,7 @@ public class DrawingSurface extends PApplet {
 		textAlign(LEFT);
 		textSize(12);
 
+//		text("", x, y);
 		if (proj.getTrigger()) {
 //			System.out.println(proj.getTrigger());
 			proj.fire();
@@ -114,7 +115,7 @@ public class DrawingSurface extends PApplet {
 			proj.setTrigger(true);
 			Point click = new Point(mouseX, mouseY);
 			float dimension = height;
-			cellCoord = board.clickToIndex(click, 0, 0, dimension, dimension);
+			cellCoord = board.clickToIndex(click, 270, 0, dimension, dimension);
 			if (cellCoord != null && cellCoord.x > 74) {
 				mousePressed = true;
 				board.findPath(cellCoord.x, cellCoord.y); // When you progress to a new prompt, modify this method call.
@@ -139,7 +140,7 @@ public class DrawingSurface extends PApplet {
 					barrier = new MovingWall(10, getyPos() * 2);
 				}
 			};
-			time.schedule(moveWall, 5000);
+			time.schedule(moveWall, 2500);
 
 			currentDrag1 = null;
 		}
