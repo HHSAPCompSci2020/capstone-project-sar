@@ -178,7 +178,9 @@ public class DrawingSurface extends PApplet {
 	public void mouseReleased() {
 		if (currentDrag != null) {
 			currentDrag.mouseReleased(board, this);
-			obstacleCount--;
+			if (currentDrag.getX() != 10 && currentDrag.getY() != getyPos()) {
+				obstacleCount--;
+			}
 			currentDrag = null;
 		}
 
