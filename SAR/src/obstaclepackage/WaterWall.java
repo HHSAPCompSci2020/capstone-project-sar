@@ -8,7 +8,7 @@ import java.awt.Point;
 /**
  * Represents a water wall - the avatar slows down when passing through
  * 
- * @version 5/13
+ * @version 5/20
  * @author Shachaf
  */
 public class WaterWall extends Wall{
@@ -16,10 +16,9 @@ public class WaterWall extends Wall{
 	/**
 	 * Constructor for making a new WaterWall
 	 * 
-	 * @param x    - x coordinate of the WaterWall
-	 * @param y    - y coordinate of the WaterWall
-	 * @param grid - The grid of Maze
-	 * @param app  - A DrawingSurface applet
+	 * @param x - x coordinate of the WaterWall
+	 * @param y - y coordinate of the WaterWall
+	 * 
 	 */
 	public WaterWall(int xStart, int yStart) {
 		super(xStart, yStart, 'w');
@@ -27,6 +26,8 @@ public class WaterWall extends Wall{
 
 	/**
 	 * Draws the Waterwall
+	 * 
+	 * @param app - A DrawingSurface
 	 */
 	public void draw(DrawingSurface app) {
 		app.fill(50, 200, 225);

@@ -126,7 +126,7 @@ public abstract class GridTemplate {
 	public Point clickToIndex(Point p, float x, float y, float width, float height) {
 		float r = (float) Math.min((double) width, (double) height);
 		r = r / grid.length;
-		if (p.x >= r * (grid.length) || p.y >= r * (grid.length) || p.x < 0 || p.y < 0) {
+		if (p.x >= r * (grid.length)+ x  || p.y >= r * (grid.length) + y || p.x < x || p.y < y) {
 			return null;
 		}
 		int indexX = (int) ((p.x - x) / r);

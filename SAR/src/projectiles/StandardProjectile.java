@@ -13,7 +13,7 @@ import processing.core.PImage;
 /**
  * Represents the set of projectiles within the game
  * @author Ayush Saran
- * @version 5/12
+ * @version 5/20
  */
 public class StandardProjectile {
 	
@@ -35,6 +35,10 @@ public class StandardProjectile {
 		this.x =x;
 		this.y =y;
 		this.moveSpeed = moveSpeed;
+		arrow = new Point(x, y);
+		//dot = new Point(100, 100);
+		arrow = new Point(100, 100);
+
 	}
 	
 	/**
@@ -46,9 +50,17 @@ public class StandardProjectile {
 	
 	public boolean hitTarget(Avatar av, GridTemplate grid, DrawingSurface app) { 
 		dot = new Point((int) (av.getGridx()), (int) (av.getGridy()));
-		if (arrow.getX() > 270 && arrow.getX() < app.height) {
+
+		if (arrow.x > 270 && arrow.x < app.height+269) {
+			System.out.println("arrow before: " + arrow.x + " " + arrow.y);
 			arrow = grid.clickToIndex(arrow, 270f, 0f, app.height, app.height);
-			if (dot.getX() == arrow.getX() &&  dot.getY() == arrow.getY()) {
+			System.out.println("avatar: " + dot.x + " " + dot.y);
+			System.out.println("arrow: " + arrow.x + " " + arrow.y);
+			if (dot.x == arrow.x &&  dot.y == arrow.y) {
+				System.out.println("Collide");
+				av.setHealth(av.getHealth()-2);
+				remove();
+
 				return true;
 			}
 			else {
@@ -67,7 +79,8 @@ public class StandardProjectile {
 	 **/
 	public void fire() {
 		if (moveSpeed>=0) {
-				x -= moveSpeed*10;// increment
+				x -= moveSpeed*10;
+				arrow.x = this.x;// increment
 		}
 	}
 	
@@ -76,6 +89,7 @@ public class StandardProjectile {
 	 **/
 	public void remove() {
 		this.y = -1;
+		arrow.y = this.y;
 	}
 	
 	
@@ -103,5 +117,14 @@ public class StandardProjectile {
 		this.fired = fired;
 		
 	}
+	
+	/** 
+	 * @param y New Point-object y coordinate
+	 */
+	public void setY(int y) {
+		arrow.y = y;
+	}
+	
+
 	
 }
