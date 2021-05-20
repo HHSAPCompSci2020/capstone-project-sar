@@ -36,7 +36,7 @@ public class Avatar {
 	public Avatar() {
 		setGridx(-1);
 		setGridy(-1);
-		setHealth(5);
+		setHealth(10);
 		isAlive = true;
 		isSlowed = false;
 		lagged = 1;
