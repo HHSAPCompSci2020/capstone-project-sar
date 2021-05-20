@@ -41,25 +41,42 @@ public class MovingWall {
 		app.noStroke();
 		size = (float) (app.height / 20.0);
 		app.fill(50, 200, 225);
-		app.square(x, y, size);
-		app.square(x, y, size);
+		app.square(xStart, yStart, size);
+		if (!released) {
+			app.square(x, y, size);
+		}
 		app.noFill();
 		app.stroke(0, 0, 0);
 	}
 
-	public void mouseDragged(DrawingSurface app) {
-		if (app.mouseX < x + size && app.mouseX > x && app.mouseY < y + size && app.mouseY > y) {
-			x = app.mouseX;
-			y = app.mouseY;
+	public void mouseReleased(GridTemplate grid, DrawingSurface app) {
+		p = new Point(x, y);
+		if (p.getX() > 75 && p.getX() < app.height) {
+			Point n = grid.clickToIndex(p, 75f, 0f, app.height, app.height);
+			if (grid.get((int) n.getX(), (int) n.getY()) == '.') {
+				grid.set((int) n.getX(), (int) n.getY(), movingWall);
+			}
 		}
 	}
 
-	public void mouseReleased(GridTemplate grid, DrawingSurface app) {
-		p = new Point(x, y);
-		Point n = grid.clickToIndex(p, 75f, 0f, app.height, app.height);
-		if (grid.get((int) n.getX(), (int) n.getY()) == '.') {
-			grid.set((int) n.getX(), (int) n.getY(), movingWall);
-		}
+	public int getX() {
+		return x;
+	}
+
+	public void setX(int x) {
+		this.x = x;
+	}
+
+	public int getY() {
+		return y;
+	}
+
+	public void setY(int y) {
+		this.y = y;
+	}
+
+	public float getSize() {
+		return size;
 	}
 
 }
