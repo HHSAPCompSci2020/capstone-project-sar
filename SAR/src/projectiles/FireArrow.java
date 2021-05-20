@@ -12,8 +12,8 @@ public class FireArrow extends StandardProjectile{
 	
 	private final int FIRE_DAMAGE = 1;
 	
-	public FireArrow(int x, int y, int moveSpeed, int dir) {
-		super(x, y, moveSpeed, dir);
+	public FireArrow(int x, int y, int moveSpeed) {
+		super(x, y, moveSpeed);
 	}
 	
 	public void burn (Avatar av) {

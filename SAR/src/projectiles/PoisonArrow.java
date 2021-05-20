@@ -9,8 +9,8 @@ public class PoisonArrow extends StandardProjectile{
 	private final int POISION_SPEED = 3;
 	private final int POISION_DAMAGE = 1;
 
-	public PoisonArrow(int x, int y, int moveSpeed, int dir) {
-		super(x, y, moveSpeed, dir);
+	public PoisonArrow(int x, int y, int moveSpeed) {
+		super(x, y, moveSpeed);
 			
 	}
 	

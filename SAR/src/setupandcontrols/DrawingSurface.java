@@ -83,8 +83,7 @@ public class DrawingSurface extends PApplet {
 	}
 
 	public void draw() {
-		System.out.println(aang.getGridx());
-		System.out.println(aang.getGridy());
+
 		background(255);
 		fill(0);
 		textAlign(LEFT);

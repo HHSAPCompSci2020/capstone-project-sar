@@ -94,9 +94,8 @@ public class Avatar {
 	 */
 	public void draw(DrawingSurface surface, int gridLength, int windowX, int windowY) {
 		surface.pushStyle();
-		surface.fill(255, 0, 0);
+		//surface.fill(255, 0, 0);
 		surface.image(surface.avatar, gridx*gridLength + windowX, gridy*gridLength + windowY, gridLength, gridLength);
-//		surface.rect(gridx*gridLength + windowX, gridy*gridLength + windowY, gridLength/2, gridLength/2);
 		surface.popStyle();
 	}
 

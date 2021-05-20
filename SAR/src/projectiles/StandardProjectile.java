@@ -19,21 +19,19 @@ public class StandardProjectile {
 	public int x, y;
 	public boolean fired, hit;
 	public int moveSpeed;
-	public int direction;
 	
 	/**
 	 * Initializes a StandardProjectile
 	 * @param x Horizontal coordinate of the arrow in the grid
 	 * @param y Vertical coordinate of the arrow in the grid
 	 * @param moveSpeed The speed of the projectile
-	 * @param dir Direction of the projectile (a negative int represents a left-facing arrow, otherwise faces right)
 	 */
-	public StandardProjectile(int x, int y, int moveSpeed, int dir) {	
+	
+	public StandardProjectile(int x, int y, int moveSpeed) {	
 		this.fired = false;
 		this.x =x;
 		this.y =y;
 		this.moveSpeed = moveSpeed;
-		direction = dir;
 	}
 	
 	/**
@@ -42,8 +40,9 @@ public class StandardProjectile {
 	 * @return Returns true if the arrow and avatar are in the same space, false if otherwise
 	 * 
 	**/
-	public boolean hitTarget(Avatar av) { 
-		if (av.getGridx() == x && av.getGridy() == y) {
+	public boolean hitTarget(int x, int y) { 
+		
+		if (this.x == x && this.y == y) {
 			remove();
 			return true;
 		
@@ -59,12 +58,7 @@ public class StandardProjectile {
 	 **/
 	public void fire() {
 		if (moveSpeed>=0) {
-			if (direction < 0) {
 				x += moveSpeed*10;// increment
-			}
-			else {
-				x -= moveSpeed*10;
-			}
 		}
 	}
 	
