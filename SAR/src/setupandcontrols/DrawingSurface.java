@@ -97,7 +97,6 @@ public class DrawingSurface extends PApplet {
 			text(obstacleCount + "x", obstacle.getX(), obstacle.getY() - 10);
 		}
 		
-//		text("", x, y);
 		if (proj.getTrigger()) {
 //			System.out.println(proj.getTrigger());
 			proj.fire();
