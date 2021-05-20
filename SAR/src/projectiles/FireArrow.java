@@ -12,6 +12,12 @@ public class FireArrow extends StandardProjectile{
 	
 	private final int FIRE_DAMAGE = 1;
 	
+	/**
+	 * Initializes a PoisonArrow
+	 * @param x Horizontal coordinate of the arrow in the grid
+	 * @param y Vertical coordinate of the arrow in the grid
+	 * @param moveSpeed The speed of the projectile
+	 */
 	public FireArrow(int x, int y, int moveSpeed) {
 		super(x, y, moveSpeed);
 	}

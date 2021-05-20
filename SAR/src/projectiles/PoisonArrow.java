@@ -8,7 +8,13 @@ public class PoisonArrow extends StandardProjectile{
 	
 	private final int POISION_SPEED = 3;
 	private final int POISION_DAMAGE = 1;
-
+	
+	/**
+	 * Initializes a PoisonArrow
+	 * @param x Horizontal coordinate of the arrow in the grid
+	 * @param y Vertical coordinate of the arrow in the grid
+	 * @param moveSpeed The speed of the projectile
+	 */
 	public PoisonArrow(int x, int y, int moveSpeed) {
 		super(x, y, moveSpeed);
 			
