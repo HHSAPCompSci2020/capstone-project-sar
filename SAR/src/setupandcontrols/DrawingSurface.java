@@ -41,7 +41,7 @@ public class DrawingSurface extends PApplet {
 	private Timer time;
 	private int yPos;
 	public PImage arrow;
-	PImage avatar;
+	public PImage avatar;
 	PImage water;
 	PImage wall;
 	PImage grass;
