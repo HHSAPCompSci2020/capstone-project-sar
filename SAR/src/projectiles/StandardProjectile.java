@@ -42,24 +42,25 @@ public class StandardProjectile {
 	 * @return Returns true if the arrow and avatar are in the same space, false if otherwise
 	 * 
 	**/
-	/*
-	public boolean hitTarget(int x, int y, GridTemplate grid, DrawingSurface app) { 
-		arrow = new Point((int) (x), (int) (y);
+	
+	public boolean hitTarget(Avatar av, GridTemplate grid, DrawingSurface app) { 
+		dot = new Point((int) (av.getGridx()), (int) (av.getGridy()));
 		if (arrow.getX() > 270 && arrow.getX() < app.height) {
-			dot = grid.clickToIndex(p, 270f, 0f, app.height, app.height);
-			if (grid.get((int) dot.getX(), (int) dot.getY()) == y) {
-				grid.set((int) dot.getX(), (int) dot.getY(), wall);
-		if (this.x == x && this.y == y) {
-			remove();
-			return true;
-		
+			arrow = grid.clickToIndex(arrow, 270f, 0f, app.height, app.height);
+			if (grid.get((int)dot.getX()==arrow.getX() &&  (int) dot.getY()) == y) {
+				return true;
+			}
+			else {
+				return false;
+			}
 		}
 		else {
 			return false;
 		}
 		
+		
 	}
-	*/
+	
 	/**
 	 * Draws and shoots the arrow
 	 **/
