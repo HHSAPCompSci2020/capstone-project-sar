@@ -17,10 +17,13 @@ import processing.core.PImage;
  */
 public class StandardProjectile {
 	
+	/**
+	 * The x and y coordinates of the StandardProjectile on a PApplet surface
+	 */
 	public int x, y;
 	private boolean fired;
-	public boolean hit;
-	public int moveSpeed;
+	private boolean hit;
+	private int moveSpeed;
 	private Point dot, arrow;
 	
 	/**
