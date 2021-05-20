@@ -92,8 +92,6 @@ public class DrawingSurface extends PApplet {
 			obstacle1.draw(this);
 			obstacle2.draw(this);
 			barrier.draw(this);
-			barrier1.draw(this);
-			barrier2.draw(this);
 			projectile.draw(this);
 			aang.draw(this, height / board.grid.length, 75, 0);
 		}
@@ -105,8 +103,6 @@ public class DrawingSurface extends PApplet {
 		dragThisOne(obstacle1);
 		dragThisOne(obstacle2);
 		dragThisOne(barrier);
-		dragThisOne(barrier1);
-		dragThisOne(barrier2);
 		if (mouseButton == LEFT) {
 			projectile.setTrigger(true);
 			Point click = new Point(mouseX, mouseY);
@@ -128,7 +124,17 @@ public class DrawingSurface extends PApplet {
 
 		if (currentDrag1 != null) {
 			currentDrag1.mouseReleased(board, this);
-			currentDrag1 = null;
+//			TimerTask moveWall = new TimerTask() {
+//
+//				@Override
+//				public void run() {
+//					barrier = new MovingWall(10, getyPos() * 2);
+//					board.set(barrier.getXGrid(), barrier.getYGrid(), '.');
+//				}
+//			};
+//			time.schedule(moveWall, 5000);
+//		
+		currentDrag1 = null;
 		}
 	}
 

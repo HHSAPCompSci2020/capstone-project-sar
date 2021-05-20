@@ -14,6 +14,7 @@ public class Wall {
 	int y;
 	float size;
 	Point p;
+	Point n;
 	boolean released;
 
 	public Wall(int xStart, int yStart, char wall) {
@@ -64,6 +65,14 @@ public class Wall {
 
 	public float getSize() {
 		return size;
+	}
+	
+	public int getXGrid() {
+		return (int) n.getX();
+	}
+	
+	public int getYGrid() {
+		return (int) n.getY();
 	}
 
 }
