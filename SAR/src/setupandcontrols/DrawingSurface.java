@@ -21,14 +21,13 @@ import projectiles.StandardProjectile;
  * Creates a Drawing Surface, and draws all components (maze, obstacles, avatar,
  * projectiles, etc.)
  * 
- * @author Shachaf, Radhika, Ayush
+ * @author Main: Shachaf CoAuthors: Radhika, Ayush
  * @version 5/20
  */
 
 public class DrawingSurface extends PApplet {
 
 	private Maze board;
-
 	private WaterWall obstacle, obstacle1, obstacle2, currentDrag;
 	private MovingWall barrier, currentDrag1;
 	private StandardProjectile proj;
@@ -37,8 +36,14 @@ public class DrawingSurface extends PApplet {
 	private Timer time;
 	private boolean gameStarted;
 	private int yPos, obstacleCount, scoreboard;
-	public PImage arrow, avatar, fireArrow, poisonArrow;
-	public PImage water, wall, tempWall, grass, end;
+	
+	/**
+	 * PImages that store the images of the different components of the game
+	 */
+	public PImage arrow, avatar, fireArrow, poisonArrow, water, wall, tempWall, grass, end;
+	/**
+	 * the level variable represents the level of the game
+	 */
 	public int level;
 
 	/**
@@ -51,7 +56,7 @@ public class DrawingSurface extends PApplet {
 		obstacle = new WaterWall(10, getyPos());
 		obstacle1 = new WaterWall(10, getyPos());
 		obstacle2 = new WaterWall(10, getyPos());
-		proj = new StandardProjectile(1500, 1, 1);
+		proj = new StandardProjectile(1200, 400, 1);
 		barrier = new MovingWall(10, getyPos() * 2 + 25);
 		aang = new Avatar();
 		currentDrag = null;
@@ -60,10 +65,6 @@ public class DrawingSurface extends PApplet {
 		time = new Timer("gameClock");
 		obstacleCount = 3;
 		scoreboard = 0;
-
-
-
-
 	}
 
 	/**
@@ -166,7 +167,7 @@ public class DrawingSurface extends PApplet {
 
 	/**
 	 * dragged Wall objects are released if MovingWall objects are released on
-	 * the... ...grid, they die and respawn 1.5 seconds later
+	 * the grid, they die and respawn 1.5 seconds later
 	 * 
 	 */
 	public void mouseReleased() {
@@ -202,16 +203,16 @@ public class DrawingSurface extends PApplet {
 	 */
 	public void keyPressed() {
 		if (keyCode == KeyEvent.VK_S) {
-			proj = new StandardProjectile(1500, 1, 1);
+			proj = new StandardProjectile(1200, 400, 1);
 
 		}
 		if (keyCode == KeyEvent.VK_F) {
-			proj = new FireArrow(1500, 1, 1);
+			proj = new FireArrow(1200, 400, 1);
 
 
 		}
 		if (keyCode == KeyEvent.VK_P) {
-			proj = new PoisonArrow(1500, 1, 1);
+			proj = new PoisonArrow(1200, 400, 1);
 
 		}
 		if (keyCode == KeyEvent.VK_UP) {

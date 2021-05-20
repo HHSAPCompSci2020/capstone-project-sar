@@ -56,11 +56,11 @@ public class StandardProjectile {
 		dot = new Point((int) (av.getGridx()), (int) (av.getGridy()));
 
 		if (arrow.x > 270 && arrow.x < app.height+269) {
-			System.out.println("arrow before: " + arrow.x + " " + arrow.y);
+			//System.out.println("arrow before: " + arrow.x + " " + arrow.y);
 			Point arrowNew = grid.clickToIndex(arrow, 270f, 0f, app.height, app.height);
 			if(arrowNew != null) {
-				System.out.println("avatar: " + dot.x + " " + dot.y);
-				System.out.println("arrow: " + arrowNew.x + " " + arrowNew.y);
+				//System.out.println("avatar: " + dot.x + " " + dot.y);
+				//System.out.println("arrow: " + arrowNew.x + " " + arrowNew.y);
 				if (dot.x == arrowNew.x &&  dot.y == arrowNew.y) {
 					System.out.println("Collide");
 					av.setHealth(av.getHealth()-2);
@@ -94,7 +94,7 @@ public class StandardProjectile {
 	 * Removes the arrow from the grid
 	 **/
 	public void remove() {
-		this.y = -1;
+		this.y = -1000;
 		arrow.y = this.y;
 	}
 	
