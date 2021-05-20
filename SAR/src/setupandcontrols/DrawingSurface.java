@@ -134,7 +134,7 @@ public class DrawingSurface extends PApplet {
 		
 		
 		if(mouseX >= height + height/2.2 && mouseX <= height + height/2.2 + 75 &&
-				mouseY >= 300 && mouseY <= (float) 400) {
+				mouseY >= 300 && mouseY <= (float) 400 && gameStarted) {
 			proj.setTrigger(true);
 			Point click = new Point(mouseX, mouseY);
 			float dimension = height;
