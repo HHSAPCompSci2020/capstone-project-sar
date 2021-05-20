@@ -39,7 +39,7 @@ public class DrawingSurface extends PApplet {
 	private Point cellCoord;
 	private Timer time;
 	private boolean gameStarted;
-	private int yPos;
+	private int yPos, obstacleCount;
 	public PImage arrow, avatar, fireArrow, poisonArrow;
 	PImage water, wall, tempWall, grass, end;
 
@@ -50,12 +50,13 @@ public class DrawingSurface extends PApplet {
 		obstacle1 = new WaterWall(10, getyPos());
 		obstacle2 = new WaterWall(10, getyPos());
 		proj = new StandardProjectile(1200, 1, 1, 1);
-		barrier = new MovingWall(10, getyPos() * 2);
+		barrier = new MovingWall(10, getyPos() * 2 + 25);
 		aang = new Avatar();
 		currentDrag = null;
 		currentDrag1 = null;
 		gameStarted = false;
 		time = new Timer("gameClock");
+		obstacleCount = 3;
 	}
 
 	public void settings() {
@@ -83,12 +84,19 @@ public class DrawingSurface extends PApplet {
 	}
 
 	public void draw() {
-
 		background(255);
 		fill(0);
 		textAlign(LEFT);
 		textSize(12);
 
+		if(!barrier.isReleased()) {
+			text("1x", barrier.getX(), barrier.getY() - 10);
+		}
+		
+		if(obstacleCount != 0) {
+			text(obstacleCount + "x", obstacle.getX(), obstacle.getY() - 10);
+		}
+		
 //		text("", x, y);
 		if (proj.getTrigger()) {
 //			System.out.println(proj.getTrigger());
@@ -102,7 +110,7 @@ public class DrawingSurface extends PApplet {
 			obstacle2.draw(this);
 			barrier.draw(this);
 			proj.draw(this);
-			aang.draw(this, height / board.grid.length, 75, 0);
+			aang.draw(this, height / board.grid.length, 270, 0);
 		}
 
 	}
@@ -112,6 +120,7 @@ public class DrawingSurface extends PApplet {
 		dragThisOne(obstacle1);
 		dragThisOne(obstacle2);
 		dragThisOne(barrier);
+		
 		if (mouseButton == LEFT) {
 			proj.setTrigger(true);
 			Point click = new Point(mouseX, mouseY);
@@ -128,6 +137,7 @@ public class DrawingSurface extends PApplet {
 	public void mouseReleased() {
 		if (currentDrag != null) {
 			currentDrag.mouseReleased(board, this);
+			obstacleCount--;
 			currentDrag = null;
 		}
 
@@ -138,7 +148,7 @@ public class DrawingSurface extends PApplet {
 				@Override
 				public void run() {
 					board.set(barrier.getXGrid(), barrier.getYGrid(), '.');
-					barrier = new MovingWall(10, getyPos() * 2);
+					barrier = new MovingWall(10, getyPos() * 2 + 25);
 				}
 			};
 			time.schedule(moveWall, 2500);
