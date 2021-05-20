@@ -90,19 +90,11 @@ public class DrawingSurface extends PApplet {
 		if (proj.getTrigger()) {
 			System.out.println(proj.getTrigger());
 			proj.fire();
-
-
-		
 		}
+		
 		if (board != null) {
 			board.draw(this, 75, 0, height, height);
 			obstacle.draw(this);
-			proj.draw(this);
-			aang.draw(this, height / board.grid.length, 75, 0);
-		}
-		
-		if(obstacle1 != null) {
-
 			obstacle1.draw(this);
 			obstacle2.draw(this);
 			barrier.draw(this);
