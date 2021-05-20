@@ -39,7 +39,7 @@ public class DrawingSurface extends PApplet {
 	private Point cellCoord;
 	private Timer time;
 	private boolean gameStarted;
-	private int yPos, obstacleCount;
+	private int yPos, obstacleCount, scoreboard;
 	public PImage arrow, avatar, fireArrow, poisonArrow;
 	PImage water, wall, tempWall, grass, end;
 
@@ -57,6 +57,7 @@ public class DrawingSurface extends PApplet {
 		gameStarted = false;
 		time = new Timer("gameClock");
 		obstacleCount = 3;
+		scoreboard = 0;
 	}
 
 	public void settings() {
@@ -85,11 +86,14 @@ public class DrawingSurface extends PApplet {
 
 	public void draw() {
 		background(255);
-		fill(0);
 		textAlign(LEFT);
 		
 		textSize(20);
-		text("Lives: " + aang.getHealth(), 300+height, 20);
+		fill(200, 130, 150);
+		rect((float) (height + height/3), 20, 175, 100, 7);
+		fill(0);
+		text("Lives: " + aang.getHealth(), (float) (height + height/3) + 20, 50);
+		text("Score: " + scoreboard, (float) (height + height/3) + 20, 90);
 		
 		textSize(12);
 		if(!barrier.isReleased()) {
@@ -201,7 +205,13 @@ public class DrawingSurface extends PApplet {
 						}
 					}
 				};
+				TimerTask score = new TimerTask() {
+					public void run() {
+						scoreboard = scoreboard + 100 - (10 - aang.getHealth()) * 300;	
+					}
+				};
 				time.scheduleAtFixedRate(task, 50, 500);
+				time.scheduleAtFixedRate(score, 50, 500);
 			}
 		}
 	}
