@@ -9,6 +9,7 @@ import java.util.TimerTask;
 
 import computerplayer.Avatar;
 import computerplayer.Maze;
+import obstaclepackage.MovingWall;
 import obstaclepackage.WaterWall;
 import processing.core.PApplet;
 import processing.core.PImage;
@@ -28,14 +29,15 @@ public class DrawingSurface extends PApplet {
 
 	// When you progress to a new prompt, modify this field.
 	private Maze board;
-	private WaterWall obstacle, obstacle1, obstacle2, currentDrag ;
+	private WaterWall obstacle, obstacle1, obstacle2, currentDrag;
+	private MovingWall barrier, barrier1, barrier2, currentDrag1;
 	private StandardProjectile projectile;
 	private Avatar aang;
 	private Point cellCoord;
 	private Timer time;
 	private int yPos;
 	public PImage arrow, avatar;
-	PImage water, wall, grass, end;
+	PImage water, wall, tempWall, grass, end;
 
 	public DrawingSurface() {
 		board = new Maze("mazeLevels/test2.txt");
@@ -43,9 +45,13 @@ public class DrawingSurface extends PApplet {
 		obstacle = new WaterWall(10, getyPos());
 		obstacle1 = new WaterWall(10, getyPos());
 		obstacle2 = new WaterWall(10, getyPos());
+		barrier = new MovingWall(10, getyPos() * 2);
+		barrier1 = new MovingWall(10, getyPos() * 2);
+		barrier2 = new MovingWall(10, getyPos() * 2);
 		projectile = new StandardProjectile(1100, 1, 1, 1);
 		aang = new Avatar();
 		currentDrag = null;
+		currentDrag1 = null;
 	}
 
 	public void settings() {
@@ -57,6 +63,7 @@ public class DrawingSurface extends PApplet {
 		avatar = loadImage("avatar.png");
 		water = loadImage("sea.png");
 		wall = loadImage("wall.png");
+		tempWall = loadImage("grayWall.png");
 		grass = loadImage("grass.png");
 		end = loadImage("trophy.png");
 		ArrayList<Point> path = board.findFirstPath();
@@ -74,7 +81,7 @@ public class DrawingSurface extends PApplet {
 		fill(0);
 		textAlign(LEFT);
 		textSize(12);
-		
+
 		if (projectile.getTrigger()) {
 			System.out.println(projectile.getTrigger());
 			projectile.fire();
@@ -82,24 +89,24 @@ public class DrawingSurface extends PApplet {
 		if (board != null) {
 			board.draw(this, 75, 0, height, height);
 			obstacle.draw(this);
+			obstacle1.draw(this);
+			obstacle2.draw(this);
+			barrier.draw(this);
+			barrier1.draw(this);
+			barrier2.draw(this);
 			projectile.draw(this);
 			aang.draw(this, height / board.grid.length, 75, 0);
 		}
-		
-		if(obstacle1 != null) {
-			obstacle1.draw(this);
-		} if(obstacle2 != null) {
-			obstacle2.draw(this);
-		}
-	
-	
 
 	}
 
 	public void mousePressed() {
 		dragThisOne(obstacle);
-		dragThisOne(obstacle1); // This should probably be done with an ArrayList
+		dragThisOne(obstacle1);
 		dragThisOne(obstacle2);
+		dragThisOne(barrier);
+		dragThisOne(barrier1);
+		dragThisOne(barrier2);
 		if (mouseButton == LEFT) {
 			projectile.setTrigger(true);
 			Point click = new Point(mouseX, mouseY);
@@ -117,6 +124,11 @@ public class DrawingSurface extends PApplet {
 		if (currentDrag != null) {
 			currentDrag.mouseReleased(board, this);
 			currentDrag = null;
+		}
+
+		if (currentDrag1 != null) {
+			currentDrag1.mouseReleased(board, this);
+			currentDrag1 = null;
 		}
 	}
 
@@ -146,11 +158,22 @@ public class DrawingSurface extends PApplet {
 		}
 	}
 
+	public void dragThisOne(MovingWall w) {
+		if (mouseX <= w.getX() + w.getSize() && mouseX >= w.getX() && mouseY <= w.getY() + w.getSize()
+				&& mouseY >= w.getY()) {
+			currentDrag1 = w;
+		}
+	}
+
 	public void mouseDragged() {
 		if (currentDrag != null) {
 			currentDrag.setX(mouseX - (int) currentDrag.getSize() / 2);
 			currentDrag.setY(mouseY - (int) currentDrag.getSize() / 2);
+		}
 
+		if (currentDrag1 != null) {
+			currentDrag1.setX(mouseX - (int) currentDrag1.getSize() / 2);
+			currentDrag1.setY(mouseY - (int) currentDrag1.getSize() / 2);
 		}
 	}
 
