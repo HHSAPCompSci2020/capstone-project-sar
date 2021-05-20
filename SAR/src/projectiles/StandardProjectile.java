@@ -18,7 +18,6 @@ public class StandardProjectile {
 	
 	public int x, y;
 	public boolean fired, hit;
-	public boolean isFired;
 	public int moveSpeed;
 	public int direction;
 	public PImage img;
@@ -31,6 +30,7 @@ public class StandardProjectile {
 	 * @param dir Direction of the projectile (a negative int represents a left-facing arrow, otherwise faces right)
 	 */
 	public StandardProjectile(int x, int y, int moveSpeed, int dir) {	
+		this.fired = false;
 		this.x =x;
 		this.y =y;
 		this.moveSpeed = moveSpeed;
@@ -61,10 +61,10 @@ public class StandardProjectile {
 	public void fire() {
 		if (moveSpeed>=0) {
 			if (direction < 0) {
-				x += -moveSpeed;// increment
+				x += moveSpeed*10;// increment
 			}
 			else {
-				x += moveSpeed;
+				x -= moveSpeed*10;
 			}
 		}
 	}
@@ -82,12 +82,18 @@ public class StandardProjectile {
 	 * @param mk DrawingSurface
 	 **/
 	public void draw(DrawingSurface mk) {
-		if (isFired == true) {
-			fire();
-		}
 //		mk.line(x, y, x+5, y);
 		mk.image(mk.arrow, x, y, mk.getyPos() / 15 * 32, mk.getyPos() / 15 * 9);
 
+	}
+
+	public boolean getTrigger() {
+		return fired;
+	}
+
+	public void setTrigger(boolean fired) {
+		this.fired = fired;
+		
 	}
 	
 }

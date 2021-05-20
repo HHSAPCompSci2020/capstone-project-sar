@@ -20,7 +20,6 @@ public class Avatar {
 	private int gridx, gridy;
 	private int health;
 	private boolean isAlive, isSlowed;
-	private Image picture;
 	
 	//CONSTRUCTOR
 	/**

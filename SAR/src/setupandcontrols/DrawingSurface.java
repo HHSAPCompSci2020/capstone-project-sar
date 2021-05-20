@@ -53,7 +53,7 @@ public class DrawingSurface extends PApplet {
 		obstacle = new WaterWall(10, getyPos());
 		obstacle1 = new WaterWall(10, getyPos());
 		obstacle2 = new WaterWall(10, getyPos());
-		projectile = new StandardProjectile(1, 1, 1, 1);
+		projectile = new StandardProjectile(1100, 1, 1, 1);
 		aang = new Avatar();
 		currentDrag = null;
 	}
@@ -84,20 +84,25 @@ public class DrawingSurface extends PApplet {
 		fill(0);
 		textAlign(LEFT);
 		textSize(12);
-
+		
+		if (projectile.getTrigger()) {
+			System.out.println(projectile.getTrigger());
+			projectile.fire();
+		}
 		if (board != null) {
 			board.draw(this, 75, 0, height, height);
 			obstacle.draw(this);
 			projectile.draw(this);
 			aang.draw(this, height / board.grid.length, 75, 0);
 		}
-
-		if (obstacle1 != null) {
+		
+		if(obstacle1 != null) {
 			obstacle1.draw(this);
-		}
-		if (obstacle2 != null) {
+		} if(obstacle2 != null) {
 			obstacle2.draw(this);
 		}
+	
+	
 
 	}
 
@@ -106,7 +111,7 @@ public class DrawingSurface extends PApplet {
 		dragThisOne(obstacle1); // This should probably be done with an ArrayList
 		dragThisOne(obstacle2);
 		if (mouseButton == LEFT) {
-			projectile.isFired = true;
+			projectile.setTrigger(true);
 			Point click = new Point(mouseX, mouseY);
 			float dimension = height;
 			cellCoord = board.clickToIndex(click, 0, 0, dimension, dimension);
