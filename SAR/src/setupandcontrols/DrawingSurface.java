@@ -37,7 +37,7 @@ public class DrawingSurface extends PApplet {
 	private Point cellCoord;
 	private Timer time;
 	private int yPos;
-	public PImage arrow, avatar;
+	public PImage arrow, avatar, fireArrow, poisonArrow;
 	PImage water, wall, grass, end;
 
 	public DrawingSurface() {
@@ -57,6 +57,8 @@ public class DrawingSurface extends PApplet {
 
 	public void setup() {
 		arrow = loadImage("arrow.png");
+		fireArrow = loadImage("firearrow.png");
+		poisonArrow = loadImage("poisonarrow.png");
 		avatar = loadImage("avatar.png");
 		water = loadImage("sea.png");
 		wall = loadImage("wall.png");
@@ -124,14 +126,14 @@ public class DrawingSurface extends PApplet {
 	}
 
 	public void keyPressed() {
-		//if (keyCode == KeyEvent.VK_F) {
-		//	proj = new FireArrow(1200, 1, 1, 1);
+		if (keyCode == KeyEvent.VK_F) {
+			proj = new FireArrow(1200, 1, 1, 1);
 			
-		//}
-		//if (keyCode == KeyEvent.VK_P) {
-		//	proj = new PoisonArrow(1200, 1, 1, 1);
+		}
+		if (keyCode == KeyEvent.VK_P) {
+			proj = new PoisonArrow(1200, 1, 1, 1);
 		
-		//}
+		}
 		if (keyCode == KeyEvent.VK_UP) {
 			if (!proj.getTrigger()) {
 				proj.y -= 10;
