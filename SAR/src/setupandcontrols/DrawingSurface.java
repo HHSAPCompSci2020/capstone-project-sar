@@ -35,7 +35,7 @@ public class DrawingSurface extends PApplet {
 	private Point cellCoord;
 	private Timer time;
 	private boolean gameStarted;
-	private int yPos, obstacleCount, scoreboard;
+	private int yPos, obstacleCount, scoreboard, health;
 	
 	/**
 	 * PImages that store the images of the different components of the game
@@ -65,6 +65,7 @@ public class DrawingSurface extends PApplet {
 		time = new Timer("gameClock");
 		obstacleCount = 3;
 		scoreboard = 0;
+		health = 10;
 	}
 
 	/**
@@ -245,7 +246,11 @@ public class DrawingSurface extends PApplet {
 				};
 				TimerTask score = new TimerTask() {
 					public void run() {
-						scoreboard = scoreboard + 100 - (10 - aang.getHealth()) * 300;
+						scoreboard += 50;
+						if(aang.getHealth() < health) {
+							scoreboard -= 500;
+							health--;
+						}
 					}
 				};
 				time.scheduleAtFixedRate(task, 50, 500);
