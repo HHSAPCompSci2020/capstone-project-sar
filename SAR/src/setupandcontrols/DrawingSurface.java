@@ -112,6 +112,11 @@ public class DrawingSurface extends PApplet {
 			obstacle2.draw(this);
 			barrier.draw(this);
 			proj.draw(this);
+			fill(120, 215, 150);
+			rect((float) (height + height/2.2), 300, 75, 100, 7);
+			noFill();
+			fill(0);
+			text("Click here \nto launch \narrow", (float) (height + height/2.2) + 10, 330);
 			aang.draw(this, height / board.grid.length, 270, 0);
 		}
 
@@ -123,17 +128,19 @@ public class DrawingSurface extends PApplet {
 		dragThisOne(obstacle2);
 		dragThisOne(barrier);
 		
-		if (mouseButton == LEFT) {
+		
+		if(mouseX >= height + height/2.2 && mouseX <= height + height/2.2 + 75 &&
+				mouseY >= 300 && mouseY <= (float) 400) {
 			proj.setTrigger(true);
 			Point click = new Point(mouseX, mouseY);
 			float dimension = height;
 			cellCoord = board.clickToIndex(click, 270, 0, dimension, dimension);
-			if (cellCoord != null && cellCoord.x > 74) {
-				mousePressed = true;
-				board.findPath(cellCoord.x, cellCoord.y); // When you progress to a new prompt, modify this method call.
-			}
 		}
 
+		if (cellCoord != null && cellCoord.x > 74) {
+			mousePressed = true;
+			board.findPath(cellCoord.x, cellCoord.y); // When you progress to a new prompt, modify this method call.
+		}
 	}
 
 	public void mouseReleased() {
@@ -157,6 +164,7 @@ public class DrawingSurface extends PApplet {
 
 			currentDrag1 = null;
 		}
+		
 	}
 
 	public void keyPressed() {
