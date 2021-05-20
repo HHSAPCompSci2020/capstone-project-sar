@@ -133,20 +133,24 @@ public class DrawingSurface extends PApplet {
 	}
 
 	public void keyPressed() {
-		if (keyCode == KeyEvent.VK_F) {
-			proj = new FireArrow(1200, 1, 1, 1);
+		//if (keyCode == KeyEvent.VK_F) {
+		//	proj = new FireArrow(1200, 1, 1, 1);
 			
-		}
-		if (keyCode == KeyEvent.VK_P) {
-			proj = new PoisonArrow(1200, 1, 1, 1);
+		//}
+		//if (keyCode == KeyEvent.VK_P) {
+		//	proj = new PoisonArrow(1200, 1, 1, 1);
 		
-		}
+		//}
 		if (keyCode == KeyEvent.VK_UP) {
-			proj.y -= 10;
+			if (!proj.getTrigger()) {
+				proj.y -= 10;
+			}
 			
 		}
 		if (keyCode == KeyEvent.VK_DOWN) {
-			proj.y += 10;
+			if (!proj.getTrigger()) {
+				proj.y += 10;
+			}
 			
 		}
 		if (keyCode == KeyEvent.VK_SPACE) {
