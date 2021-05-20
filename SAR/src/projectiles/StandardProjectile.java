@@ -47,7 +47,7 @@ public class StandardProjectile {
 		dot = new Point((int) (av.getGridx()), (int) (av.getGridy()));
 		if (arrow.getX() > 270 && arrow.getX() < app.height) {
 			arrow = grid.clickToIndex(arrow, 270f, 0f, app.height, app.height);
-			if (grid.get((int)dot.getX()==arrow.getX() &&  (int) dot.getY()) == y) {
+			if (dot.getX() == arrow.getX() &&  dot.getY() == arrow.getY()) {
 				return true;
 			}
 			else {
