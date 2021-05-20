@@ -59,7 +59,7 @@ public class Avatar {
 	 * @param path Arraylist of points that lead the Avatar from the starting point to the exit
 	 * @post Has some print lines for the purpose of finding bugs
 	 */
-	public void move(ArrayList<Point> path) {
+	public void move(ArrayList<Point> path, DrawingSurface surface) {
 
 		if (health<=0) {
 			die();
@@ -68,14 +68,13 @@ public class Avatar {
 		if(path.size() == 1) {
 			System.out.println("Reached end, computer WINS!");
 			System.out.println(gridx + " " + gridy);
+			surface.changeLevel();
 			return;
 		}
 		if (!isSlowed) {
 			gridx = path.get(1).x;
 			gridy = path.get(1).y;
-		}else { //	WORK ON SLOWING AVATAR DOWN
-//			gridx = path.get(1).x;
-//			gridy = path.get(1).y;
+		}else { 
 			System.out.println("Is Slowed");
 		}
 		System.out.println(gridx + " " + gridy);

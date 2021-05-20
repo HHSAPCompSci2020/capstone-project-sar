@@ -140,6 +140,12 @@ path.reverse() # optional
 			Avatar.lagged = 1;
 		}
 		
+		if(path.size()>1) {
+			if(grid[path.get(1).y][path.get(1).x] == 'm') {
+				Avatar.isSlowed = true;
+			}
+		}
+		
 		
 		return path;
 	}
@@ -149,7 +155,7 @@ path.reverse() # optional
 	private boolean isPointWalkable(Point p) {
 		if (p.x<0 || p.y<0 || p.y>= grid.length || p.x >= grid[0].length) {
 			return false;
-		}else if (grid[p.y][p.x] == '#' || grid[p.y][p.x] == 'm') {
+		}else if (grid[p.y][p.x] == '#') {
 			return false;
 		}
 		return true;

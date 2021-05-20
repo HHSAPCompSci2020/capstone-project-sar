@@ -42,9 +42,11 @@ public class DrawingSurface extends PApplet {
 	private int yPos, obstacleCount;
 	public PImage arrow, avatar, fireArrow, poisonArrow;
 	PImage water, wall, tempWall, grass, end;
+	public int level;
 
 	public DrawingSurface() {
-		board = new Maze("mazeLevels/test3.txt");
+		level = 1;
+		board = new Maze("mazeLevels/test1.txt");
 		yPos = height / 2;
 		obstacle = new WaterWall(10, getyPos());
 		obstacle1 = new WaterWall(10, getyPos());
@@ -191,11 +193,12 @@ public class DrawingSurface extends PApplet {
 		if (keyCode == KeyEvent.VK_SPACE) {
 			if (!gameStarted) {
 				gameStarted = true;
+				DrawingSurface t = this;
 				TimerTask task = new TimerTask() {
 					public void run() {
 						ArrayList<Point> path = board.findPath(aang.getGridx(), aang.getGridy());
 						if (path != null) {
-							aang.move(path);
+							aang.move(path, t);
 						} else {
 							System.out.println("no path found, so the avatar is not moving");
 						}
@@ -234,5 +237,50 @@ public class DrawingSurface extends PApplet {
 
 	public int getyPos() {
 		return yPos;
+	}
+	
+	public void changeLevel() {
+		level++;
+		
+		if(level == 2) { //NEEDS TO DISPLAY CONGRATULATIONS 
+//			TimerTask task = new TimerTask() {
+//				public void run() {
+//					textSize(100);
+//					text("CONGRATULATIONS", 200, 200);
+//					textSize(12);
+//				}
+//			};
+//			time.schedule(task, 30);
+			
+			board = new Maze("mazeLevels/test2.txt");
+			ArrayList<Point> path = board.findFirstPath();
+			if (path != null) {
+				Point start = path.get(0);
+				aang.setup(start);
+			} else {
+				System.out.println("FIX MAZE TEXT FILE: NO PATH FOUND");
+			}
+		}else if (level == 3) {
+			board = new Maze("mazeLevels/test3.txt");
+			ArrayList<Point> path = board.findFirstPath();
+			if (path != null) {
+				Point start = path.get(0);
+				aang.setup(start);
+			} else {
+				System.out.println("FIX MAZE TEXT FILE: NO PATH FOUND");
+			}
+		}else if (level == 4) {//NEEDS TO DISPLAY GAME OVER 
+//			TimerTask task = new TimerTask() {
+//			public void run() {
+//				textSize(100);
+//				text("GAME OVER", 200, 200);
+//				textSize(12);
+//			}
+//		};
+//		time.schedule(task, 30);
+		
+			
+		}
+		//board = new Maze(test)
 	}
 }
