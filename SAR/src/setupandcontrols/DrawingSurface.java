@@ -21,15 +21,12 @@ import projectiles.StandardProjectile;
  * Creates a Drawing Surface, and draws all components (maze, obstacles, avatar,
  * projectiles, etc.)
  * 
- * @author Shachaf
- * @version 5/5
+ * @author Shachaf, Radhika, Ayush
+ * @version 5/20
  */
 
-//todos: waterwall slows down the avatar, make movingWall a thing, make sure the player knows how many...
-// obstacles there are
 public class DrawingSurface extends PApplet {
 
-	// When you progress to a new prompt, modify this field.
 	private Maze board;
 
 	private WaterWall obstacle, obstacle1, obstacle2, currentDrag;
@@ -42,9 +39,14 @@ public class DrawingSurface extends PApplet {
 	private int yPos, obstacleCount, scoreboard;
 	public PImage arrow, avatar, fireArrow, poisonArrow;
 	PImage water, wall, tempWall, grass, end;
+	public int level;
 
+	/**
+	 * Constructer to DrawingSurface class. Initializes instance variables.
+	 */
 	public DrawingSurface() {
-		board = new Maze("mazeLevels/test3.txt");
+		level = 1;
+		board = new Maze("mazeLevels/test1.txt");
 		yPos = height / 2;
 		obstacle = new WaterWall(10, getyPos());
 		obstacle1 = new WaterWall(10, getyPos());
@@ -64,10 +66,21 @@ public class DrawingSurface extends PApplet {
 
 	}
 
+	/**
+	 * Sets the window size to be full screen
+	 * 
+	 * @return returns nothing (void)
+	 */
 	public void settings() {
 		fullScreen();
 	}
 
+	/**
+	 * Loads the images to be used in the project Finds the first path for avatar to
+	 * exit the maze
+	 * 
+	 * @return returns nothing (void)
+	 */
 	public void setup() {
 		arrow = loadImage("arrow.png");
 		fireArrow = loadImage("firearrow.png");
@@ -88,28 +101,32 @@ public class DrawingSurface extends PApplet {
 
 	}
 
+	/**
+	 * draws all visual elements
+	 * 
+	 * @return returns nothing (void)
+	 */
 	public void draw() {
 		background(255);
 		textAlign(LEFT);
-		
+
 		textSize(20);
 		fill(200, 130, 150);
-		rect((float) (height + height/3), 20, 175, 100, 7);
+		rect(50, 500, 175, 100, 7);
 		fill(0);
-		text("Lives: " + aang.getHealth(), (float) (height + height/3) + 20, 50);
-		text("Score: " + scoreboard, (float) (height + height/3) + 20, 90);
-		
+		text("Lives: " + aang.getHealth(), 70, 540);
+		text("Score: " + scoreboard, 70, 580);
+
 		textSize(12);
-		if(!barrier.isReleased()) {
+		if (!barrier.isReleased()) {
 			text("1x", barrier.getX(), barrier.getY() - 10);
 		}
-		
-		if(obstacleCount != 0) {
+
+		if (obstacleCount != 0) {
 			text(obstacleCount + "x", obstacle.getX(), obstacle.getY() - 10);
 		}
-		
+
 		if (proj.getTrigger()) {
-//			System.out.println(proj.getTrigger());
 			proj.fire();
 			proj.hitTarget(aang,board,this);
 
@@ -123,24 +140,30 @@ public class DrawingSurface extends PApplet {
 			barrier.draw(this);
 			proj.draw(this);
 			fill(120, 215, 150);
-			rect((float) (height + height/2.2), 300, 75, 100, 7);
+			rect((float) (height + height / 2.2), 300, 75, 100, 7);
 			noFill();
 			fill(0);
-			text("Click here \nto launch \narrow", (float) (height + height/2.2) + 10, 330);
+			text("Click here \nto launch \narrow", (float) (height + height / 2.2) + 10, 330);
 			aang.draw(this, height / board.grid.length, 270, 0);
 		}
 
 	}
 
+	/**
+	 * If the launch arrow button is pressed, an arrow is launched If a WaterWall or
+	 * MovingWall is then dragged, it moves with the mouse A path is found for the
+	 * avatar
+	 * 
+	 * @return returns nothing (void)
+	 */
 	public void mousePressed() {
 		dragThisOne(obstacle);
 		dragThisOne(obstacle1);
 		dragThisOne(obstacle2);
 		dragThisOne(barrier);
-		
-		
-		if(mouseX >= height + height/2.2 && mouseX <= height + height/2.2 + 75 &&
-				mouseY >= 300 && mouseY <= (float) 400 && gameStarted) {
+
+		if (mouseX >= height + height / 2.2 && mouseX <= height + height / 2.2 + 75 && mouseY >= 300
+				&& mouseY <= (float) 400 && gameStarted) {
 			proj.setTrigger(true);
 			Point click = new Point(mouseX, mouseY);
 			float dimension = height;
@@ -153,10 +176,18 @@ public class DrawingSurface extends PApplet {
 		}
 	}
 
+	/**
+	 * dragged Wall objects are released if MovingWall objects are released on
+	 * the... ...grid, they die and respawn 1.5 seconds later
+	 * 
+	 * @return returns nothing (void)
+	 */
 	public void mouseReleased() {
 		if (currentDrag != null) {
 			currentDrag.mouseReleased(board, this);
-			obstacleCount--;
+			if (currentDrag.getX() != 10 && currentDrag.getY() != getyPos()) {
+				obstacleCount--;
+			}
 			currentDrag = null;
 		}
 
@@ -174,9 +205,15 @@ public class DrawingSurface extends PApplet {
 
 			currentDrag1 = null;
 		}
-		
+
 	}
 
+	/**
+	 * Lets you change projectile types and starts the game when the spacebar is
+	 * pressed
+	 * 
+	 * @return returns nothing (void)
+	 */
 	public void keyPressed() {
 		if (keyCode == KeyEvent.VK_S) {
 			proj = new StandardProjectile(1500, 1, 1);
@@ -208,11 +245,12 @@ public class DrawingSurface extends PApplet {
 		if (keyCode == KeyEvent.VK_SPACE) {
 			if (!gameStarted) {
 				gameStarted = true;
+				DrawingSurface t = this;
 				TimerTask task = new TimerTask() {
 					public void run() {
 						ArrayList<Point> path = board.findPath(aang.getGridx(), aang.getGridy());
 						if (path != null) {
-							aang.move(path);
+							aang.move(path, t);
 						} else {
 							System.out.println("no path found, so the avatar is not moving");
 						}
@@ -220,7 +258,7 @@ public class DrawingSurface extends PApplet {
 				};
 				TimerTask score = new TimerTask() {
 					public void run() {
-						scoreboard = scoreboard + 100 - (10 - aang.getHealth()) * 300;	
+						scoreboard = scoreboard + 100 - (10 - aang.getHealth()) * 300;
 					}
 				};
 				time.scheduleAtFixedRate(task, 50, 500);
@@ -229,6 +267,12 @@ public class DrawingSurface extends PApplet {
 		}
 	}
 
+	/**
+	 * Checks if the mouse is on WaterWall w
+	 * 
+	 * @param w
+	 * @return returns nothing (void)
+	 */
 	public void dragThisOne(WaterWall w) {
 		if (mouseX <= w.getX() + w.getSize() && mouseX >= w.getX() && mouseY <= w.getY() + w.getSize()
 				&& mouseY >= w.getY()) {
@@ -236,6 +280,12 @@ public class DrawingSurface extends PApplet {
 		}
 	}
 
+	/**
+	 * Checks if the mouse is on MovingWall w
+	 * 
+	 * @param w
+	 * @return returns nothing (void)
+	 */
 	public void dragThisOne(MovingWall w) {
 		if (mouseX <= w.getX() + w.getSize() && mouseX >= w.getX() && mouseY <= w.getY() + w.getSize()
 				&& mouseY >= w.getY()) {
@@ -243,6 +293,11 @@ public class DrawingSurface extends PApplet {
 		}
 	}
 
+	/**
+	 * Drags MovingWall and/or WaterWall
+	 * 
+	 * @return returns nothing (void)
+	 */
 	public void mouseDragged() {
 		if (currentDrag != null) {
 			currentDrag.setX(mouseX - (int) currentDrag.getSize() / 2);
@@ -255,7 +310,54 @@ public class DrawingSurface extends PApplet {
 		}
 	}
 
+	/**
+	 * @return returns yPos
+	 */
 	public int getyPos() {
 		return yPos;
+	}
+	
+	public void changeLevel() {
+		level++;
+		
+		if(level == 2) { //NEEDS TO DISPLAY CONGRATULATIONS 
+//			TimerTask task = new TimerTask() {
+//				public void run() {
+//					textSize(100);
+//					text("CONGRATULATIONS", 200, 200);
+//					textSize(12);
+//				}
+//			};
+//			time.schedule(task, 30);
+			
+			board = new Maze("mazeLevels/test2.txt");
+			ArrayList<Point> path = board.findFirstPath();
+			if (path != null) {
+				Point start = path.get(0);
+				aang.setup(start);
+			} else {
+				System.out.println("FIX MAZE TEXT FILE: NO PATH FOUND");
+			}
+		}else if (level == 3) {
+			board = new Maze("mazeLevels/test3.txt");
+			ArrayList<Point> path = board.findFirstPath();
+			if (path != null) {
+				Point start = path.get(0);
+				aang.setup(start);
+			} else {
+				System.out.println("FIX MAZE TEXT FILE: NO PATH FOUND");
+			}
+		}else if (level == 4) {//NEEDS TO DISPLAY GAME OVER 
+//			TimerTask task = new TimerTask() {
+//			public void run() {
+//				textSize(100);
+//				text("GAME OVER", 200, 200);
+//				textSize(12);
+//			}
+//		};
+//		time.schedule(task, 30);
+		
+			
+		}
 	}
 }

@@ -12,7 +12,7 @@ import setupandcontrols.DrawingSurface;
  * manages the avatar's life.
  * NOTE TO SELF: work on slowing down speed, navigating avatar with updated paths, and setting an art assest
  * @author Radhika Agarwal
- * @version 5/12
+ * @version 5/20
  */
 public class Avatar {
 
@@ -20,7 +20,13 @@ public class Avatar {
 	private int gridx, gridy;
 	private int health;
 	private boolean isAlive;
+	/**
+	 * IsSlowed is used when Avatar encounters an obstacle
+	 */
 	static boolean isSlowed;
+	/**
+	 * lagged is used when the Avatar needs to count for how long it needs to be lagged at a WaterWall
+	 */
 	static int lagged;
 	
 	//CONSTRUCTOR
@@ -34,9 +40,6 @@ public class Avatar {
 		isAlive = true;
 		isSlowed = false;
 		lagged = 1;
-		
-		
-		//picture = new ImageIcon("virus.png")).getImage();
 	}
 	
 	//METHODS
@@ -59,26 +62,21 @@ public class Avatar {
 	 * @param path Arraylist of points that lead the Avatar from the starting point to the exit
 	 * @post Has some print lines for the purpose of finding bugs
 	 */
-	public void move(ArrayList<Point> path) {
+	public void move(ArrayList<Point> path, DrawingSurface surface) {
 
 		if (health<=0) {
 			die();
 		}
 
 		if(path.size() == 1) {
-			System.out.println("Reached end, computer WINS!");
-			System.out.println(gridx + " " + gridy);
+			surface.changeLevel();
 			return;
 		}
 		if (!isSlowed) {
 			gridx = path.get(1).x;
 			gridy = path.get(1).y;
-		}else { //	WORK ON SLOWING AVATAR DOWN
-//			gridx = path.get(1).x;
-//			gridy = path.get(1).y;
-			System.out.println("Is Slowed");
-		}
-		System.out.println(gridx + " " + gridy);
+		}else {}  //does nothing because IsSlowed
+		
 		return;
 
 		
@@ -86,7 +84,7 @@ public class Avatar {
 	
 	private void die() {
 		isAlive = false;
-		System.out.println("Avatar has died, player WINS!");
+		//System.out.println("Avatar has died, player WINS!"); //SHOW ON SCREEN
 	}
 	
 	/**
@@ -98,7 +96,6 @@ public class Avatar {
 	 */
 	public void draw(DrawingSurface surface, int gridLength, int windowX, int windowY) {
 		surface.pushStyle();
-		//surface.fill(255, 0, 0);
 		surface.image(surface.avatar, gridx*gridLength + windowX, gridy*gridLength + windowY, gridLength, gridLength);
 		surface.popStyle();
 	}

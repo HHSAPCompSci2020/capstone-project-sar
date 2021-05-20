@@ -18,7 +18,7 @@ import java.util.ArrayList;
  * 
  * @author Radhika Agarwal
  * Credit To: www.chegg.com\, www.pinclipart.com/, mikrotechnica.wordpress.com/ for the 3 mazes
- * @version 5/12/21
+ * @version 5/20/21
  *
  */
 public class Maze extends GridTemplate {
@@ -39,12 +39,17 @@ public class Maze extends GridTemplate {
 		super(20,20,filename);		
 	}
 
+	/**
+	 * Finds path the very first time the game begins
+	 * @return complete path from the starting point to the exit
+	 */
 	public ArrayList<Point> findFirstPath(){
 		return findPath(start.x, start.y);
 	}
 	
 	/**
-	 * Credit goes to redblobgames.com
+	 * Credit goes to redblobgames.com for original Breadth-First Search algorithm, 
+	 * Radhika made modifications to adapt to this game
 	 * It finds the path to the exit using Breadth Search Algorithm
 	 * @param x x-coordinate of the starting point
 	 * @param y y-coordinate of the starting point
@@ -103,9 +108,6 @@ while not frontier.empty():
 				}
 			}
 		}
-		
-		System.out.println(frontier.size() + "should usually not equal zero.");
-		System.out.println(cameFrom.size() + "should not equal zero.");
 
 /*
 current = goal 
@@ -118,9 +120,7 @@ path.reverse() # optional
  */
 		Point current = goal;
 		ArrayList<Point> path = new ArrayList<Point>();
-		
-		System.out.println(goal.x + " " + goal.y);
-		
+				
 		if(goal.x == -1 && goal.y == -1) {
 			System.out.println("No path found");
 			return null;
@@ -140,6 +140,11 @@ path.reverse() # optional
 			Avatar.lagged = 1;
 		}
 		
+		if(path.size()>1) {
+			if(grid[path.get(1).y][path.get(1).x] == 'm') {
+				Avatar.isSlowed = true;
+			}
+		}
 		
 		return path;
 	}
@@ -149,7 +154,7 @@ path.reverse() # optional
 	private boolean isPointWalkable(Point p) {
 		if (p.x<0 || p.y<0 || p.y>= grid.length || p.x >= grid[0].length) {
 			return false;
-		}else if (grid[p.y][p.x] == '#' || grid[p.y][p.x] == 'm') {
+		}else if (grid[p.y][p.x] == '#') {
 			return false;
 		}
 		return true;
