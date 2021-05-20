@@ -50,7 +50,7 @@ public class DrawingSurface extends PApplet {
 		obstacle1 = new WaterWall(10, getyPos());
 		obstacle2 = new WaterWall(10, getyPos());
 		proj = new StandardProjectile(1200, 1, 1, 1);
-		barrier = new MovingWall(10, getyPos() * 2);
+		barrier = new MovingWall(10, getyPos() * 2 + 25);
 		aang = new Avatar();
 		currentDrag = null;
 		currentDrag1 = null;
@@ -84,8 +84,8 @@ public class DrawingSurface extends PApplet {
 	}
 
 	public void draw() {
-		System.out.println(aang.getGridx());
-		System.out.println(aang.getGridy());
+//		System.out.println(aang.getGridx());
+//		System.out.println(aang.getGridy());
 		background(255);
 		fill(0);
 		textAlign(LEFT);
@@ -96,7 +96,7 @@ public class DrawingSurface extends PApplet {
 		}
 		
 		if(obstacleCount != 0) {
-			text(obstacleCount + "x", barrier.getX(), barrier.getY() - 10);
+			text(obstacleCount + "x", obstacle.getX(), obstacle.getY() - 10);
 		}
 		
 //		text("", x, y);
@@ -150,7 +150,7 @@ public class DrawingSurface extends PApplet {
 				@Override
 				public void run() {
 					board.set(barrier.getXGrid(), barrier.getYGrid(), '.');
-					barrier = new MovingWall(10, getyPos() * 2);
+					barrier = new MovingWall(10, getyPos() * 2 + 25);
 				}
 			};
 			time.schedule(moveWall, 2500);
