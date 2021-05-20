@@ -28,7 +28,7 @@ public abstract class GridTemplate {
 	 */
 	public GridTemplate() {
 		grid = new char[20][20];
-		start = new Point(-1,-1);
+		start = new Point(-1, -1);
 	}
 
 	/**
@@ -41,7 +41,7 @@ public abstract class GridTemplate {
 	 */
 	public GridTemplate(int width, int height, String filename) {
 		grid = new char[height][width];
-		start = new Point(-1,-1);
+		start = new Point(-1, -1);
 		readData(filename, grid);
 	}
 
@@ -92,13 +92,15 @@ public abstract class GridTemplate {
 		r = r / grid.length;
 		for (int i = 0; i < grid.length; i++) {
 			for (int j = 0; j < grid.length; j++) {
-				if(grid[i][j] == '#') {
+				if (grid[i][j] == '#') {
 					marker.image(marker.wall, x + (r * j), y + (i * r), marker.getyPos(), marker.getyPos());
-				} else if(grid[i][j] == 'w') {
+				} else if (grid[i][j] == 'w') {
 					marker.image(marker.water, x + (r * j), y + (i * r), marker.getyPos(), marker.getyPos());
+				} else if (grid[i][j] == 'm') {
+					marker.image(marker.tempWall, x + (r * j), y + (i * r), marker.getyPos(), marker.getyPos());
 				} else if (grid[i][j] == 'X') {
 					marker.image(marker.end, x + (r * j), y + (i * r), marker.getyPos(), marker.getyPos());
-				}else {
+				} else {
 					marker.image(marker.grass, x + (r * j), y + (i * r), marker.getyPos(), marker.getyPos());
 
 				}
@@ -135,7 +137,7 @@ public abstract class GridTemplate {
 	}
 
 	public void set(int x, int y, char c) {
-		if(x > -1 && x < 20 && y > -1 && y < 20) {
+		if (x > -1 && x < 20 && y > -1 && y < 20) {
 			grid[y][x] = c;
 		}
 	}
@@ -143,7 +145,7 @@ public abstract class GridTemplate {
 	public char get(int x, int y) {
 		return grid[y][x];
 	}
-	
+
 	public void readData(String filename, char[][] gameData) {
 		File dataFile = new File(filename);
 
@@ -161,7 +163,7 @@ public abstract class GridTemplate {
 					for (int i = 0; i < line.length(); i++) {
 						if (count < gameData.length && i < gameData[count].length) {
 							gameData[count][i] = line.charAt(i);
-							if(line.charAt(i)== 'A') {
+							if (line.charAt(i) == 'A') {
 								start.x = i;
 								start.y = count;
 							}
