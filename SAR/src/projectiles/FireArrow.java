@@ -6,7 +6,7 @@ import setupandcontrols.DrawingSurface;
 
 /**
  * Represents a fire arrow - deals more damage than a standard projectile
- *@version 5/5
+ *@version 5/20
  */
 public class FireArrow extends StandardProjectile{
 	
@@ -22,12 +22,22 @@ public class FireArrow extends StandardProjectile{
 		super(x, y, moveSpeed);
 	}
 	
+	
+	/**
+	 * Burns the avatar upon collision
+	 * @param av The avatar
+	 */
 	public void burn (Avatar av) {
 			if (av.isAlive()) {
 				av.setHealth(av.getHealth() - 5);
 			}
 		
 	}
+	
+	/**
+	 * Draws the arrow
+	 * @param mk DrawingSurface
+	 **/
 	public void draw(DrawingSurface mk) {
 //		mk.line(x, y, x+5, y);
 		mk.image(mk.fireArrow, x, y, mk.getyPos() / 15 * 130, mk.getyPos() / 15 * 80);

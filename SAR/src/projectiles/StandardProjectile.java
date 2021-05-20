@@ -35,7 +35,9 @@ public class StandardProjectile {
 		this.y =y;
 		this.moveSpeed = moveSpeed;
 		arrow = new Point(x, y);
-		dot = new Point(100, 100);
+		//dot = new Point(100, 100);
+		arrow = new Point(100, 100);
+
 	}
 	
 	/**
@@ -47,6 +49,7 @@ public class StandardProjectile {
 	
 	public boolean hitTarget(Avatar av, GridTemplate grid, DrawingSurface app) { 
 		dot = new Point((int) (av.getGridx()), (int) (av.getGridy()));
+
 		if (arrow.x > 270 && arrow.x < app.height+269) {
 			System.out.println("arrow before: " + arrow.x + " " + arrow.y);
 			arrow = grid.clickToIndex(arrow, 270f, 0f, app.height, app.height);
@@ -56,6 +59,7 @@ public class StandardProjectile {
 				System.out.println("Collide");
 				av.setHealth(av.getHealth()-2);
 				remove();
+
 				return true;
 			}
 			else {
@@ -113,6 +117,9 @@ public class StandardProjectile {
 		
 	}
 	
+	/** 
+	 * @param y New Point-object y coordinate
+	 */
 	public void setY(int y) {
 		arrow.y = y;
 	}

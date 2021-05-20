@@ -57,8 +57,8 @@ public class DrawingSurface extends PApplet {
 		gameStarted = false;
 		time = new Timer("gameClock");
 		obstacleCount = 3;
-
 		scoreboard = 0;
+
 
 
 
@@ -112,6 +112,7 @@ public class DrawingSurface extends PApplet {
 //			System.out.println(proj.getTrigger());
 			proj.fire();
 			proj.hitTarget(aang,board,this);
+
 		}
 
 		if (board != null) {
