@@ -2,6 +2,7 @@ package projectiles;
 
 import computerplayer.Avatar;
 import processing.core.PImage;
+import setupandcontrols.DrawingSurface;
 
 public class PoisonArrow extends StandardProjectile{
 	
@@ -20,6 +21,12 @@ public class PoisonArrow extends StandardProjectile{
 				av.setHealth(av.getHealth() - 1*POISION_DAMAGE);
 			}
 		}
+	}
+	
+	public void draw(DrawingSurface mk) {
+//		mk.line(x, y, x+5, y);
+		mk.image(mk.poisonArrow, x, y, mk.getyPos() / 15 * 130, mk.getyPos() / 15 * 80);
+
 	}
 
 }

@@ -13,6 +13,8 @@ import obstaclepackage.MovingWall;
 import obstaclepackage.WaterWall;
 import processing.core.PApplet;
 import processing.core.PImage;
+import projectiles.FireArrow;
+import projectiles.PoisonArrow;
 import projectiles.StandardProjectile;
 
 /**
@@ -29,15 +31,18 @@ public class DrawingSurface extends PApplet {
 
 	// When you progress to a new prompt, modify this field.
 	private Maze board;
+
 	private WaterWall obstacle, obstacle1, obstacle2, currentDrag;
 	private MovingWall barrier, barrier1, barrier2, currentDrag1;
-	private StandardProjectile projectile;
+	private StandardProjectile proj;
+
 	private Avatar aang;
 	private Point cellCoord;
 	private Timer time;
 	private int yPos;
-	public PImage arrow, avatar;
+	public PImage arrow, avatar,fireArrow, poisonArrow;
 	PImage water, wall, tempWall, grass, end;
+
 
 	public DrawingSurface() {
 		board = new Maze("mazeLevels/test2.txt");
@@ -45,10 +50,11 @@ public class DrawingSurface extends PApplet {
 		obstacle = new WaterWall(10, getyPos());
 		obstacle1 = new WaterWall(10, getyPos());
 		obstacle2 = new WaterWall(10, getyPos());
+		proj = new StandardProjectile(1200, 1, 1, 1);
 		barrier = new MovingWall(10, getyPos() * 2);
 		barrier1 = new MovingWall(10, getyPos() * 2);
 		barrier2 = new MovingWall(10, getyPos() * 2);
-		projectile = new StandardProjectile(1100, 1, 1, 1);
+
 		aang = new Avatar();
 		currentDrag = null;
 		currentDrag1 = null;
@@ -60,6 +66,8 @@ public class DrawingSurface extends PApplet {
 
 	public void setup() {
 		arrow = loadImage("arrow.png");
+		fireArrow = loadImage("firearrow.png");
+		poisonArrow = loadImage("poisonarrow.png");
 		avatar = loadImage("avatar.png");
 		water = loadImage("sea.png");
 		wall = loadImage("wall.png");
@@ -82,17 +90,27 @@ public class DrawingSurface extends PApplet {
 		textAlign(LEFT);
 		textSize(12);
 
-		if (projectile.getTrigger()) {
-			System.out.println(projectile.getTrigger());
-			projectile.fire();
+		
+		if (proj.getTrigger()) {
+			System.out.println(proj.getTrigger());
+			proj.fire();
+
+
+		
 		}
 		if (board != null) {
 			board.draw(this, 75, 0, height, height);
 			obstacle.draw(this);
+			proj.draw(this);
+			aang.draw(this, height / board.grid.length, 75, 0);
+		}
+		
+		if(obstacle1 != null) {
+
 			obstacle1.draw(this);
 			obstacle2.draw(this);
 			barrier.draw(this);
-			projectile.draw(this);
+			proj.draw(this);
 			aang.draw(this, height / board.grid.length, 75, 0);
 		}
 
@@ -104,7 +122,7 @@ public class DrawingSurface extends PApplet {
 		dragThisOne(obstacle2);
 		dragThisOne(barrier);
 		if (mouseButton == LEFT) {
-			projectile.setTrigger(true);
+			proj.setTrigger(true);
 			Point click = new Point(mouseX, mouseY);
 			float dimension = height;
 			cellCoord = board.clickToIndex(click, 0, 0, dimension, dimension);
@@ -139,6 +157,26 @@ public class DrawingSurface extends PApplet {
 	}
 
 	public void keyPressed() {
+		if (keyCode == KeyEvent.VK_F) {
+			proj = new FireArrow(1200, 1, 1, 1);
+			
+		}
+		if (keyCode == KeyEvent.VK_P) {
+			proj = new PoisonArrow(1200, 1, 1, 1);
+		
+		}
+		if (keyCode == KeyEvent.VK_UP) {
+			if (!proj.getTrigger()) {
+				proj.y -= 10;
+			}
+			
+		}
+		if (keyCode == KeyEvent.VK_DOWN) {
+			if (!proj.getTrigger()) {
+				proj.y += 10;
+			}
+			
+		}
 		if (keyCode == KeyEvent.VK_SPACE) {
 			if (time == null) {
 				time = new Timer("gameClock");
