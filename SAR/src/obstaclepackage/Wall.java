@@ -8,27 +8,23 @@ import setupandcontrols.GridTemplate;
 public class Wall {
 
 	char wall;
-	int xStart;
-	int yStart;
 	int x;
 	int y;
 	float size;
 	Point p;
+	Point n;
 	boolean released;
 
-	public Wall(int xStart, int yStart, char wall) {
+	public Wall(int x, int y, char wall) {
 		this.wall = wall;
-		this.xStart = xStart;
-		this.yStart = yStart;
-		x = xStart;
-		y = yStart;
+		this.x = x;
+		this.y = y;
 		p = new Point(x, y);
 		released = false;
 	}
 
 	public void draw(DrawingSurface app) {
 		size = (float) (app.height / 20.0);
-		app.square(xStart, yStart, size);
 		if (!released) {
 			app.square(x, y, size);
 		}
@@ -64,6 +60,14 @@ public class Wall {
 
 	public float getSize() {
 		return size;
+	}
+	
+	public int getXGrid() {
+		return (int) n.getX();
+	}
+	
+	public int getYGrid() {
+		return (int) n.getY();
 	}
 
 }

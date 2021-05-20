@@ -33,9 +33,8 @@ public class DrawingSurface extends PApplet {
 	private Maze board;
 
 	private WaterWall obstacle, obstacle1, obstacle2, currentDrag;
-	private MovingWall barrier, barrier1, barrier2, currentDrag1;
+	private MovingWall barrier, currentDrag1;
 	private StandardProjectile proj;
-
 	private Avatar aang;
 	private Point cellCoord;
 	private Timer time;
@@ -52,9 +51,6 @@ public class DrawingSurface extends PApplet {
 		obstacle2 = new WaterWall(10, getyPos());
 		proj = new StandardProjectile(1200, 1, 1, 1);
 		barrier = new MovingWall(10, getyPos() * 2);
-		barrier1 = new MovingWall(10, getyPos() * 2);
-		barrier2 = new MovingWall(10, getyPos() * 2);
-
 		aang = new Avatar();
 		currentDrag = null;
 		currentDrag1 = null;
@@ -110,8 +106,6 @@ public class DrawingSurface extends PApplet {
 			obstacle1.draw(this);
 			obstacle2.draw(this);
 			barrier.draw(this);
-			barrier1.draw(this);
-			barrier2.draw(this);
 			proj.draw(this);
 			aang.draw(this, height / board.grid.length, 75, 0);
 		}
@@ -123,8 +117,6 @@ public class DrawingSurface extends PApplet {
 		dragThisOne(obstacle1);
 		dragThisOne(obstacle2);
 		dragThisOne(barrier);
-		dragThisOne(barrier1);
-		dragThisOne(barrier2);
 		if (mouseButton == LEFT) {
 			proj.setTrigger(true);
 			Point click = new Point(mouseX, mouseY);
@@ -146,7 +138,17 @@ public class DrawingSurface extends PApplet {
 
 		if (currentDrag1 != null) {
 			currentDrag1.mouseReleased(board, this);
-			currentDrag1 = null;
+//			TimerTask moveWall = new TimerTask() {
+//
+//				@Override
+//				public void run() {
+//					barrier = new MovingWall(10, getyPos() * 2);
+//					board.set(barrier.getXGrid(), barrier.getYGrid(), '.');
+//				}
+//			};
+//			time.schedule(moveWall, 5000);
+//		
+		currentDrag1 = null;
 		}
 	}
 
