@@ -13,6 +13,8 @@ import computerplayer.Maze;
 import obstaclepackage.WaterWall;
 import processing.core.PApplet;
 import processing.core.PImage;
+import projectiles.FireArrow;
+import projectiles.PoisonArrow;
 import projectiles.StandardProjectile;
 
 /**
@@ -32,7 +34,7 @@ public class DrawingSurface extends PApplet {
 	private WaterWall obstacle;
 	private WaterWall obstacle1;
 	private WaterWall obstacle2;
-	private StandardProjectile projectile;
+	private StandardProjectile proj;
 	private Avatar aang;
 	private boolean mousePressed; // delete variable?
 	private Point cellCoord;
@@ -53,7 +55,7 @@ public class DrawingSurface extends PApplet {
 		obstacle = new WaterWall(10, getyPos());
 		obstacle1 = new WaterWall(10, getyPos());
 		obstacle2 = new WaterWall(10, getyPos());
-		projectile = new StandardProjectile(1100, 1, 1, 1);
+		proj = new StandardProjectile(1200, 1, 1, 1);
 		aang = new Avatar();
 		currentDrag = null;
 	}
@@ -85,14 +87,14 @@ public class DrawingSurface extends PApplet {
 		textAlign(LEFT);
 		textSize(12);
 		
-		if (projectile.getTrigger()) {
-			System.out.println(projectile.getTrigger());
-			projectile.fire();
+		if (proj.getTrigger()) {
+			System.out.println(proj.getTrigger());
+			proj.fire();
 		}
 		if (board != null) {
 			board.draw(this, 75, 0, height, height);
 			obstacle.draw(this);
-			projectile.draw(this);
+			proj.draw(this);
 			aang.draw(this, height / board.grid.length, 75, 0);
 		}
 		
@@ -111,7 +113,7 @@ public class DrawingSurface extends PApplet {
 		dragThisOne(obstacle1); // This should probably be done with an ArrayList
 		dragThisOne(obstacle2);
 		if (mouseButton == LEFT) {
-			projectile.setTrigger(true);
+			proj.setTrigger(true);
 			Point click = new Point(mouseX, mouseY);
 			float dimension = height;
 			cellCoord = board.clickToIndex(click, 0, 0, dimension, dimension);
@@ -131,6 +133,22 @@ public class DrawingSurface extends PApplet {
 	}
 
 	public void keyPressed() {
+		if (keyCode == KeyEvent.VK_F) {
+			proj = new FireArrow(1200, 1, 1, 1);
+			
+		}
+		if (keyCode == KeyEvent.VK_P) {
+			proj = new PoisonArrow(1200, 1, 1, 1);
+		
+		}
+		if (keyCode == KeyEvent.VK_UP) {
+			proj.y -= 10;
+			
+		}
+		if (keyCode == KeyEvent.VK_DOWN) {
+			proj.y += 10;
+			
+		}
 		if (keyCode == KeyEvent.VK_SPACE) {
 			if (time == null) {
 				time = new Timer("gameClock");

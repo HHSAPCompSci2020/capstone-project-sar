@@ -83,7 +83,7 @@ public class StandardProjectile {
 	 **/
 	public void draw(DrawingSurface mk) {
 //		mk.line(x, y, x+5, y);
-		mk.image(mk.arrow, x, y, mk.getyPos() / 15 * 32, mk.getyPos() / 15 * 9);
+		mk.image(mk.arrow, x, y, mk.getyPos() / 15 * 16, mk.getyPos() / 15 * 8);
 
 	}
 
