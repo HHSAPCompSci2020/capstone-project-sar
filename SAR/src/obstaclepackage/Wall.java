@@ -26,7 +26,7 @@ public class Wall {
 	 * 
 	 * @param x - Left hand x coordinate of the Wall
 	 * @param y - Top y coordinate of the Wall
-	 * @param wall
+	 * @param wall the character that is used for a waterwall
 	 */
 	public Wall(int x, int y, char wall) {
 		this.wall = wall;
@@ -39,7 +39,6 @@ public class Wall {
 	/**
 	 * Draws a wall
 	 * @param app - a DrawingSurface
-	 * @return returns nothing (void)
 	 */
 	public void draw(DrawingSurface app) {
 		size = (float) (app.height / 20.0);

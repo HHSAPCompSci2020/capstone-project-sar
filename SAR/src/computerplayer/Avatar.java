@@ -60,6 +60,7 @@ public class Avatar {
 	 * Drawing Surface calls this method after finding path from Maze class.
 	 * It passes in the path returned and the avatar moves based on this info
 	 * @param path Arraylist of points that lead the Avatar from the starting point to the exit
+	 * @param surface DrawingSurface that it moves on
 	 * @post Has some print lines for the purpose of finding bugs
 	 */
 	public void move(ArrayList<Point> path, DrawingSurface surface) {
@@ -82,6 +83,7 @@ public class Avatar {
 		
 	}
 	
+
 	private void die() {
 		isAlive = false;
 		//System.out.println("Avatar has died, player WINS!"); //SHOW ON SCREEN

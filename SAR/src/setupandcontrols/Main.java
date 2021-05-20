@@ -13,6 +13,10 @@ import processing.core.PApplet;
  *@author Shachaf
  */
 public class Main {
+	/**
+	 * Runs the Game
+	 * @param args
+	 */
 	public static void main(String args[]) {
 		
 		DrawingSurface drawing = new DrawingSurface();

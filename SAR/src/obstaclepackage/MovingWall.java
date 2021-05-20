@@ -17,8 +17,8 @@ public class MovingWall extends Wall{
 	/**
 	 * Constructor for making a new MovingWall
 	 * 
-	 * @param x - x coordinate of the MovingWall
-	 * @param y - y coordinate of the MovingWall
+	 * @param xStart - x coordinate of the MovingWall
+	 * @param yStart - y coordinate of the MovingWall
 	 * 
 	 */
 	public MovingWall(int xStart, int yStart) {

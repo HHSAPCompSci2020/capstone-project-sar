@@ -44,10 +44,11 @@ public class StandardProjectile {
 	/**
 	 * Determines if a Projectile is in the same grid space as the avatar
 	 * @param av Avatar 
+	 * @param grid GridTemplate 
+	 * @param app DrawingSurface 
 	 * @return Returns true if the arrow and avatar are in the same space, false if otherwise
 	 * 
 	**/
-	
 	public boolean hitTarget(Avatar av, GridTemplate grid, DrawingSurface app) { 
 		dot = new Point((int) (av.getGridx()), (int) (av.getGridy()));
 

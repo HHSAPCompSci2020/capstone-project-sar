@@ -69,7 +69,6 @@ public class DrawingSurface extends PApplet {
 	/**
 	 * Sets the window size to be full screen
 	 * 
-	 * @return returns nothing (void)
 	 */
 	public void settings() {
 		fullScreen();
@@ -79,7 +78,6 @@ public class DrawingSurface extends PApplet {
 	 * Loads the images to be used in the project Finds the first path for avatar to
 	 * exit the maze
 	 * 
-	 * @return returns nothing (void)
 	 */
 	public void setup() {
 		arrow = loadImage("arrow.png");
@@ -104,7 +102,6 @@ public class DrawingSurface extends PApplet {
 	/**
 	 * draws all visual elements
 	 * 
-	 * @return returns nothing (void)
 	 */
 	public void draw() {
 		background(255);
@@ -154,7 +151,6 @@ public class DrawingSurface extends PApplet {
 	 * MovingWall is then dragged, it moves with the mouse A path is found for the
 	 * avatar
 	 * 
-	 * @return returns nothing (void)
 	 */
 	public void mousePressed() {
 		dragThisOne(obstacle);
@@ -172,7 +168,6 @@ public class DrawingSurface extends PApplet {
 	 * dragged Wall objects are released if MovingWall objects are released on
 	 * the... ...grid, they die and respawn 1.5 seconds later
 	 * 
-	 * @return returns nothing (void)
 	 */
 	public void mouseReleased() {
 		if (currentDrag != null) {
@@ -204,7 +199,6 @@ public class DrawingSurface extends PApplet {
 	 * Lets you change projectile types and starts the game when the spacebar is
 	 * pressed
 	 * 
-	 * @return returns nothing (void)
 	 */
 	public void keyPressed() {
 		if (keyCode == KeyEvent.VK_S) {
@@ -262,8 +256,7 @@ public class DrawingSurface extends PApplet {
 	/**
 	 * Checks if the mouse is on WaterWall w
 	 * 
-	 * @param w
-	 * @return returns nothing (void)
+	 * @param w WaterWall
 	 */
 	public void dragThisOne(WaterWall w) {
 		if (mouseX <= w.getX() + w.getSize() && mouseX >= w.getX() && mouseY <= w.getY() + w.getSize()
@@ -275,8 +268,7 @@ public class DrawingSurface extends PApplet {
 	/**
 	 * Checks if the mouse is on MovingWall w
 	 * 
-	 * @param w
-	 * @return returns nothing (void)
+	 * @param w MovingWall
 	 */
 	public void dragThisOne(MovingWall w) {
 		if (mouseX <= w.getX() + w.getSize() && mouseX >= w.getX() && mouseY <= w.getY() + w.getSize()
@@ -287,8 +279,6 @@ public class DrawingSurface extends PApplet {
 
 	/**
 	 * Drags MovingWall and/or WaterWall
-	 * 
-	 * @return returns nothing (void)
 	 */
 	public void mouseDragged() {
 		if (currentDrag != null) {
@@ -309,6 +299,9 @@ public class DrawingSurface extends PApplet {
 		return yPos;
 	}
 	
+	/**
+	 * Changes the level of the game
+	 */
 	public void changeLevel() {
 		level++;
 		
