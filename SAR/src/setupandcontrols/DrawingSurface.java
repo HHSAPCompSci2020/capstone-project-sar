@@ -38,7 +38,7 @@ public class DrawingSurface extends PApplet {
 	private boolean gameStarted;
 	private int yPos, obstacleCount, scoreboard;
 	public PImage arrow, avatar, fireArrow, poisonArrow;
-	PImage water, wall, tempWall, grass, end;
+	public PImage water, wall, tempWall, grass, end;
 	public int level;
 
 	/**

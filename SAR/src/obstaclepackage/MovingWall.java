@@ -23,9 +23,8 @@ public class MovingWall extends Wall{
 		app.fill(150, 110, 110);
 		size = (float) (app.height / 20.0); 
 		if (!released) {
-			app.square(x, y, size);
+			app.square(getX(), getY(), size);
 		}
-		//		super.draw(app);
 		app.stroke(0, 0, 0);
 	}
 

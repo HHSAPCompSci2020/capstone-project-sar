@@ -8,8 +8,8 @@ import setupandcontrols.GridTemplate;
 public class Wall {
 
 	char wall;
-	int x;
-	int y;
+	private int x;
+	private int y;
 	float size;
 	Point p;
 	Point n;

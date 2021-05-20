@@ -18,7 +18,8 @@ import processing.core.PImage;
 public class StandardProjectile {
 	
 	public int x, y;
-	public boolean fired, hit;
+	private boolean fired;
+	public boolean hit;
 	public int moveSpeed;
 	private Point dot, arrow;
 	
