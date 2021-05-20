@@ -245,7 +245,7 @@ public class DrawingSurface extends PApplet {
 				};
 				TimerTask score = new TimerTask() {
 					public void run() {
-						scoreboard = scoreboard + 100 - (5 - aang.getHealth()) * 300;
+						scoreboard = scoreboard + 100 - (10 - aang.getHealth()) * 300;
 					}
 				};
 				time.scheduleAtFixedRate(task, 50, 500);
