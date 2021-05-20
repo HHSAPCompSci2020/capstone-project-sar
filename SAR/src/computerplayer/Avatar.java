@@ -4,6 +4,7 @@ import java.awt.Point;
 import java.util.ArrayList;
 
 import processing.core.PApplet;
+import setupandcontrols.DrawingSurface;
 
 
 /**
@@ -92,10 +93,11 @@ public class Avatar {
 	 * @param windowX the x-coordinate of the top-left corner of the grid on the window
 	 * @param windowY the y-coordinate of the top-left corner of the grid on the window
 	 */
-	public void draw(PApplet surface, int gridLength, int windowX, int windowY) {
+	public void draw(DrawingSurface surface, int gridLength, int windowX, int windowY) {
 		surface.pushStyle();
 		surface.fill(255, 0, 0);
-		surface.rect(gridx*gridLength + windowX, gridy*gridLength + windowY, gridLength/2, gridLength/2);
+		surface.image(surface.avatar, gridx*gridLength + windowX, gridy*gridLength + windowY, surface.getyPos(), surface.getyPos());
+//		surface.rect(gridx*gridLength + windowX, gridy*gridLength + windowY, gridLength/2, gridLength/2);
 		surface.popStyle();
 	}
 
