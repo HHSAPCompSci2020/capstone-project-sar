@@ -139,7 +139,7 @@ path.reverse() # optional
 	private boolean isPointWalkable(Point p) {
 		if (p.x<0 || p.y<0 || p.y>= grid.length || p.x >= grid[0].length) {
 			return false;
-		}else if (grid[p.y][p.x] == '#') {
+		}else if (grid[p.y][p.x] == '#' || grid[p.y][p.x] == 'm') {
 			return false;
 		}
 		return true;

@@ -93,7 +93,7 @@ public class DrawingSurface extends PApplet {
 		}
 		
 		if (board != null) {
-			board.draw(this, 75, 0, height, height);
+			board.draw(this, 270, 0, height, height);
 			obstacle.draw(this);
 			obstacle1.draw(this);
 			obstacle2.draw(this);
