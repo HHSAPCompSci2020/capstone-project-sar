@@ -21,7 +21,6 @@ public class PoisonArrow extends StandardProjectile{
 				av.setHealth(av.getHealth() - 1*POISION_DAMAGE);
 			}
 		}
-		av.setSlowed(true);;
 	}
 	
 	public void draw(DrawingSurface mk) {

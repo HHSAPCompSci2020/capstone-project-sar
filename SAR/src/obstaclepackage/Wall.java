@@ -38,6 +38,7 @@ public class Wall {
 			n = grid.clickToIndex(p, 270f, 0f, app.height, app.height);
 			if (grid.get((int) n.getX(), (int) n.getY()) == '.') {
 				grid.set((int) n.getX(), (int) n.getY(), wall);
+				System.out.println(grid.toString());
 			}
 		}
 	}

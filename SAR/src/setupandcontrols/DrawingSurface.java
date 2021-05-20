@@ -87,8 +87,11 @@ public class DrawingSurface extends PApplet {
 		background(255);
 		fill(0);
 		textAlign(LEFT);
+		
+		textSize(20);
+		text("Lives: " + aang.getHealth(), 300+height, 20);
+		
 		textSize(12);
-
 		if(!barrier.isReleased()) {
 			text("1x", barrier.getX(), barrier.getY() - 10);
 		}

@@ -132,6 +132,15 @@ path.reverse() # optional
 		}
 		path.add(0, start);
 		
+		if(grid[path.get(0).y][path.get(0).x] == 'w' && Avatar.lagged%4 != 0) {
+			Avatar.isSlowed= true;
+			Avatar.lagged++;
+		}else {
+			Avatar.isSlowed= false;
+			Avatar.lagged = 1;
+		}
+		
+		
 		return path;
 	}
 	

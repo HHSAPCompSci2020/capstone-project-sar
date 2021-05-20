@@ -19,7 +19,9 @@ public class Avatar {
 	//FIELDS
 	private int gridx, gridy;
 	private int health;
-	private boolean isAlive, isSlowed;
+	private boolean isAlive;
+	static boolean isSlowed;
+	static int lagged;
 	
 	//CONSTRUCTOR
 	/**
@@ -31,6 +33,7 @@ public class Avatar {
 		setHealth(10);
 		isAlive = true;
 		isSlowed = false;
+		lagged = 1;
 		
 		
 		//picture = new ImageIcon("virus.png")).getImage();
@@ -71,8 +74,9 @@ public class Avatar {
 			gridx = path.get(1).x;
 			gridy = path.get(1).y;
 		}else { //	WORK ON SLOWING AVATAR DOWN
-			gridx = path.get(1).x;
-			gridy = path.get(1).y;
+//			gridx = path.get(1).x;
+//			gridy = path.get(1).y;
+			System.out.println("Is Slowed");
 		}
 		System.out.println(gridx + " " + gridy);
 		return;
@@ -97,13 +101,6 @@ public class Avatar {
 		//surface.fill(255, 0, 0);
 		surface.image(surface.avatar, gridx*gridLength + windowX, gridy*gridLength + windowY, gridLength, gridLength);
 		surface.popStyle();
-	}
-
-	/**
-	 * sets getIsSlowed() to true
-	 */
-	public void isSlowed() {
-		isSlowed = true;
 	}
 	
 	/**
@@ -146,20 +143,6 @@ public class Avatar {
 	 */
 	public void setHealth(int health) {
 		this.health = health;
-	}
-	
-	/**
-	 * @return getIsSlowed()
-	 */
-	public boolean getIsSlowed() {
-		return isSlowed;
-	}
-
-	/**
-	 * @param isSlowed getIsSlowed()
-	 */
-	public void setSlowed(boolean isSlowed) {
-		this.isSlowed = isSlowed;
 	}
 	
 	/**
