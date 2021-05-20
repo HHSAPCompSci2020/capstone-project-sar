@@ -20,7 +20,6 @@ public class StandardProjectile {
 	public boolean fired, hit;
 	public int moveSpeed;
 	public int direction;
-	public PImage img;
 	
 	/**
 	 * Initializes a StandardProjectile
@@ -87,10 +86,16 @@ public class StandardProjectile {
 
 	}
 
+	/** 
+	 * @return getTrigger();
+	 */
 	public boolean getTrigger() {
 		return fired;
 	}
 
+	/** 
+	 * @param fired New "fired" state of Projectile
+	 */
 	public void setTrigger(boolean fired) {
 		this.fired = fired;
 		

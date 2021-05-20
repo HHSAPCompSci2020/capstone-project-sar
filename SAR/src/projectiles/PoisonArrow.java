@@ -6,7 +6,7 @@ import setupandcontrols.DrawingSurface;
 
 public class PoisonArrow extends StandardProjectile{
 	
-	private final int POISION_SPEED = 1;
+	private final int POISION_SPEED = 3;
 	private final int POISION_DAMAGE = 1;
 
 	public PoisonArrow(int x, int y, int moveSpeed, int dir) {
@@ -21,6 +21,7 @@ public class PoisonArrow extends StandardProjectile{
 				av.setHealth(av.getHealth() - 1*POISION_DAMAGE);
 			}
 		}
+		av.setSlowed(true);;
 	}
 	
 	public void draw(DrawingSurface mk) {
