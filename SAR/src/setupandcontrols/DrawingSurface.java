@@ -21,14 +21,13 @@ import projectiles.StandardProjectile;
  * Creates a Drawing Surface, and draws all components (maze, obstacles, avatar,
  * projectiles, etc.)
  * 
- * @author Shachaf, Radhika, Ayush
+ * @author Main: Shachaf CoAuthors: Radhika, Ayush
  * @version 5/20
  */
 
 public class DrawingSurface extends PApplet {
 
 	private Maze board;
-
 	private WaterWall obstacle, obstacle1, obstacle2, currentDrag;
 	private MovingWall barrier, currentDrag1;
 	private StandardProjectile proj;
@@ -37,8 +36,14 @@ public class DrawingSurface extends PApplet {
 	private Timer time;
 	private boolean gameStarted;
 	private int yPos, obstacleCount, scoreboard;
-	public PImage arrow, avatar, fireArrow, poisonArrow;
-	public PImage water, wall, tempWall, grass, end;
+	
+	/**
+	 * PImages that store the images of the different components of the game
+	 */
+	public PImage arrow, avatar, fireArrow, poisonArrow, water, wall, tempWall, grass, end;
+	/**
+	 * the level variable represents the level of the game
+	 */
 	public int level;
 
 	/**
@@ -60,10 +65,6 @@ public class DrawingSurface extends PApplet {
 		time = new Timer("gameClock");
 		obstacleCount = 3;
 		scoreboard = 0;
-
-
-
-
 	}
 
 	/**
@@ -166,7 +167,7 @@ public class DrawingSurface extends PApplet {
 
 	/**
 	 * dragged Wall objects are released if MovingWall objects are released on
-	 * the... ...grid, they die and respawn 1.5 seconds later
+	 * the grid, they die and respawn 1.5 seconds later
 	 * 
 	 */
 	public void mouseReleased() {
@@ -244,7 +245,7 @@ public class DrawingSurface extends PApplet {
 				};
 				TimerTask score = new TimerTask() {
 					public void run() {
-						scoreboard = scoreboard + 100 - (10 - aang.getHealth()) * 300;
+						scoreboard = scoreboard + 100 - (5 - aang.getHealth()) * 300;
 					}
 				};
 				time.scheduleAtFixedRate(task, 50, 500);
