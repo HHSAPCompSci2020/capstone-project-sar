@@ -57,21 +57,23 @@ public class StandardProjectile {
 
 		if (arrow.x > 270 && arrow.x < app.height+269) {
 			System.out.println("arrow before: " + arrow.x + " " + arrow.y);
-			arrow = grid.clickToIndex(arrow, 270f, 0f, app.height, app.height);
-			System.out.println("avatar: " + dot.x + " " + dot.y);
-			System.out.println("arrow: " + arrow.x + " " + arrow.y);
-			if (dot.x == arrow.x &&  dot.y == arrow.y) {
-				System.out.println("Collide");
-				av.setHealth(av.getHealth()-2);
-				remove();
+			Point arrowNew = grid.clickToIndex(arrow, 270f, 0f, app.height, app.height);
+			if(arrowNew != null) {
+				System.out.println("avatar: " + dot.x + " " + dot.y);
+				System.out.println("arrow: " + arrowNew.x + " " + arrowNew.y);
+				if (dot.x == arrowNew.x &&  dot.y == arrowNew.y) {
+					System.out.println("Collide");
+					av.setHealth(av.getHealth()-2);
+					remove();
 
-				return true;
-			}
-			else {
+					return true;
+				}else {
+					return false;
+				}
+			}else {
 				return false;
 			}
-		}
-		else {
+		}else {
 			return false;
 		}
 		
