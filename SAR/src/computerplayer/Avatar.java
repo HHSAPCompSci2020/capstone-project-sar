@@ -66,11 +66,11 @@ public class Avatar {
 	public void move(ArrayList<Point> path, DrawingSurface surface) {
 
 		if (health<=0) {
-			die();
+			die(surface);
 		}
 
 		if(path.size() == 1) {
-			surface.changeLevel();
+			//System.out.println("Avatar wins, player LOSES!"); //SHOW ON SCREEN
 			return;
 		}
 		if (!isSlowed) {
@@ -84,8 +84,9 @@ public class Avatar {
 	}
 	
 
-	private void die() {
+	private void die(DrawingSurface surface) {
 		isAlive = false;
+		surface.changeLevel();
 		//System.out.println("Avatar has died, player WINS!"); //SHOW ON SCREEN
 	}
 	
