@@ -33,9 +33,8 @@ public class DrawingSurface extends PApplet {
 	private Maze board;
 
 	private WaterWall obstacle, obstacle1, obstacle2, currentDrag;
-	private MovingWall barrier, barrier1, barrier2, currentDrag1;
+	private MovingWall barrier, currentDrag1;
 	private StandardProjectile proj;
-
 	private Avatar aang;
 	private Point cellCoord;
 	private Timer time;
@@ -52,9 +51,6 @@ public class DrawingSurface extends PApplet {
 		obstacle2 = new WaterWall(10, getyPos());
 		proj = new StandardProjectile(1200, 1, 1, 1);
 		barrier = new MovingWall(10, getyPos() * 2);
-		barrier1 = new MovingWall(10, getyPos() * 2);
-		barrier2 = new MovingWall(10, getyPos() * 2);
-
 		aang = new Avatar();
 		currentDrag = null;
 		currentDrag1 = null;
