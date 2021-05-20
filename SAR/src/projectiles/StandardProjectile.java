@@ -13,7 +13,7 @@ import processing.core.PImage;
 /**
  * Represents the set of projectiles within the game
  * @author Ayush Saran
- * @version 5/12
+ * @version 5/20
  */
 public class StandardProjectile {
 	

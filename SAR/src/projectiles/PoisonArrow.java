@@ -6,7 +6,8 @@ import setupandcontrols.DrawingSurface;
 
 /**
  * Represents a poison arrow - deals damage to the Avatar per tick
- *@version 5/20
+ * @author Ayush Saran
+ * @version 5/20
  */
 public class PoisonArrow extends StandardProjectile{
 	

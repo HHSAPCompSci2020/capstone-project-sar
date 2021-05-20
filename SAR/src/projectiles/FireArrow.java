@@ -6,7 +6,8 @@ import setupandcontrols.DrawingSurface;
 
 /**
  * Represents a fire arrow - deals more damage than a standard projectile
- *@version 5/20
+ * @author Ayush Saran
+ * @version 5/20
  */
 public class FireArrow extends StandardProjectile{
 	
