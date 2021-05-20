@@ -35,7 +35,7 @@ public class Wall {
 		p = new Point((int) (x + size / 2), (int) (y + size / 2));
 		if (p.getX() > 270 && p.getX() < app.height) {
 			released = true;
-			n = grid.clickToIndex(p, 270f, 0f, app.height, app.height);
+			n = grid.clickToIndex(p, 270f, 0f, app.height + 270, app.height);
 			if (grid.get((int) n.getX(), (int) n.getY()) == '.') {
 				grid.set((int) n.getX(), (int) n.getY(), wall);
 				System.out.println(grid.toString());
