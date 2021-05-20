@@ -5,6 +5,7 @@ import java.awt.geom.Rectangle2D;
 import processing.core.PApplet;
 import processing.core.PImage;
 import setupandcontrols.DrawingSurface;
+import setupandcontrols.GridTemplate;
 import computerplayer.Avatar;
 import processing.core.PApplet;
 import processing.core.PImage;
@@ -19,6 +20,7 @@ public class StandardProjectile {
 	public int x, y;
 	public boolean fired, hit;
 	public int moveSpeed;
+	private Point dot, arrow;
 	
 	/**
 	 * Initializes a StandardProjectile
@@ -40,16 +42,22 @@ public class StandardProjectile {
 	 * @return Returns true if the arrow and avatar are in the same space, false if otherwise
 	 * 
 	**/
-	public boolean hitTarget(int x, int y) { 
-		
-		if (this.x == x && this.y == y) {
-			remove();
-			return true;
-		
+	
+	public boolean hitTarget(Avatar av, GridTemplate grid, DrawingSurface app) { 
+		dot = new Point((int) (av.getGridx()), (int) (av.getGridy()));
+		if (arrow.getX() > 270 && arrow.getX() < app.height) {
+			arrow = grid.clickToIndex(arrow, 270f, 0f, app.height, app.height);
+			if (grid.get((int)dot.getX()==arrow.getX() &&  (int) dot.getY()) == y) {
+				return true;
+			}
+			else {
+				return false;
+			}
 		}
 		else {
 			return false;
 		}
+		
 		
 	}
 	
@@ -58,7 +66,7 @@ public class StandardProjectile {
 	 **/
 	public void fire() {
 		if (moveSpeed>=0) {
-				x += moveSpeed*10;// increment
+				x -= moveSpeed*10;// increment
 		}
 	}
 	

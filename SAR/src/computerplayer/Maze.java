@@ -17,6 +17,7 @@ import java.util.ArrayList;
  * Manages the maze solving component of the computer player
  * 
  * @author Radhika Agarwal
+ * Credit To: www.chegg.com\, www.pinclipart.com/, mikrotechnica.wordpress.com/ for the 3 mazes
  * @version 5/12/21
  *
  */
