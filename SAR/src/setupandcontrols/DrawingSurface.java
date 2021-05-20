@@ -1,7 +1,6 @@
 package setupandcontrols;
 
 import java.awt.Point;
-import java.awt.Rectangle;
 import java.awt.event.KeyEvent;
 import java.awt.geom.Point2D;
 import java.util.ArrayList;
@@ -31,23 +30,15 @@ public class DrawingSurface extends PApplet {
 
 	// When you progress to a new prompt, modify this field.
 	private Maze board;
-	private WaterWall obstacle;
-	private WaterWall obstacle1;
-	private WaterWall obstacle2;
+	private WaterWall obstacle, obstacle1, obstacle2, currentDrag ;
 	private StandardProjectile proj;
+
 	private Avatar aang;
-	private boolean mousePressed; // delete variable?
 	private Point cellCoord;
 	private Timer time;
 	private int yPos;
-	public PImage arrow;
-	public PImage avatar;
-	PImage water;
-	PImage wall;
-	PImage grass;
-	PImage end;
-	private int dragOffsetX, dragOffsetY;
-	private WaterWall currentDrag;
+	public PImage arrow, avatar;
+	PImage water, wall, grass, end;
 
 	public DrawingSurface() {
 		board = new Maze("mazeLevels/test2.txt");
@@ -175,8 +166,6 @@ public class DrawingSurface extends PApplet {
 		if (mouseX <= w.getX() + w.getSize() && mouseX >= w.getX() && mouseY <= w.getY() + w.getSize()
 				&& mouseY >= w.getY()) {
 			currentDrag = w;
-			dragOffsetX = mouseX;
-			dragOffsetY = mouseY;
 		}
 	}
 
