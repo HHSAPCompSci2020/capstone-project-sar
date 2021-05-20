@@ -38,10 +38,10 @@ public class DrawingSurface extends PApplet {
 	private Avatar aang;
 	private Point cellCoord;
 	private Timer time;
+	private boolean gameStarted;
 	private int yPos;
-	public PImage arrow, avatar,fireArrow, poisonArrow;
+	public PImage arrow, avatar, fireArrow, poisonArrow;
 	PImage water, wall, tempWall, grass, end;
-
 
 	public DrawingSurface() {
 		board = new Maze("mazeLevels/test2.txt");
@@ -54,6 +54,8 @@ public class DrawingSurface extends PApplet {
 		aang = new Avatar();
 		currentDrag = null;
 		currentDrag1 = null;
+		gameStarted = false;
+		time = new Timer("gameClock");
 	}
 
 	public void settings() {
@@ -86,12 +88,11 @@ public class DrawingSurface extends PApplet {
 		textAlign(LEFT);
 		textSize(12);
 
-		
 		if (proj.getTrigger()) {
-			System.out.println(proj.getTrigger());
+//			System.out.println(proj.getTrigger());
 			proj.fire();
 		}
-		
+
 		if (board != null) {
 			board.draw(this, 270, 0, height, height);
 			obstacle.draw(this);
@@ -130,44 +131,44 @@ public class DrawingSurface extends PApplet {
 
 		if (currentDrag1 != null) {
 			currentDrag1.mouseReleased(board, this);
-//			TimerTask moveWall = new TimerTask() {
-//
-//				@Override
-//				public void run() {
-//					barrier = new MovingWall(10, getyPos() * 2);
-//					board.set(barrier.getXGrid(), barrier.getYGrid(), '.');
-//				}
-//			};
-//			time.schedule(moveWall, 5000);
-//		
-		currentDrag1 = null;
+			TimerTask moveWall = new TimerTask() {
+
+				@Override
+				public void run() {
+					board.set(barrier.getXGrid(), barrier.getYGrid(), '.');
+					barrier = new MovingWall(10, getyPos() * 2);
+				}
+			};
+			time.schedule(moveWall, 5000);
+
+			currentDrag1 = null;
 		}
 	}
 
 	public void keyPressed() {
 		if (keyCode == KeyEvent.VK_F) {
 			proj = new FireArrow(1200, 1, 1, 1);
-			
+
 		}
 		if (keyCode == KeyEvent.VK_P) {
 			proj = new PoisonArrow(1200, 1, 1, 1);
-		
+
 		}
 		if (keyCode == KeyEvent.VK_UP) {
 			if (!proj.getTrigger()) {
 				proj.y -= 10;
 			}
-			
+
 		}
 		if (keyCode == KeyEvent.VK_DOWN) {
 			if (!proj.getTrigger()) {
 				proj.y += 10;
 			}
-			
+
 		}
 		if (keyCode == KeyEvent.VK_SPACE) {
-			if (time == null) {
-				time = new Timer("gameClock");
+			if (!gameStarted) {
+				gameStarted = true;
 				TimerTask task = new TimerTask() {
 					public void run() {
 						ArrayList<Point> path = board.findPath(aang.getGridx(), aang.getGridy());
