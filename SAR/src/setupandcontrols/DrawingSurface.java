@@ -65,7 +65,7 @@ public class DrawingSurface extends PApplet {
 		time = new Timer("gameClock");
 		obstacleCount = 3;
 		scoreboard = 0;
-		health = 10;
+		health = 5;
 	}
 
 	/**
@@ -323,6 +323,10 @@ public class DrawingSurface extends PApplet {
 			
 			board = new Maze("mazeLevels/test2.txt");
 			ArrayList<Point> path = board.findFirstPath();
+			obstacle = new WaterWall(10, getyPos());
+			obstacle1 = new WaterWall(10, getyPos());
+			obstacle2 = new WaterWall(10, getyPos());
+			barrier = new MovingWall(10, getyPos() * 2 + 25);
 			if (path != null) {
 				Point start = path.get(0);
 				aang.setup(start);
