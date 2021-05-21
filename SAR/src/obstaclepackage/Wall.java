@@ -57,7 +57,7 @@ public class Wall {
 	 */
 	public void mouseReleased(GridTemplate grid, DrawingSurface app) {
 		p = new Point((int) (x + size / 2), (int) (y + size / 2));
-		if (p.getX() > 270 && p.getX() < app.height) {
+		if (p.getX() > 350 && p.getX() < app.height) {
 			released = true;
 			n = grid.clickToIndex(p, 270f, 0f, app.height + 270, app.height);
 			if (grid.get((int) n.getX(), (int) n.getY()) == '.') {
