@@ -56,7 +56,7 @@ public class DrawingSurface extends PApplet {
 		obstacle = new WaterWall(10, getyPos());
 		obstacle1 = new WaterWall(10, getyPos());
 		obstacle2 = new WaterWall(10, getyPos());
-		proj = new StandardProjectile(1200, 400, 1);
+		proj = new StandardProjectile(1300, 450, 1);
 		barrier = new MovingWall(10, getyPos() * 2 + 25);
 		aang = new Avatar();
 		currentDrag = null;
@@ -111,10 +111,10 @@ public class DrawingSurface extends PApplet {
 
 		textSize(20);
 		fill(200, 130, 150);
-		rect(50, 500, 175, 100, 7);
+		rect(115, 25, 175, 100, 7);
 		fill(0);
-		text("Lives: " + aang.getHealth(), 70, 540);
-		text("Score: " + scoreboard, 70, 580);
+		text("Lives: " + aang.getHealth(), 135, 65);
+		text("Score: " + scoreboard, 135, 105);
 
 		textSize(12);
 		if (!barrier.isReleased()) {
@@ -132,7 +132,7 @@ public class DrawingSurface extends PApplet {
 		}
 
 		if (board != null) {
-			board.draw(this, 270, 0, height, height);
+			board.draw(this, 350, 0, height, height);
 			obstacle.draw(this);
 			obstacle1.draw(this);
 			obstacle2.draw(this);
@@ -143,7 +143,7 @@ public class DrawingSurface extends PApplet {
 			noFill();
 			fill(0);
 			text("Click here \nto launch \narrow", (float) (height + height / 2.2) + 10, 330);
-			aang.draw(this, height / board.grid.length, 270, 0);
+			aang.draw(this, height / board.grid.length, 350, 0);
 		}
 
 	}
@@ -204,16 +204,16 @@ public class DrawingSurface extends PApplet {
 	 */
 	public void keyPressed() {
 		if (keyCode == KeyEvent.VK_S) {
-			proj = new StandardProjectile(1200, 400, 1);
+			proj = new StandardProjectile(1300, 450, 1);
 
 		}
 		if (keyCode == KeyEvent.VK_F) {
-			proj = new FireArrow(1200, 400, 1);
+			proj = new FireArrow(1300, 450, 1);
 
 
 		}
 		if (keyCode == KeyEvent.VK_P) {
-			proj = new PoisonArrow(1200, 400, 1);
+			proj = new PoisonArrow(1300, 450, 1);
 
 		}
 		if (keyCode == KeyEvent.VK_UP) {
@@ -323,6 +323,11 @@ public class DrawingSurface extends PApplet {
 			
 			board = new Maze("mazeLevels/test2.txt");
 			ArrayList<Point> path = board.findFirstPath();
+			obstacle = new WaterWall(10, getyPos());
+			obstacle1 = new WaterWall(10, getyPos());
+			obstacle2 = new WaterWall(10, getyPos());
+			barrier = new MovingWall(10, getyPos() * 2 + 25);
+			obstacleCount = 3;
 			if (path != null) {
 				Point start = path.get(0);
 				aang.setup(start);
@@ -332,6 +337,11 @@ public class DrawingSurface extends PApplet {
 		}else if (level == 3) {
 			board = new Maze("mazeLevels/test3.txt");
 			ArrayList<Point> path = board.findFirstPath();
+			obstacle = new WaterWall(10, getyPos());
+			obstacle1 = new WaterWall(10, getyPos());
+			obstacle2 = new WaterWall(10, getyPos());
+			barrier = new MovingWall(10, getyPos() * 2 + 25);
+			obstacleCount = 3;
 			if (path != null) {
 				Point start = path.get(0);
 				aang.setup(start);

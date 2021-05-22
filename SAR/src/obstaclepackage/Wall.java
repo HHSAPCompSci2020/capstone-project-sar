@@ -24,8 +24,8 @@ public class Wall {
 	/**
 	 * Constructor for the wall class - initializes instance variables
 	 * 
-	 * @param x - Left hand x coordinate of the Wall
-	 * @param y - Top y coordinate of the Wall
+	 * @param x    - Left hand x coordinate of the Wall
+	 * @param y    - Top y coordinate of the Wall
 	 * @param wall the character that is used for a waterwall
 	 */
 	public Wall(int x, int y, char wall) {
@@ -38,6 +38,7 @@ public class Wall {
 
 	/**
 	 * Draws a wall
+	 * 
 	 * @param app - a DrawingSurface
 	 */
 	public void draw(DrawingSurface app) {
@@ -50,12 +51,13 @@ public class Wall {
 
 	/**
 	 * Drops the Wall into the grid if mouse is released on top of the grid
+	 * 
 	 * @param grid - a GridTemplate
-	 * @param app - a DrawingSurface
+	 * @param app  - a DrawingSurface
 	 */
 	public void mouseReleased(GridTemplate grid, DrawingSurface app) {
 		p = new Point((int) (x + size / 2), (int) (y + size / 2));
-		if (p.getX() > 270 && p.getX() < app.height) {
+		if (p.getX() > 350 && p.getX() < app.height) {
 			released = true;
 			n = grid.clickToIndex(p, 270f, 0f, app.height + 270, app.height);
 			if (grid.get((int) n.getX(), (int) n.getY()) == '.') {
@@ -98,24 +100,29 @@ public class Wall {
 	public float getSize() {
 		return size;
 	}
-	
+
 	/**
 	 * @return - Returns the x coordinate of the Wall in the grid
-	 * @pre - The wall must first be dropped into the grid
+	 * @pre - The wall must first be dropped into the grid, if not, returns zero
 	 */
 	public int getXGrid() {
-		return (int) n.getX();
+		if (n != null) {
+			return (int) n.getX();
+		}
+		return 0;
 	}
-	
+
 	/**
 	 * @return - Returns the y coordinate of the Wall in the grid
-	 * @pre - The wall must first be dropped into the grid
+	 * @pre - The wall must first be dropped into the grid, if not, returns zero
 	 */
 	public int getYGrid() {
-		return (int) n.getY();
+		if (n != null) {
+			return (int) n.getY();
+		}
+		return 0;
 	}
-	
-	
+
 	/**
 	 * @return - Returns whether or not the wall has been released into the grid
 	 */
