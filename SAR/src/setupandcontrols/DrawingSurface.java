@@ -87,17 +87,13 @@ public class DrawingSurface extends PApplet {
 	 * 
 	 */
 	public void setup() {
-		//arrow = loadImage("arrow.png");
 		arrow = loadImage("arrowNew.png");
 		fireArrow = loadImage("firearrow.png");
-		//poisonArrow = loadImage("poisonarrow.png");
 		poisonArrow = loadImage("poisonNew.png");
 		avatar = loadImage("aangNew.png");
 		water = loadImage("sea.png");
-		//wall = loadImage("wall.png");
 		wall = loadImage("rock.png");
 		tempWall = loadImage("grayWall.png");
-		//grass = loadImage("grass.png");
 		grass = loadImage("grass2.png");
 		end = loadImage("trophy.png");
 		
@@ -157,7 +153,7 @@ public class DrawingSurface extends PApplet {
 
 			noFill();
 			fill(255);
-			text("Click here \nto launch \narrow", width-60, 440);
+			text("Click Sokka \nto launch \narrow", width-70, 440);
 			image(loadImage("sokka2.png"), width-85, 261, 75, 177);
 			
 			aang.draw(this, height / board.grid.length, width/2 + 115 - (height/2), 0);
