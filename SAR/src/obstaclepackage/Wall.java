@@ -44,7 +44,7 @@ public class Wall {
 	public void draw(DrawingSurface app) {
 		size = (float) (app.height / 20.0);
 		if (!released) {
-			app.square(x, y, size);
+			app.image(app.water, x, y, size, size);
 		}
 		app.noFill();
 	}
@@ -56,10 +56,12 @@ public class Wall {
 	 * @param app  - a DrawingSurface
 	 */
 	public void mouseReleased(GridTemplate grid, DrawingSurface app) {
+		System.out.println(" " + x + " " + y + " " + size);
 		p = new Point((int) (x + size / 2), (int) (y + size / 2));
-		if (p.getX() > 350 && p.getX() < app.height) {
+		System.out.println(" " + p.x + " " + p.y);
+		if (p.getX() > 370 && p.getX() < app.height+370) {
 			released = true;
-			n = grid.clickToIndex(p, 270f, 0f, app.height + 270, app.height);
+			n = grid.clickToIndex(p, 370f, 0f, app.height, app.height);
 			if (grid.get((int) n.getX(), (int) n.getY()) == '.') {
 				grid.set((int) n.getX(), (int) n.getY(), wall);
 			}

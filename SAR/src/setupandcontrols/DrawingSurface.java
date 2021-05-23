@@ -22,6 +22,11 @@ import projectiles.StandardProjectile;
  * projectiles, etc.)
  * 
  * @author Main: Shachaf CoAuthors: Radhika, Ayush
+ * Credit to: https://aminoapps.com for the avatar background picture, 
+ * https://en.wikipedia.org for the Katara image
+ * https://favpng.com for Sokka image
+ * https://en.wikipedia.org/wiki/Toph_Beifong for Toph image
+ * https://custom-cursor.com for aang image
  * @version 5/20
  */
 
@@ -53,11 +58,11 @@ public class DrawingSurface extends PApplet {
 		level = 1;
 		board = new Maze("mazeLevels/test1.txt");
 		yPos = height / 2;
-		obstacle = new WaterWall(10, getyPos());
-		obstacle1 = new WaterWall(10, getyPos());
-		obstacle2 = new WaterWall(10, getyPos());
-		proj = new StandardProjectile(1300, 450, 1);
-		barrier = new MovingWall(10, getyPos() * 2 + 25);
+		obstacle = new WaterWall(320, getyPos());
+		obstacle1 = new WaterWall(320, getyPos());
+		obstacle2 = new WaterWall(320, getyPos());
+		proj = new StandardProjectile(1140, 400, 2);
+		barrier = new MovingWall(320, getyPos() * 2 + 25);
 		aang = new Avatar();
 		currentDrag = null;
 		currentDrag1 = null;
@@ -82,14 +87,18 @@ public class DrawingSurface extends PApplet {
 	 * 
 	 */
 	public void setup() {
-		arrow = loadImage("arrow.png");
+		//arrow = loadImage("arrow.png");
+		arrow = loadImage("arrowNew.png");
 		fireArrow = loadImage("firearrow.png");
-		poisonArrow = loadImage("poisonarrow.png");
-		avatar = loadImage("avatar.png");
+		//poisonArrow = loadImage("poisonarrow.png");
+		poisonArrow = loadImage("poisonNew.png");
+		avatar = loadImage("aangNew.png");
 		water = loadImage("sea.png");
-		wall = loadImage("wall.png");
+		//wall = loadImage("wall.png");
+		wall = loadImage("rock.png");
 		tempWall = loadImage("grayWall.png");
-		grass = loadImage("grass.png");
+		//grass = loadImage("grass.png");
+		grass = loadImage("grass2.png");
 		end = loadImage("trophy.png");
 		ArrayList<Point> path = board.findFirstPath();
 		if (path != null) {
@@ -98,6 +107,7 @@ public class DrawingSurface extends PApplet {
 		} else {
 			System.out.println("FIX MAZE TEXT FILE: NO PATH FOUND");
 		}
+		
 
 	}
 
@@ -106,16 +116,17 @@ public class DrawingSurface extends PApplet {
 	 * 
 	 */
 	public void draw() {
-		background(255);
+		background(loadImage("background.png"));
 		textAlign(LEFT);
 
 		textSize(20);
-		fill(200, 130, 150);
-		rect(115, 25, 175, 100, 7);
+		fill(214, 164, 0);
+		rect(10, 50, 175, 100, 7);
 		fill(0);
-		text("Lives: " + aang.getHealth(), 135, 65);
-		text("Score: " + scoreboard, 135, 105);
+		text("Lives: " + aang.getHealth(), 30, 90);
+		text("Score: " + scoreboard, 30, 130);
 
+		fill(255);
 		textSize(12);
 		if (!barrier.isReleased()) {
 			text("1x", barrier.getX(), barrier.getY() - 10);
@@ -132,18 +143,23 @@ public class DrawingSurface extends PApplet {
 		}
 
 		if (board != null) {
-			board.draw(this, 350, 0, height, height);
+			board.draw(this, 370, 0, height, height);
 			obstacle.draw(this);
 			obstacle1.draw(this);
 			obstacle2.draw(this);
 			barrier.draw(this);
 			proj.draw(this);
-			fill(120, 215, 150);
-			rect((float) (height + height / 2.2), 300, 75, 100, 7);
+			//fill(214, 164, 0);
+			//rect(width-85, 300, 75, 100, 7);
 			noFill();
-			fill(0);
-			text("Click here \nto launch \narrow", (float) (height + height / 2.2) + 10, 330);
-			aang.draw(this, height / board.grid.length, 350, 0);
+			fill(255);
+			text("Click here \nto launch \narrow", width-60, 440);
+			image(loadImage("sokka2.png"), width-85, 261, 75, 177);
+			
+			aang.draw(this, height / board.grid.length, 370, 0);
+			image(loadImage("Katara.png"), 190, getyPos()-50, 120, 100);
+			image(loadImage("toph.png"), 220, getyPos()+50, 80, 123);
+			
 		}
 
 	}
@@ -160,8 +176,7 @@ public class DrawingSurface extends PApplet {
 		dragThisOne(obstacle2);
 		dragThisOne(barrier);
 
-		if (mouseX >= height + height / 2.2 && mouseX <= height + height / 2.2 + 75 && mouseY >= 300
-				&& mouseY <= (float) 400 && gameStarted) {
+		if (mouseX >= width-85 && mouseX <= width-10 && mouseY >= 300 && mouseY <= (float) 400 && gameStarted) {
 			proj.setTrigger(true);
 		}
 	}
@@ -187,7 +202,7 @@ public class DrawingSurface extends PApplet {
 				@Override
 				public void run() {
 					board.set(barrier.getXGrid(), barrier.getYGrid(), '.');
-					barrier = new MovingWall(10, getyPos() * 2 + 25);
+					barrier = new MovingWall(320, getyPos() * 2 + 25);
 				}
 			};
 			time.schedule(moveWall, 2500);
@@ -204,16 +219,16 @@ public class DrawingSurface extends PApplet {
 	 */
 	public void keyPressed() {
 		if (keyCode == KeyEvent.VK_S) {
-			proj = new StandardProjectile(1300, 450, 1);
+			proj = new StandardProjectile(1140, 400, 2);
 
 		}
 		if (keyCode == KeyEvent.VK_F) {
-			proj = new FireArrow(1300, 450, 1);
+			proj = new FireArrow(1140, 400, 2);
 
 
 		}
 		if (keyCode == KeyEvent.VK_P) {
-			proj = new PoisonArrow(1300, 450, 1);
+			proj = new PoisonArrow(1140, 400, 2);
 
 		}
 		if (keyCode == KeyEvent.VK_UP) {
@@ -323,11 +338,6 @@ public class DrawingSurface extends PApplet {
 			
 			board = new Maze("mazeLevels/test2.txt");
 			ArrayList<Point> path = board.findFirstPath();
-			obstacle = new WaterWall(10, getyPos());
-			obstacle1 = new WaterWall(10, getyPos());
-			obstacle2 = new WaterWall(10, getyPos());
-			barrier = new MovingWall(10, getyPos() * 2 + 25);
-			obstacleCount = 3;
 			if (path != null) {
 				Point start = path.get(0);
 				aang.setup(start);
@@ -337,11 +347,6 @@ public class DrawingSurface extends PApplet {
 		}else if (level == 3) {
 			board = new Maze("mazeLevels/test3.txt");
 			ArrayList<Point> path = board.findFirstPath();
-			obstacle = new WaterWall(10, getyPos());
-			obstacle1 = new WaterWall(10, getyPos());
-			obstacle2 = new WaterWall(10, getyPos());
-			barrier = new MovingWall(10, getyPos() * 2 + 25);
-			obstacleCount = 3;
 			if (path != null) {
 				Point start = path.get(0);
 				aang.setup(start);
