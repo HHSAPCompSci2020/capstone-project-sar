@@ -25,18 +25,30 @@ Description:
 Instructions
 
 	Hotkeys, Abilities and Obstacles 
-	 * In order to make the avatar start moving and start the game, press the spacebar.
-	 * Abilities and obstacles are given to the user serve the purpose of stopping the 
-	   computer and require strategy,l striving on the player’s ability to press the right 
-	   keys at the right time
+		*In order to make the avatar start moving and start the game, press the spacebar.
+		*Obstacles serve the purpose of stopping the computer, and using them require strategy
+
+		*Arrows:
+			Standard Arrow: click S and click Sokka to trigger
+				Removes 2 lives
+			Fire Arrow: click F and click Sokka to trigger
+				Removes 4 lives
+			Poison Arrow: click P and click Sokka to trigger
+				Does damage over time
+		*Obstacles:
+			Water Wall: drag water icon to an empty spot on the grid
+				Permanent, slows the avatar down
+			Brick Wall: drag brick icon to an empty spot on the grid
+				Temporary, slows the avatar down
+
  
-Projectile control
+	Projectile control
 	 * The player will need to be able to track and shoot the computer, utilizing a cursor 
 	   and left-clicking their mouse to use the available projectiles
 	 * The player’s ability to locate and their precision will be tested against the 
 	   computer’s high speed and manouveurs 
 
-Menus/Gui Navigation
+	Menus/Gui Navigation
 	 * An ability/obstacle status bar offers the user a visual representation of their 
 	   abilities visually laid out for the user to easily know what to click. The status 
 	   bar also informs the user of the availability of their resources
