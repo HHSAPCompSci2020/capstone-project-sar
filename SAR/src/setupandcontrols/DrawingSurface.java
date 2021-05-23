@@ -272,10 +272,15 @@ public class DrawingSurface extends PApplet {
 							scoreboard -= 500;
 							health--;
 						}
+						if (aang.getLoses() == true || aang.isAlive() == false) {
+							cancel();
+						}
 					}
 				};
+				
 				time.scheduleAtFixedRate(task, 50, 500);
 				time.scheduleAtFixedRate(score, 50, 500);
+				
 			}
 		}
 	}

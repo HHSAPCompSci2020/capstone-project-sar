@@ -19,7 +19,7 @@ public class Avatar {
 	//FIELDS
 	private int gridx, gridy;
 	private int health;
-	private boolean isAlive;
+	private boolean isAlive, loses;
 	/**
 	 * IsSlowed is used when Avatar encounters an obstacle
 	 */
@@ -39,6 +39,7 @@ public class Avatar {
 		setHealth(10);
 		isAlive = true;
 		isSlowed = false;
+		loses = false;
 		lagged = 1;
 	}
 	
@@ -71,6 +72,7 @@ public class Avatar {
 
 		if(path.size() == 1) {
 			//System.out.println("Avatar wins, player LOSES!"); //SHOW ON SCREEN
+			loses = true;
 			return;
 		}
 		if (!isSlowed) {
@@ -136,6 +138,13 @@ public class Avatar {
 	 */
 	public int getHealth() {
 		return health;
+	}
+	
+	/**
+	 * @return getLoses()
+	 */
+	public boolean getLoses() {
+		return loses;
 	}
 
 	/**
