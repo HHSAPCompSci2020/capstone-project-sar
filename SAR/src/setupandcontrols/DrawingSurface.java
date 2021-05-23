@@ -70,7 +70,7 @@ public class DrawingSurface extends PApplet {
 		time = new Timer("gameClock");
 		obstacleCount = 3;
 		scoreboard = 0;
-		health = 10;
+		health = 5;
 	}
 
 	/**
