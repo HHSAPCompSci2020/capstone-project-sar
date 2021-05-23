@@ -31,7 +31,7 @@ import projectiles.StandardProjectile;
  */
 
 public class DrawingSurface extends PApplet {
-
+ 
 	private Maze board;
 	private WaterWall obstacle, obstacle1, obstacle2, currentDrag;
 	private MovingWall barrier, currentDrag1;
@@ -116,7 +116,10 @@ public class DrawingSurface extends PApplet {
 	 * 
 	 */
 	public void draw() {
-		background(loadImage("background.png"));
+		background(0);
+		imageMode(CENTER);
+		image(loadImage("background.png"), width/2, height/2, width, height);
+		imageMode(CORNER);
 		textAlign(LEFT);
 
 		textSize(20);
