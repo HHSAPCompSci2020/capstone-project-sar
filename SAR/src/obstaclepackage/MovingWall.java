@@ -1,10 +1,6 @@
 package obstaclepackage;
 
-import java.awt.Point;
-
-import processing.core.PApplet;
 import setupandcontrols.DrawingSurface;
-import setupandcontrols.GridTemplate;
 
 /**
  * Represents a moving wall. The avatar cannot pass through this wall
