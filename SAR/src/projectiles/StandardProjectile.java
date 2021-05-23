@@ -55,9 +55,9 @@ public class StandardProjectile {
 	public boolean hitTarget(Avatar av, GridTemplate grid, DrawingSurface app) { 
 		dot = new Point((int) (av.getGridx()), (int) (av.getGridy()));
 
-		if (arrow.x > 370 && arrow.x < app.height+369) {
+		if (arrow.x > (app.width/2 + 115 - (app.height/2)) && arrow.x < app.height+(app.width/2 + 115 - (app.height/2)-1)) {
 			//System.out.println("arrow before: " + arrow.x + " " + arrow.y);
-			Point arrowNew = grid.clickToIndex(arrow, 370f, 0f, app.height, app.height);
+			Point arrowNew = grid.clickToIndex(arrow, (float)(app.width/2 + 115 - (app.height/2)), 0f, app.height, app.height);
 			if(arrowNew != null) {
 				//System.out.println("avatar: " + dot.x + " " + dot.y);
 				//System.out.println("arrow: " + arrowNew.x + " " + arrowNew.y);

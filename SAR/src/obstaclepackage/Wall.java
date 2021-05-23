@@ -59,9 +59,9 @@ public class Wall {
 		System.out.println(" " + x + " " + y + " " + size);
 		p = new Point((int) (x + size / 2), (int) (y + size / 2));
 		System.out.println(" " + p.x + " " + p.y);
-		if (p.getX() > 370 && p.getX() < app.height+370) {
+		if (p.getX() > (app.width/2 + 115 - (app.height/2)) && p.getX() < app.height+(app.width/2 + 115 - (app.height/2))) {
 			released = true;
-			n = grid.clickToIndex(p, 370f, 0f, app.height, app.height);
+			n = grid.clickToIndex(p, (float)(app.width/2 + 115 - (app.height/2)), 0f, app.height, app.height);
 			if (grid.get((int) n.getX(), (int) n.getY()) == '.') {
 				grid.set((int) n.getX(), (int) n.getY(), wall);
 			}

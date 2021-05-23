@@ -100,6 +100,8 @@ public class DrawingSurface extends PApplet {
 		//grass = loadImage("grass.png");
 		grass = loadImage("grass2.png");
 		end = loadImage("trophy.png");
+		
+		proj.x = width-140;
 		ArrayList<Point> path = board.findFirstPath();
 		if (path != null) {
 			Point start = path.get(0);
@@ -146,22 +148,23 @@ public class DrawingSurface extends PApplet {
 		}
 
 		if (board != null) {
-			board.draw(this, 370, 0, height, height);
+			board.draw(this, width/2 + 115 - (height/2), 0, height, height);
 			obstacle.draw(this);
 			obstacle1.draw(this);
 			obstacle2.draw(this);
 			barrier.draw(this);
 			proj.draw(this);
-			//fill(214, 164, 0);
-			//rect(width-85, 300, 75, 100, 7);
+
 			noFill();
 			fill(255);
 			text("Click here \nto launch \narrow", width-60, 440);
 			image(loadImage("sokka2.png"), width-85, 261, 75, 177);
 			
-			aang.draw(this, height / board.grid.length, 370, 0);
+			aang.draw(this, height / board.grid.length, width/2 + 115 - (height/2), 0);
 			image(loadImage("Katara.png"), 190, getyPos()-50, 120, 100);
 			image(loadImage("toph.png"), 220, getyPos()+50, 80, 123);
+			
+			
 			
 		}
 
@@ -222,16 +225,16 @@ public class DrawingSurface extends PApplet {
 	 */
 	public void keyPressed() {
 		if (keyCode == KeyEvent.VK_S) {
-			proj = new StandardProjectile(1140, 400, 2);
+			proj = new StandardProjectile(width-140, 400, 2);
 
 		}
 		if (keyCode == KeyEvent.VK_F) {
-			proj = new FireArrow(1140, 400, 2);
+			proj = new FireArrow(width-140, 400, 2);
 
 
 		}
 		if (keyCode == KeyEvent.VK_P) {
-			proj = new PoisonArrow(1140, 400, 2);
+			proj = new PoisonArrow(width-140, 400, 2);
 
 		}
 		if (keyCode == KeyEvent.VK_UP) {
