@@ -44,7 +44,7 @@ public class PoisonArrow extends StandardProjectile{
 	 **/
 	public void draw(DrawingSurface mk) {
 //		mk.line(x, y, x+5, y);
-		mk.image(mk.poisonArrow, x, y, mk.getyPos() / 15 * 130, mk.getyPos() / 15 * 80);
+		mk.image(mk.poisonArrow, x, y, mk.getyPos() / 15 * 13, mk.getyPos() / 15 * 8);
 
 	}
 

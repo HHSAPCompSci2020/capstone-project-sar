@@ -236,14 +236,14 @@ public class DrawingSurface extends PApplet {
 		}
 		if (keyCode == KeyEvent.VK_UP) {
 			if (!proj.getTrigger()) {
-				proj.y -= 10;
+				proj.y -= 30;
 				proj.setY(proj.y);
 			}
 
 		}
 		if (keyCode == KeyEvent.VK_DOWN) {
 			if (!proj.getTrigger()) {
-				proj.y += 10;
+				proj.y += 30;
 				proj.setY(proj.y);
 			}
 
