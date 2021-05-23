@@ -1,7 +1,6 @@
 package obstaclepackage;
 
 import java.awt.Point;
-
 import setupandcontrols.DrawingSurface;
 import setupandcontrols.GridTemplate;
 

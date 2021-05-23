@@ -1,14 +1,8 @@
 package projectiles;
 import java.awt.*;
-import java.awt.geom.Rectangle2D;
-import java.awt.geom.Rectangle2D;
-import processing.core.PApplet;
-import processing.core.PImage;
 import setupandcontrols.DrawingSurface;
 import setupandcontrols.GridTemplate;
 import computerplayer.Avatar;
-import processing.core.PApplet;
-import processing.core.PImage;
 
 /**
  * Represents the set of projectiles within the game
