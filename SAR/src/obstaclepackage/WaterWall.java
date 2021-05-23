@@ -1,9 +1,6 @@
 package obstaclepackage;
 
-import processing.core.PApplet;
 import setupandcontrols.DrawingSurface;
-import setupandcontrols.GridTemplate;
-import java.awt.Point;
 
 /**
  * Represents a water wall - the avatar slows down when passing through

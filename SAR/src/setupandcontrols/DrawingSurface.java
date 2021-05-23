@@ -2,7 +2,6 @@ package setupandcontrols;
 
 import java.awt.Point;
 import java.awt.event.KeyEvent;
-import java.awt.geom.Point2D;
 import java.util.ArrayList;
 import java.util.Timer;
 import java.util.TimerTask;
