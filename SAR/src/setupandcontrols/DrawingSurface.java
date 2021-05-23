@@ -117,7 +117,9 @@ public class DrawingSurface extends PApplet {
 	 */
 	public void draw() {
 		background(0);
-		image(loadImage("background.png"), width/2 - 640, height/2 -360);
+		imageMode(CENTER);
+		image(loadImage("background.png"), width/2, height/2, width, height);
+		imageMode(CORNER);
 		textAlign(LEFT);
 
 		textSize(20);
