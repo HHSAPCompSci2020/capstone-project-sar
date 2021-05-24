@@ -13,8 +13,8 @@ public class WaterWall extends Wall{
 	/**
 	 * Constructor for making a new WaterWall
 	 * 
-	 * @param x - x coordinate of the WaterWall
-	 * @param y - y coordinate of the WaterWall
+	 * @param xStart x coordinate of the WaterWall
+	 * @param yStart y coordinate of the WaterWall
 	 * 
 	 */
 	public WaterWall(int xStart, int yStart) {
@@ -24,7 +24,7 @@ public class WaterWall extends Wall{
 	/**
 	 * Draws the Waterwall
 	 * 
-	 * @param app - A DrawingSurface
+	 * @param app A DrawingSurface
 	 */
 	public void draw(DrawingSurface app) {
 		app.fill(50, 200, 225);

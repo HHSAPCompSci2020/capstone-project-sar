@@ -13,7 +13,7 @@ import processing.core.PApplet;
 public class Main {
 	/**
 	 * Runs the Game
-	 * @param args
+	 * @param args main method
 	 */
 	public static void main(String args[]) {
 		
