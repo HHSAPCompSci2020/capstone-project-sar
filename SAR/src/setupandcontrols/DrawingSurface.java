@@ -367,10 +367,6 @@ public class DrawingSurface extends PApplet {
 			}
 			health = 5;
 			aang.setHealth(5);
-		}else if (level == 4) {//NEEDS TO DISPLAY GAME OVER 
-//			
-		
-			
 		}
 	}
 }
