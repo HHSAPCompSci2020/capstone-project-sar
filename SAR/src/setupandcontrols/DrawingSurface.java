@@ -361,6 +361,8 @@ public class DrawingSurface extends PApplet {
 			} else {
 				System.out.println("FIX MAZE TEXT FILE: NO PATH FOUND");
 			}
+			health = 5;
+			aang.setHealth(5);
 		}else if (level == 3) {
 			board = new Maze("mazeLevels/test3.txt");
 			ArrayList<Point> path = board.findFirstPath();
@@ -370,6 +372,8 @@ public class DrawingSurface extends PApplet {
 			} else {
 				System.out.println("FIX MAZE TEXT FILE: NO PATH FOUND");
 			}
+			health = 5;
+			aang.setHealth(5);
 		}else if (level == 4) {//NEEDS TO DISPLAY GAME OVER 
 //			TimerTask task = new TimerTask() {
 //			public void run() {
