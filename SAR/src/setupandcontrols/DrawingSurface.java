@@ -86,15 +86,15 @@ public class DrawingSurface extends PApplet {
 	 * 
 	 */
 	public void setup() {
-		arrow = loadImage("arrowNew.png");
-		fireArrow = loadImage("firearrow.png");
-		poisonArrow = loadImage("poisonNew.png");
-		avatar = loadImage("aangNew.png");
-		water = loadImage("sea.png");
-		wall = loadImage("rock.png");
-		tempWall = loadImage("grayWall.png");
-		grass = loadImage("grass2.png");
-		end = loadImage("trophy.png");
+		arrow = loadImage("media/arrowNew.png");
+		fireArrow = loadImage("media/firearrow.png");
+		poisonArrow = loadImage("media/poisonNew.png");
+		avatar = loadImage("media/aangNew.png");
+		water = loadImage("media/sea.png");
+		wall = loadImage("media/rock.png");
+		tempWall = loadImage("media/grayWall.png");
+		grass = loadImage("media/grass2.png");
+		end = loadImage("media/trophy.png");
 		
 		proj.x = width-140;
 		ArrayList<Point> path = board.findFirstPath();
@@ -115,7 +115,7 @@ public class DrawingSurface extends PApplet {
 	public void draw() {
 		background(0);
 		imageMode(CENTER);
-		image(loadImage("background.png"), width/2, height/2, width, height);
+		image(loadImage("media/background.png"), width/2, height/2, width, height);
 		imageMode(CORNER);
 		textAlign(LEFT);
 
@@ -164,11 +164,11 @@ public class DrawingSurface extends PApplet {
 			noFill();
 			fill(255);
 			text("Click Sokka \nto launch \narrow", width-70, 440);
-			image(loadImage("sokka2.png"), width-85, 261, 75, 177);
+			image(loadImage("media/sokka2.png"), width-85, 261, 75, 177);
 			
 			aang.draw(this, height / board.grid.length, width/2 + 115 - (height/2), 0);
-			image(loadImage("Katara.png"), 190, getyPos()-50, 120, 100);
-			image(loadImage("toph.png"), 220, getyPos()+50, 80, 123);
+			image(loadImage("media/Katara.png"), 190, getyPos()-50, 120, 100);
+			image(loadImage("media/toph.png"), 220, getyPos()+50, 80, 123);
 			
 			
 			
@@ -367,10 +367,6 @@ public class DrawingSurface extends PApplet {
 			}
 			health = 5;
 			aang.setHealth(5);
-		}else if (level == 4) {//NEEDS TO DISPLAY GAME OVER 
-//			
-		
-			
 		}
 	}
 }
