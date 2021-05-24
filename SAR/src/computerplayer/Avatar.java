@@ -1,9 +1,7 @@
 package computerplayer;
-import java.awt.Image;
+
 import java.awt.Point;
 import java.util.ArrayList;
-
-import processing.core.PApplet;
 import setupandcontrols.DrawingSurface;
 
 
@@ -36,7 +34,7 @@ public class Avatar {
 	public Avatar() {
 		setGridx(-1);
 		setGridy(-1);
-		setHealth(10);
+		setHealth(5);
 		isAlive = true;
 		isSlowed = false;
 		loses = false;

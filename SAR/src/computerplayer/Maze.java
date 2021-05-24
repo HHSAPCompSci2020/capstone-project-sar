@@ -2,14 +2,7 @@ package computerplayer;
 
 import java.awt.Point;
 import java.util.HashMap;
-import java.io.File;
-import java.io.FileReader;
-import java.io.IOException;
-import java.util.Scanner;
-
-import setupandcontrols.DrawingSurface;
 import setupandcontrols.GridTemplate;
-
 import java.util.ArrayList;
 
 
