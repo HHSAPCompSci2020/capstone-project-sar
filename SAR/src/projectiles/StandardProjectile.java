@@ -48,7 +48,7 @@ public class StandardProjectile {
 		arrow = new Point(x, y);
 		//dot = new Point(100, 100);
 		arrow = new Point(100, 100);
-		trajectory = new Line(arrow.x, arrow.y, arrow.x+this.moveSpeed, arrow.y);
+		trajectory = new Line(arrow.x-this.moveSpeed, arrow.y, arrow.x+this.moveSpeed, arrow.y);
 
 	}
 	
@@ -69,7 +69,7 @@ public class StandardProjectile {
 			if(arrowNew != null) {
 				//System.out.println("avatar: " + dot.x + " " + dot.y);
 				//System.out.println("arrow: " + arrowNew.x + " " + arrowNew.y);
-				if ((dot.x == arrowNew.x &&  dot.y == arrowNew.y) || trajectory.isPointInside(dot.x, dot.y)) {
+				if ((trajectory.isPointInside(dot.x, dot.y))) {
 					//System.out.println("Collide");
 					av.setHealth(av.getHealth()-2);
 					remove();
@@ -94,6 +94,7 @@ public class StandardProjectile {
 	public void fire() {
 		if (moveSpeed>=0) {
 				x -= moveSpeed*10;
+				trajectory.setX(trajectory.getX()-moveSpeed*10);
 				arrow.x = this.x;// increment
 		}
 	}
@@ -103,6 +104,7 @@ public class StandardProjectile {
 	 **/
 	public void remove() {
 		this.y = -1000;
+		trajectory.setX(trajectory.getX()-moveSpeed*10);
 		arrow.y = this.y;
 	}
 	
