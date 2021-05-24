@@ -346,6 +346,7 @@ public class DrawingSurface extends PApplet {
 		if(level == 2) { //NEEDS TO DISPLAY CONGRATULATIONS 
 //			
 			
+			
 			board = new Maze("mazeLevels/test2.txt");
 			ArrayList<Point> path = board.findFirstPath();
 			if (path != null) {
