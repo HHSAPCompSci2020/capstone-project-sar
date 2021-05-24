@@ -61,7 +61,7 @@ public class DrawingSurface extends PApplet {
 		obstacle = new WaterWall(320, getyPos());
 		obstacle1 = new WaterWall(320, getyPos());
 		obstacle2 = new WaterWall(320, getyPos());
-		proj = new StandardProjectile(1140, 400, 2);
+		proj = new StandardProjectile(1140, 400, 10);
 		barrier = new MovingWall(320, getyPos() * 2 + 25);
 		aang = new Avatar();
 		currentDrag = null;
@@ -225,28 +225,28 @@ public class DrawingSurface extends PApplet {
 	 */
 	public void keyPressed() {
 		if (keyCode == KeyEvent.VK_S) {
-			proj = new StandardProjectile(width-140, 400, 2);
+			proj = new StandardProjectile(width-140, 400, 10);
 
 		}
 		if (keyCode == KeyEvent.VK_F) {
-			proj = new FireArrow(width-140, 400, 2);
+			proj = new FireArrow(width-140, 400, 10);
 
 
 		}
 		if (keyCode == KeyEvent.VK_P) {
-			proj = new PoisonArrow(width-140, 400, 2);
+			proj = new PoisonArrow(width-140, 400, 10);
 
 		}
 		if (keyCode == KeyEvent.VK_UP) {
 			if (!proj.getTrigger()) {
-				proj.y -= 30;
+				proj.y -= 10;
 				proj.setY(proj.y);
 			}
 
 		}
 		if (keyCode == KeyEvent.VK_DOWN) {
 			if (!proj.getTrigger()) {
-				proj.y += 30;
+				proj.y += 10;
 				proj.setY(proj.y);
 			}
 

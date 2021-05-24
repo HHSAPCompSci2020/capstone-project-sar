@@ -1,14 +1,18 @@
 package projectiles;
 import java.awt.*;
 import java.awt.geom.Rectangle2D;
-import java.awt.geom.Rectangle2D;
+
+//import javax.sound.sampled.Line;
+
 import processing.core.PApplet;
+//import processing.core.PApplet;
 import processing.core.PImage;
 import setupandcontrols.DrawingSurface;
 import setupandcontrols.GridTemplate;
 import computerplayer.Avatar;
-import processing.core.PApplet;
-import processing.core.PImage;
+import asaran135.shapes.*;
+
+
 
 /**
  * Represents the set of projectiles within the game
@@ -25,6 +29,7 @@ public class StandardProjectile {
 	private boolean hit;
 	private int moveSpeed;
 	private Point dot, arrow;
+	private Line trajectory;
 	
 	/**
 	 * Initializes a StandardProjectile
@@ -41,6 +46,7 @@ public class StandardProjectile {
 		arrow = new Point(x, y);
 		//dot = new Point(100, 100);
 		arrow = new Point(100, 100);
+		trajectory = new Line(arrow.x, arrow.y, arrow.x+this.moveSpeed, arrow.y);
 
 	}
 	
@@ -61,7 +67,7 @@ public class StandardProjectile {
 			if(arrowNew != null) {
 				//System.out.println("avatar: " + dot.x + " " + dot.y);
 				//System.out.println("arrow: " + arrowNew.x + " " + arrowNew.y);
-				if (dot.x == arrowNew.x &&  dot.y == arrowNew.y) {
+				if ((dot.x == arrowNew.x &&  dot.y == arrowNew.y) || trajectory.isPointInside(dot.x, dot.y)) {
 					System.out.println("Collide");
 					av.setHealth(av.getHealth()-2);
 					remove();
