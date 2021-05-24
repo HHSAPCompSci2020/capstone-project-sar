@@ -1,25 +1,13 @@
 package projectiles;
 import java.awt.*;
-
-import java.awt.geom.Rectangle2D;
-
-//import javax.sound.sampled.Line;
-
-import processing.core.PApplet;
-//import processing.core.PApplet;
-import processing.core.PImage;
 import setupandcontrols.DrawingSurface;
 import setupandcontrols.GridTemplate;
 import computerplayer.Avatar;
-import asaran135.shapes.*;
-
-
-
 
 /**
  * Represents the set of projectiles within the game
  * @author Ayush Saran
- * @version 5/20
+ * @version 5/23
  */
 public class StandardProjectile {
 	
@@ -31,7 +19,6 @@ public class StandardProjectile {
 	private boolean hit;
 	private int moveSpeed;
 	private Point dot, arrow;
-	private Line trajectory;
 	
 	/**
 	 * Initializes a StandardProjectile
@@ -46,9 +33,7 @@ public class StandardProjectile {
 		this.y =y;
 		this.moveSpeed = moveSpeed;
 		arrow = new Point(x, y);
-		//dot = new Point(100, 100);
 		arrow = new Point(100, 100);
-		trajectory = new Line(arrow.x, arrow.y, arrow.x+this.moveSpeed, arrow.y);
 
 	}
 	
@@ -64,13 +49,10 @@ public class StandardProjectile {
 		dot = new Point((int) (av.getGridx()), (int) (av.getGridy()));
 
 		if (arrow.x > (app.width/2 + 115 - (app.height/2)) && arrow.x < app.height+(app.width/2 + 115 - (app.height/2)-1)) {
-			//System.out.println("arrow before: " + arrow.x + " " + arrow.y);
 			Point arrowNew = grid.clickToIndex(arrow, (float)(app.width/2 + 115 - (app.height/2)), 0f, app.height, app.height);
 			if(arrowNew != null) {
-				//System.out.println("avatar: " + dot.x + " " + dot.y);
-				//System.out.println("arrow: " + arrowNew.x + " " + arrowNew.y);
-				if ((dot.x == arrowNew.x &&  dot.y == arrowNew.y) || trajectory.isPointInside(dot.x, dot.y)) {
-					System.out.println("Collide");
+				
+				if (dot.x == arrowNew.x &&  dot.y == arrowNew.y) {
 					av.setHealth(av.getHealth()-2);
 					remove();
 
@@ -112,7 +94,6 @@ public class StandardProjectile {
 	 * @param mk DrawingSurface
 	 **/
 	public void draw(DrawingSurface mk) {
-//		mk.line(x, y, x+5, y);
 		mk.image(mk.arrow, x, y, mk.getyPos() / 15 * 16, mk.getyPos() / 15 * 8);
 
 	}

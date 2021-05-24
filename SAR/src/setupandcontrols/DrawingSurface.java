@@ -26,7 +26,7 @@ import projectiles.StandardProjectile;
  * https://favpng.com for Sokka image
  * https://en.wikipedia.org/wiki/Toph_Beifong for Toph image
  * https://custom-cursor.com for aang image
- * @version 5/20
+ * @version 5/23
  */
 
 public class DrawingSurface extends PApplet {
@@ -60,7 +60,7 @@ public class DrawingSurface extends PApplet {
 		obstacle = new WaterWall(320, getyPos());
 		obstacle1 = new WaterWall(320, getyPos());
 		obstacle2 = new WaterWall(320, getyPos());
-		proj = new StandardProjectile(1140, 400, 10);
+		proj = new StandardProjectile(1140, 400, 3);
 		barrier = new MovingWall(320, getyPos() * 2 + 25);
 		aang = new Avatar();
 		currentDrag = null;
@@ -138,7 +138,18 @@ public class DrawingSurface extends PApplet {
 
 		if (proj.getTrigger()) {
 			proj.fire();
-			proj.hitTarget(aang,board,this);
+			boolean isHit = proj.hitTarget(aang,board,this);
+			if (isHit) { 
+				if (proj instanceof FireArrow) {
+				
+					((FireArrow) proj).burn(aang);
+				}
+			
+				if (proj instanceof PoisonArrow) {
+				
+					((PoisonArrow) proj).poison(aang);
+				}
+			}
 
 		}
 
@@ -220,28 +231,28 @@ public class DrawingSurface extends PApplet {
 	 */
 	public void keyPressed() {
 		if (keyCode == KeyEvent.VK_S) {
-			proj = new StandardProjectile(width-140, 400, 10);
+			proj = new StandardProjectile(width-140, 400, 3);
 
 		}
 		if (keyCode == KeyEvent.VK_F) {
-			proj = new FireArrow(width-140, 400, 10);
+			proj = new FireArrow(width-140, 400, 3);
 
 
 		}
 		if (keyCode == KeyEvent.VK_P) {
-			proj = new PoisonArrow(width-140, 400, 10);
+			proj = new PoisonArrow(width-140, 400, 3);
 
 		}
 		if (keyCode == KeyEvent.VK_UP) {
 			if (!proj.getTrigger()) {
-				proj.y -= 10;
+				proj.y -= 8;
 				proj.setY(proj.y);
 			}
 
 		}
 		if (keyCode == KeyEvent.VK_DOWN) {
 			if (!proj.getTrigger()) {
-				proj.y += 10;
+				proj.y += 8;
 				proj.setY(proj.y);
 			}
 
@@ -333,14 +344,7 @@ public class DrawingSurface extends PApplet {
 		level++;
 		
 		if(level == 2) { //NEEDS TO DISPLAY CONGRATULATIONS 
-//			TimerTask task = new TimerTask() {
-//				public void run() {
-//					textSize(100);
-//					text("CONGRATULATIONS", 200, 200);
-//					textSize(12);
-//				}
-//			};
-//			time.schedule(task, 30);
+//			
 			
 			board = new Maze("mazeLevels/test2.txt");
 			ArrayList<Point> path = board.findFirstPath();
@@ -350,6 +354,8 @@ public class DrawingSurface extends PApplet {
 			} else {
 				System.out.println("FIX MAZE TEXT FILE: NO PATH FOUND");
 			}
+			health = 5;
+			aang.setHealth(5);
 		}else if (level == 3) {
 			board = new Maze("mazeLevels/test3.txt");
 			ArrayList<Point> path = board.findFirstPath();
@@ -359,15 +365,10 @@ public class DrawingSurface extends PApplet {
 			} else {
 				System.out.println("FIX MAZE TEXT FILE: NO PATH FOUND");
 			}
+			health = 5;
+			aang.setHealth(5);
 		}else if (level == 4) {//NEEDS TO DISPLAY GAME OVER 
-//			TimerTask task = new TimerTask() {
-//			public void run() {
-//				textSize(100);
-//				text("GAME OVER", 200, 200);
-//				textSize(12);
-//			}
-//		};
-//		time.schedule(task, 30);
+//			
 		
 			
 		}

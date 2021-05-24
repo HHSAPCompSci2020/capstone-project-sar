@@ -30,7 +30,8 @@ public class FireArrow extends StandardProjectile{
 	 */
 	public void burn (Avatar av) {
 			if (av.isAlive()) {
-				av.setHealth(av.getHealth() - 5);
+				av.setHealth(av.getHealth() - 2);
+
 			}
 		
 	}
@@ -40,7 +41,6 @@ public class FireArrow extends StandardProjectile{
 	 * @param mk DrawingSurface
 	 **/
 	public void draw(DrawingSurface mk) {
-//		mk.line(x, y, x+5, y);
 		mk.image(mk.fireArrow, x, y, mk.getyPos() / 15 * 130, mk.getyPos() / 15 * 80);
 
 	}
