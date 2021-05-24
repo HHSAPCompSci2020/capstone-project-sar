@@ -8,7 +8,6 @@ import setupandcontrols.DrawingSurface;
 /**
  * Represents the computer avatar and its visual and game components. Also
  * manages the avatar's life.
- * NOTE TO SELF: work on slowing down speed, navigating avatar with updated paths, and setting an art assest
  * @author Radhika Agarwal
  * @version 5/20
  */

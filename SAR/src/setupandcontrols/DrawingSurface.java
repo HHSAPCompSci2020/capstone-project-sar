@@ -26,7 +26,7 @@ import projectiles.StandardProjectile;
  * https://favpng.com for Sokka image
  * https://en.wikipedia.org/wiki/Toph_Beifong for Toph image
  * https://custom-cursor.com for aang image
- * @version 5/20
+ * @version 5/23
  */
 
 public class DrawingSurface extends PApplet {
@@ -190,7 +190,6 @@ public class DrawingSurface extends PApplet {
 
 		if (mouseX >= width-85 && mouseX <= width-10 && mouseY >= 300 && mouseY <= (float) 400 && gameStarted) {
 			proj.setTrigger(true);
-			System.out.println("Fired");
 		}
 	}
 
@@ -345,14 +344,7 @@ public class DrawingSurface extends PApplet {
 		level++;
 		
 		if(level == 2) { //NEEDS TO DISPLAY CONGRATULATIONS 
-//			TimerTask task = new TimerTask() {
-//				public void run() {
-//					textSize(100);
-//					text("CONGRATULATIONS", 200, 200);
-//					textSize(12);
-//				}
-//			};
-//			time.schedule(task, 30);
+//			
 			
 			board = new Maze("mazeLevels/test2.txt");
 			ArrayList<Point> path = board.findFirstPath();
@@ -376,14 +368,7 @@ public class DrawingSurface extends PApplet {
 			health = 5;
 			aang.setHealth(5);
 		}else if (level == 4) {//NEEDS TO DISPLAY GAME OVER 
-//			TimerTask task = new TimerTask() {
-//			public void run() {
-//				textSize(100);
-//				text("GAME OVER", 200, 200);
-//				textSize(12);
-//			}
-//		};
-//		time.schedule(task, 30);
+//			
 		
 			
 		}

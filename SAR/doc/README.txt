@@ -160,3 +160,10 @@ Credit List
 	 * Created initial Maze Layouts
 	Flaticon.com
 	 * Icons featured in art assets
+ * https://aminoapps.com for the avatar background picture
+ * https://en.wikipedia.org for the Katara image
+ * https://favpng.com for Sokka image
+ * https://en.wikipedia.org/wiki/Toph_Beifong for Toph image
+ * https://custom-cursor.com for aang image
+ * www.chegg.com\, www.pinclipart.com/, mikrotechnica.wordpress.com/ for the 3 mazes
+ 
