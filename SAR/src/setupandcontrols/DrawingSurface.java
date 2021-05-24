@@ -138,7 +138,18 @@ public class DrawingSurface extends PApplet {
 
 		if (proj.getTrigger()) {
 			proj.fire();
-			proj.hitTarget(aang,board,this);
+			boolean isHit = proj.hitTarget(aang,board,this);
+			if (isHit) { 
+				if (proj instanceof FireArrow) {
+				
+					((FireArrow) proj).burn(aang);
+				}
+			
+				if (proj instanceof PoisonArrow) {
+				
+					((PoisonArrow) proj).poison(aang);
+				}
+			}
 
 		}
 

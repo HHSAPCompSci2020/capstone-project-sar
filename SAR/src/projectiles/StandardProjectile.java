@@ -70,7 +70,7 @@ public class StandardProjectile {
 				//System.out.println("avatar: " + dot.x + " " + dot.y);
 				//System.out.println("arrow: " + arrowNew.x + " " + arrowNew.y);
 				if ((dot.x == arrowNew.x &&  dot.y == arrowNew.y) || trajectory.isPointInside(dot.x, dot.y)) {
-					System.out.println("Collide");
+					//System.out.println("Collide");
 					av.setHealth(av.getHealth()-2);
 					remove();
 
