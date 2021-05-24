@@ -1,4 +1,4 @@
-﻿Beat the Computer
+﻿Outsmart Aang
 Revision: 5/20/21
 Authors: Shachaf Smith, Ayush Saran, Radhika Agarwal
 
