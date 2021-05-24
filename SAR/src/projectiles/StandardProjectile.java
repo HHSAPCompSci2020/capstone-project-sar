@@ -48,8 +48,8 @@ public class StandardProjectile {
 		arrow = new Point(x, y);
 		//dot = new Point(100, 100);
 		arrow = new Point(100, 100);
-		trajectory = new Line(arrow.x-this.moveSpeed, arrow.y, arrow.x+this.moveSpeed, arrow.y);
-
+		trajectory = new Line(x, y, arrow.x+this.moveSpeed, y);
+		
 	}
 	
 	/**
@@ -61,15 +61,26 @@ public class StandardProjectile {
 	 * 
 	**/
 	public boolean hitTarget(Avatar av, GridTemplate grid, DrawingSurface app) { 
-		dot = new Point((int) (av.getGridx()), (int) (av.getGridy()));
-
+		//dot = new Point((int) (av.getGridx()), (int) (av.getGridy()));
+		float avatarx = (float)((av.getGridx()*app.height/20 + (app.width/2 + 115 - (app.height/2))) + app.height/40);
+		float avatary = (float)av.getGridy()*app.height/20;
+		Line avatarLine = new Line(avatarx, avatary, avatarx, (float)(avatary + app.height/20));
+		System.out.println(avatarx);
+		System.out.println(avatary);
+		
+		app.fill(0, 100, 100);
+		avatarLine.draw(app);
+		app.fill(0, 100, 100);
+		trajectory.draw(app);
 		if (arrow.x > (app.width/2 + 115 - (app.height/2)) && arrow.x < app.height+(app.width/2 + 115 - (app.height/2)-1)) {
 			//System.out.println("arrow before: " + arrow.x + " " + arrow.y);
-			Point arrowNew = grid.clickToIndex(arrow, (float)(app.width/2 + 115 - (app.height/2)), 0f, app.height, app.height);
-			if(arrowNew != null) {
+			//Point arrowNew = grid.clickToIndex(arrow, (float)(app.width/2 + 115 - (app.height/2)), 0f, app.height, app.height);
+			//if(arrowNew != null) {
 				//System.out.println("avatar: " + dot.x + " " + dot.y);
 				//System.out.println("arrow: " + arrowNew.x + " " + arrowNew.y);
-				if ((trajectory.isPointInside(dot.x, dot.y))) {
+		System.out.println(trajectory.getX());
+		System.out.println(trajectory.getY());
+				if ((trajectory.intersects(avatarLine) )) {
 					//System.out.println("Collide");
 					av.setHealth(av.getHealth()-2);
 					remove();
@@ -81,12 +92,10 @@ public class StandardProjectile {
 			}else {
 				return false;
 			}
-		}else {
-			return false;
 		}
 		
 		
-	}
+	
 	
 	/**
 	 * Draws and shoots the arrow
@@ -94,7 +103,7 @@ public class StandardProjectile {
 	public void fire() {
 		if (moveSpeed>=0) {
 				x -= moveSpeed*10;
-				trajectory.setX(trajectory.getX()-moveSpeed*10);
+				trajectory.move(-10, 0);
 				arrow.x = this.x;// increment
 		}
 	}
@@ -104,7 +113,7 @@ public class StandardProjectile {
 	 **/
 	public void remove() {
 		this.y = -1000;
-		trajectory.setX(trajectory.getX()-moveSpeed*10);
+		trajectory.setY(-10000);
 		arrow.y = this.y;
 	}
 	
@@ -138,6 +147,8 @@ public class StandardProjectile {
 	 * @param y New Point-object y coordinate
 	 */
 	public void setY(int y) {
+		trajectory.setY(y);
+		trajectory.setPoint2(trajectory.getX(), y);
 		arrow.y = y;
 	}
 	
