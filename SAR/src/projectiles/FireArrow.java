@@ -30,7 +30,8 @@ public class FireArrow extends StandardProjectile{
 	 */
 	public void burn (Avatar av) {
 			if (av.isAlive()) {
-				av.setHealth(av.getHealth() - 5);
+				av.setHealth(av.getHealth() - 2);
+
 			}
 		
 	}
