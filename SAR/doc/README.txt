@@ -1,5 +1,5 @@
 ﻿Outsmart Aang
-Revision: 5/20/21
+Revision: 5/23/21
 Authors: Shachaf Smith, Ayush Saran, Radhika Agarwal
 
 Description: 
@@ -34,7 +34,7 @@ Instructions
 			Fire Arrow: click F and click Sokka to trigger
 				Removes 4 lives
 			Poison Arrow: click P and click Sokka to trigger
-				Does damage over time
+				Removes 3 lives over time
 		*Obstacles:
 			Water Wall: drag water icon to an empty spot on the grid
 				Permanent, slows the avatar down
@@ -52,17 +52,10 @@ Instructions
 	 * An ability/obstacle status bar offers the user a visual representation of their 
 	   abilities visually laid out for the user to easily know what to click. The status 
 	   bar also informs the user of the availability of their resources
-	 * An end screen that marks the completion of the program, popping up at the last 
-	   developed level. The end screen either displays a victory or defeat and prompt 
-	   the user to quit
-
 
 
 Features List
 	Must-have Features:
-	[These are features that we agree you will definitely have by the project due date. 
-	A good final project would have all of these completed. At least 5 are required. 
-	Each feature should be fully described (at least a few full sentences for each)]
 	 * A computer avatar with ‘lives’
 		 - This would provide a way for the avatar to be ‘injured’ and ‘die’.  
 		   When the avatar reaches zero lives, the avatar ‘dies’ and the player wins. 
@@ -86,9 +79,6 @@ Features List
 		   and the interactive components. 
 
 	Want-to-have Features:
-	[These are features that you would like to have by the project due date, but you’re 
-	unsure whether you’ll hit all of them. A good final project would have perhaps half 
-	of these completed. At least 5 are required. Again, fully describe each.]
  	 * Two additional maze levels
 		 - These two maze levels would be more difficult to solve than the base level. 
 		   In addition, there would be more space for customization by the player. This means 
@@ -110,10 +100,6 @@ Features List
 		   the avatar, and can be used to buy obstacles and projectiles. 
 
 	Stretch Features:
-	[These are features that we agree a fully complete version of this program would have, 
-	but that you probably will not have time to implement. A good final project does not 
-	necessarily need to have any of these completed at all. At least 3 are required. Again, 
-	fully describe each.]
   	* Points system
 		 - The game would have a final point system. Points are proportional to 
 		   the time spent until winning (the less points the better). They are, however, 
@@ -150,14 +136,16 @@ Class List
 Credit List
 	Radhika Agarwal
 	 * Coded Computer Player Package
-	 * Managed Levels
+	 * Created initial Maze Layouts
+	 * Created GUI
 	Shachaf Smith
 	 * Coded Setup and User Controls Package
 	 * Coded Obstacle Package
 	 * Compiled art assets
 	Ayush Saran
 	 * Coded Projectile Package 
-	 * Created initial Maze Layouts
+	 * Managed Levels
+
 	Flaticon.com
 	 * Icons featured in art assets
  * https://aminoapps.com for the avatar background picture
